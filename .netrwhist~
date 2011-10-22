@@ -1,8 +1,0 @@
-let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =6
-let g:netrw_dirhist_1='/home/oxy'
-let g:netrw_dirhist_2='/home/oxy/.adobe'
-let g:netrw_dirhist_3='/home/oxy'
-let g:netrw_dirhist_4='/home/oxy/.config/google-chrome/Default/databases/http_twitter.com_0'
-let g:netrw_dirhist_5='/usr/share/color/argyll/ref'
-let g:netrw_dirhist_6='/home/oxy/Dropbox'
