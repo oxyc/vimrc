@@ -1,2 +1,6 @@
 tmp/
 views/
+backup/
+.VimballRecord
+.netrwhist
+
