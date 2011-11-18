@@ -1,6 +1,5 @@
-tmp/
-view/
-backup/
+tmp/*
+view/*
+backup/*
 .VimballRecord
 .netrwhist
-
