@@ -18,7 +18,7 @@ set fileformats=unix,dos,mac    "support all three, in this order
 set hidden                      "change buffers without saving
 set wildmenu                    "turn on cli completion wild style
 set wildmode=list:longest       "turn on wild mode huge list
-set wildignore=*.jpg,*.png      "ignore these file extensions
+set wildignore=*.jpg,*.png,.git "ignore these file extensions
 set dictionary+=~/.vim/dict.txt "custom auto-complete dictionary
 set complete+=k                 "use the dictionary for autocompletion
 set ofu=syntaxcomplete#Complete "Enable omnicomplete
@@ -49,6 +49,8 @@ set splitbelow                  "open splits at bottom
 set listchars=tab:▸\ ,trail:·   "distinguish tabs and trailing whitespace
 set list
 set shortmess+=filmnrxoOtT      "abbrev of messages (avoids hit enter)
+set mouse=a                     "enable mouse in all modes
+set nostartofline               "don't reset cursor to start of line when moving around
 
 " }
 " Text formatting/layout {
@@ -83,7 +85,7 @@ vnoremap <space> zA
 nnoremap zO zCzO
 
 " Use ,z to focus the current fold
-nnoremap <leader>z zMzOz        "Use ,z to focus the current fold.
+nnoremap <leader>z zMzvzz
 
 " }
 " GUI / Looks {
@@ -117,7 +119,7 @@ au VimResized * exe "normal! \<c-w>="
 
 let mapleader = ","
 map nt :NERDTreeToggle<cr>
-map å :b<space>
+map å *<C-o>
 map <silent> ö ^
 map <silent> ä $
 map <silent> Å <C-]>
@@ -135,13 +137,25 @@ vnoremap <leader>Al :left<cr>
 vnoremap <leader>Ac :center<cr>
 vnoremap <leader>Ar :right<cr>
 
+" Open a Quickfix window for the last search.
+nnoremap <silent> <leader>/ :execute 'vimgrep /'.@/.'/g %'<CR>:copen<CR>
+
 " }
 " Abbrevations {
 
 "Load the current buffer in Chrome
 abbrev cc :! google-chrome %:p<cr>
 
-" }
+" } 
+" Make sure Vim returns to the same line when you reopen a file.
+" By Amit
+augroup line_return
+  au!
+  au BufReadPost *
+      \ if line("'\"") > 0 && line("'\"") <= line("$") |
+      \     execute 'normal! g`"zvzz' |
+      \ endif
+augroup END
 " DX {
 
 "Automatically change current dir to that of the file in the buffer
