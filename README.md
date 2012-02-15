@@ -1,20 +1,24 @@
 # Plugins
 
-- [syntastic](https://github.com/scrooloose/syntastic) — Syntax checking hacks for vim
-- [tcomment](https://github.com/tomtom/tcomment_vim) — An extensible & universal comment vim-plugin that also handles embedded filetypes
-- [surround](https://github.com/tpope/vim-surround) — quoting/parenthesizing made simple
-- [matchit](http://www.vim.org/scripts/script.php?script_id=39) — The matchit.vim script allows you to configure % to match more than just 
-  single characters
-- [guicolorscheme](http://www.vim.org/scripts/script.php?script_id=1809)
-- [color_sample_pack](https://github.com/vim-scripts/Color-Sampler-Pack)
-- [buftabs](http://www.vim.org/scripts/script.php?script_id=1664)
-- [ack](https://github.com/mileszs/ack.vim)
-- [stylus](https://github.com/wavded/vim-stylus)
-- [less](https://github.com/groenewege/vim-less)
-- [sass](https://github.com/tpope/vim-haml)
-- [jade](https://github.com/digitaltoad/vim-jade)
-- [markdown](https://github.com/plasticboy/vim-markdown)
-- [gist](https://github.com/mattn/gist-vim)
+- [ack.vim](http://www.vim.org/scripts/script.php?script_id=2572) — Vim plugin for the Perl module / CLI script 'ack'
+- [buftabs](http://www.vim.org/scripts/script.php?script_id=1664) — Minimalistic buffer tabs saving screen space
+- [Gist.vim](http://www.vim.org/scripts/script.php?script_id=2423) — vimscript for gist
+- [html5.vim](http://www.vim.org/scripts/script.php?script_id=3236) — HTML5 omnicomplete and syntax
+- [JellyX](http://www.vim.org/scripts/script.php?script_id=3408) — JellyX: A delicious collision of Jellybeans and Xoria256
+- [rainbow_parentheses](http://www.vim.org/scripts/script.php?script_id=3772) — Better Rainbow Parentheses
+- [syntastic](http://www.vim.org/scripts/script.php?script_id=2736) — Syntax checking hacks for vim
+- [tcomment](http://www.vim.org/scripts/script.php?script_id=1173) — An extensible & universal comment vim-plugin that also handles embedded filetypes
+- [vim-css3-syntax](https://github.com/hail2u/vim-css3-syntax) — Add CSS3 syntax support to vim's built-in syntax/css.vim
+- [vim-haml](http://www.vim.org/scripts/script.php?script_id=1433) — Vim runtime files for Haml, Sass, and SCSS
+- [vim-jade](https://github.com/digitaltoad/vim-jade) — Vim Jade template engine syntax highlighting and indention
+- [vim-javascript](http://www.vim.org/scripts/script.php?script_id=2765) — Vastly improved vim's javascript indentation.
+- [vim-less](https://github.com/groenewege/vim-less) — vim syntax for LESS (dynamic CSS)
+- [vim-markdown](http://plasticboy.com/markdown-vim-mode/) — Markdown Vim Mode
+- [matchit](http://www.vim.org/scripts/script.php?script_id=39) — Extended % matching for HTML, LaTeX, and many other languages 
+- [pathogen.vim](http://www.vim.org/scripts/script.php?script_id=2332) — pathogen.vim: manage your runtimepath
+- [stylus](http://www.vim.org/scripts/script.php?script_id=3513) — Syntax Highlighting for Stylus
+- [surround](http://www.vim.org/scripts/script.php?script_id=1697) — quoting/parenthesizing made simple
+- [tabular](http://www.vim.org/scripts/script.php?script_id=3464) — Vim script for text filtering and alignment 
 
 # Inspired/Stolen by
 
@@ -24,4 +28,3 @@
 - [Derek Wyatt](https://github.com/derekwyatt/vim-config)
 
 and probably many others.
-
