@@ -1,6 +1,6 @@
 #!/bin/bash
 # Install script
-# curl https://raw.github.com/oxyc/vimrc/master/install.sh -o - | sh
+# curl https://raw.github.com/oxyc/vimrc/master/install.sh -o - | bash
 #
 # Inspired by: https://github.com/krisleech/vimfiles/blob/master/bootstrap.sh
 
