@@ -4,9 +4,9 @@
 #
 # From: https://github.com/krisleech/vimfiles/blob/master/bootstrap.sh
 
-read -p "Deleting old vim files. Are you sure? (y/n) " -n 1
+read -n1 -p "Deleting old vim files. Are you sure? (y/n) "
 echo
-if [[ $REPLY =~ ^[Yy]$ ]]; then
+if [[ $REPLY = [Yy] ]]; then
   cp -r ~/.vim ~/.vim.old 2>/dev/null
   rm -rf ~/.vim 2>/dev/null
   rm -f ~/.vimrc 2>/dev/null
