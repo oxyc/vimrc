@@ -5,14 +5,7 @@
 # From: https://github.com/krisleech/vimfiles/blob/master/bootstrap.sh
 
 function install {
-  git clone git://github.com/oxyc/vimrc.git ~/.vim && ln -s ~/.vim/vimrc ~/.vimrc && active_submodules
-}
-
-function activate_submodules {
-  for dir in $(find '~/.vim/bundle' -type d); do
-    cd ~/.vim/bundle/${dir} && git submodule init
-  done
-  cd
+  git clone git://github.com/oxyc/vimrc.git ~/.vim && cd ~/.vim && git submodule init && git submodule update && ln -s ~/.vim/vimrc ~/.vimrc
 }
 
 function clean {
