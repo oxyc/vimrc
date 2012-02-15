@@ -1,3 +1,7 @@
+# Installation
+
+`curl https://raw.github.com/oxyc/vimrc/master/install.sh -o - | sh`
+
 # Plugins
 
 - [ack.vim](http://www.vim.org/scripts/script.php?script_id=2572) — Vim plugin for the Perl module / CLI script 'ack'

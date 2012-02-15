@@ -1,7 +1,8 @@
 #!/bin/bash
 # Install script
 # curl https://raw.github.com/oxyc/vimrc/master/install.sh -o - | sh
-# https://github.com/krisleech/vimfiles/blob/master/bootstrap.sh
+#
+# From: https://github.com/krisleech/vimfiles/blob/master/bootstrap.sh
 
 read -p "Deleting old vim files. Are you sure? (y/n) " -n 1
 echo
