@@ -1,4 +1,5 @@
-
+runtime bundle/vim-pathogen/autoload/pathogen.vim
+call pathogen#infect()
 " Basics {
 
 set nocompatible                "get out of vi-compatible mode
@@ -91,7 +92,7 @@ nnoremap <leader>z zMzvzz
 " GUI / Looks {
 
 set guioptions-=T
-colorscheme jellybeans
+"colorscheme jellybeans
 set t_Co=256                    "support 256 colors
 
 set statusline=%f    " Path.
