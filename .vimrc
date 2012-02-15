@@ -14,7 +14,7 @@ set autochdir                   "switch to current file directory automatically
 set backspace=indent,eol,start  "make backspace more flexible
 set backup                      "make backup files
 set backupdir=~/.vim/backup     "backup directory
-set directory=~/.vim/tmp        "swap directory
+set directory=~/.vim/swap       "swap directory
 set fileformats=unix,dos,mac    "support all three, in this order
 set hidden                      "change buffers without saving
 set wildmenu                    "turn on cli completion wild style
