@@ -21,12 +21,5 @@ function clean {
   rm -f ~/.vimrc 2>/dev/null
 }
 
-read -p "Deleting old vim files. Are you sure? (y/n) "
-echo
-if [[ $REPLY = [Yy] ]]; then
-  clean && install;
-else
-  install;
-fi
-
+clean && install;
 echo 'Done!'
