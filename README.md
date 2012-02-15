@@ -1,6 +1,6 @@
 # Installation
 
-`curl https://raw.github.com/oxyc/vimrc/master/install.sh -o - | sh`
+``curl https://raw.github.com/oxyc/vimrc/master/install.sh -o - | sh``
 
 # Plugins
 
