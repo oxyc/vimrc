@@ -138,6 +138,7 @@ nnoremap <C-e> 3<C-e>
 nnoremap <C-y> 3<C-y>
 map <C-l> :bnext<cr>
 map <C-h> :bprev<cr>
+nnoremap <leader>p :set invpaste paste?<cr>
 
 
 " Align text
@@ -212,6 +213,11 @@ map <leader>a :Ack!
 nnoremap <silent> <leader>? :execute "Ack! '" . substitute(substitute(substitute(@/, "\\\\<", "\\\\b", ""), "\\\\>", "\\\\b", ""), "\\\\v", "", "") . "'"<CR>
 
 " }
+" Gist {
+
+let g:gist_open_browser_after_post = 1
+
+" }
 " Custom functions {
 
 " Strip trailing whitespace (,ss)
@@ -224,5 +230,23 @@ function! StripWhitespace ()
   call setreg('/', old_query)
 endfunction
 noremap <leader>ss :call StripWhitespace ()<CR>
+
+function! TrackTime (...)
+  let command = (a:0 > 0) ? a:1 : ''
+  exec ':! track ' . command
+endfunction
+
+function! TrackShow (limit)
+  exec ':! track --show ' . a:limit
+endfunction
+
+function! TrackFind (...)
+  let regex = (a:0 > 0) ? a:1 : ''
+  exec ':! track --find ' . regex
+endfunction
+
+noremap <leader>tt :call TrackTime (input("Message: "))<CR>
+noremap <leader>ts :call TrackShow (input("Count: "))<CR>
+noremap <leader>tf :call TrackShow (input("Regex: "))<CR>
 
 " }
