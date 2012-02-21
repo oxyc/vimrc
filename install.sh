@@ -1,25 +1,29 @@
 #!/bin/bash
 # Install script
 # curl https://raw.github.com/oxyc/vimrc/master/install.sh -o - | sh
-#
-# From: https://github.com/krisleech/vimfiles/blob/master/bootstrap.sh
 
 function install {
-  git clone git://github.com/oxyc/vimrc.git ~/.vim && ln -s ~/.vim/vimrc ~/.vimrc && active_submodules
-}
-
-function activate_submodules {
-  for dir in $(find '~/.vim/bundle' -type d); do
-    cd ~/.vim/bundle/${dir} && git submodule init
-  done
-  cd
+  git clone --recursive git://github.com/oxyc/vimrc.git ~/.vim \
+    && cd ~/.vim \
+    && ln -s ~/.vim/vimrc ~/.vimrc
 }
 
 function clean {
   cp -r ~/.vim ~/.vim.old 2>/dev/null
+  cp ~/.vimrc ~/.vimrc.old 2>/dev/null
   rm -rf ~/.vim 2>/dev/null
   rm -f ~/.vimrc 2>/dev/null
 }
 
-clean && install;
-echo 'Done!'
+case "$1" in
+  --update|-u)
+    cd ~/.vim \
+      && git pull \
+      && git submodule foreach git pull \
+      || echo "Something went wrong"
+    ;;
+  *)
+    clean && install \
+      || echo "Something went wrong"
+    ;;
+esac
