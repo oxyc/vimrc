@@ -1,5 +1,6 @@
 #!/bin/bash
 # Install script
+
 # curl https://raw.github.com/oxyc/vimrc/master/install.sh -o - | sh
 
 function install {
@@ -10,8 +11,8 @@ function install {
 
 function clean {
   cp -r ~/.vim ~/.vim.old 2>/dev/null
-  cp ~/.vimrc ~/.vimrc.old 2>/dev/null
   rm -rf ~/.vim 2>/dev/null
+  cp ~/.vimrc ~/.vimrc.old 2>/dev/null
   rm -f ~/.vimrc 2>/dev/null
 }
 
@@ -27,3 +28,4 @@ case "$1" in
       || echo "Something went wrong"
     ;;
 esac
+unset install clean
