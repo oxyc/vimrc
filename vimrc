@@ -173,11 +173,25 @@ augroup line_return
       \ endif
 augroup END
 
+function! SetWPConfig ()
+  au FileType php setlocal shiftwidth=4 softtabstop=4 tabstop=4 noexpandtab
+  au FileType php setlocal listchars=trail:·
+endfunction
+
+function! SetDrupalConfig ()
+  au FileType php setlocal shiftwidth=2 softtabstop=2 tabstop=2 expandtab
+  au FileType php setlocal listchars=tab:▸\ ,trail:·
+endfunction
+
+" Wordpress files
+au BufRead,BufNewFile */wp-content/* call SetWPConfig()
+
 " Drupal files
 augroup module
     au BufRead,BufNewFile *.module set filetype=php
     au BufRead,BufNewFile *.install set filetype=php
     au BufRead,BufNewFile *.test set filetype=php
+    au BufRead,BufNewFile */sites/all/* call SetDrupalConfig()
 augroup END
 
 augroup css
