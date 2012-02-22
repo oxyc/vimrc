@@ -139,6 +139,7 @@ nnoremap <C-y> 3<C-y>
 map <C-l> :bnext<cr>
 map <C-h> :bprev<cr>
 nnoremap <leader>p :set invpaste paste?<cr>
+noremap <leader>W :w !sudo tee % > /dev/null<CR>
 
 
 " Align text
