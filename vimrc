@@ -246,13 +246,25 @@ function! StripWhitespace ()
 endfunction
 noremap <leader>ss :call StripWhitespace ()<CR>
 
+" When you're working remotely and need to copy something to your clipboard
+function! ToggleCopyMode ()
+  if &mouse == 'a'
+    set mouse=
+  else
+    set mouse=a
+  endif
+  set number!
+  set list!
+endfunction
+nnoremap <leader>c :call ToggleCopyMode ()<cr>
+
 function! TrackTime (...)
   let command = (a:0 > 0) ? a:1 : ''
   exec ':! track ' . command
 endfunction
 
-function! TrackShow (limit)
-  exec ':! track --show ' . a:limit
+function! TrackShow (...)
+  exec ':! track --show ' . a:1
 endfunction
 
 function! TrackFind (...)
