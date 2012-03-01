@@ -184,10 +184,6 @@ augroup css
   "Sort CSS attributes alphabetically
   "Stolen from https://bitbucket.org/sjl/dotfiles/src/tip/vim/.vimrc
   au BufNewFile,BufRead *.less,*.css nnoremap <buffer> <leader>S ?{<CR>jV/\v^\s*\}?$<CR>k:sort<CR>:noh<CR>
-
-  " Make {<cr> insert a pair of brackets in such a way that the cursor is correctly
-  " positioned inside of them AND the following code doesn't get unfolded.
-  "au BufNewFile,BufRead *.less,*.css inoremap <buffer> {<cr>{}<left><cr><space><space><cr><esc>kA
 augroup END
 
 au BufNewFile,BufRead *.js setf javascript
@@ -248,5 +244,36 @@ endfunction
 noremap <leader>tt :call TrackTime (input("Message: "))<CR>
 noremap <leader>ts :call TrackShow (input("Count: "))<CR>
 noremap <leader>tf :call TrackShow (input("Regex: "))<CR>
+
+function! DrupalImplementsComment ()
+  let filename = bufname("%")
+  let dot = stridx(filename, ".")
+  let module = strpart(filename, 0, dot)
+  let current_line = getline(".")
+  let hook_idx = matchend(current_line, "function " . module . "_")
+  if !empty(module) && hook_idx != -1
+    let hook_length = match(current_line, "(") - hook_idx
+    let hook_name = strpart(current_line, hook_idx, hook_length)
+    call DoxygenComment ("Implements hook_" . hook_name . "().")
+  else
+    call DoxygenComment ()
+  endif
+endfunction
+
+function! DoxygenComment (...)
+  set paste
+  let message = (a:0 > 0) ? a:1 : ''
+  exe "normal! O/**\<CR>"
+    \ . " * " . message . "\<CR>"
+    \ . " */\<Esc>"
+  if empty(message)
+    -1 | startinsert!
+  else
+    +1
+  endif
+  set nopaste
+endfunction
+noremap <leader>d :call DoxygenComment ()<CR>
+noremap <leader>c :call DrupalImplementsComment ()<CR>
 
 " }
