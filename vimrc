@@ -41,7 +41,7 @@ set gdefault                                      " Add the g flag to search/rep
 
 set backupdir=~/.vim/backup                       " backup directory
 set directory=~/.vim/swap                         " swap directory
-set dictionary+=~/.vim/dict.txt                   " custom auto-complete dictionary
+set dictionary+=~/.vim/dictionaries/dictionary    " custom auto-complete dictionary
 
 " }
 " Vim UI {
@@ -182,6 +182,7 @@ endfunction
 function! SetDrupalConfig ()
   au FileType php setlocal shiftwidth=2 softtabstop=2 tabstop=2 expandtab
   au FileType php setlocal listchars=tab:▸\ ,trail:·
+  au FileType php setlocal dictionary+=~/.vim/dictionaries/drupal7
 endfunction
 
 " Wordpress files

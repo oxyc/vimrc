@@ -1,4 +1,4 @@
-# Installation
+## Installation
 
 ```bash
 curl https://raw.github.com/oxyc/vimrc/master/install.sh -o - | bash
@@ -6,7 +6,21 @@ curl https://raw.github.com/oxyc/vimrc/master/install.sh -o - | bash
 
 You need a terminal with support for 256 colors for the JellyX theme to work.
 
-# Plugins
+## Tips
+
+#### Generate Drupal dictionary-list
+
+```bash
+grep --exclude="*.test" --exclude="*.install" "^function" modules/ includes/ -hR | awk '!/^function\ _/ { sub(/\(.+/, "(", $2); print $2 }' | sort -u > ~/.vim/dictionaries/drupal7
+```
+
+#### Use Inconsolata as your font
+
+```bash
+mkdir -p ~/.fonts && cd ~/.fonts && wget http://levien.com/type/myfonts/Inconsolata.otf && sudo fc-cache -f -v
+```
+
+## Plugins
 
 - [ack.vim](http://www.vim.org/scripts/script.php?script_id=2572) — Vim plugin for the Perl module / CLI script 'ack'
 - [buftabs](http://www.vim.org/scripts/script.php?script_id=1664) — Minimalistic buffer tabs saving screen space
@@ -28,7 +42,7 @@ You need a terminal with support for 256 colors for the JellyX theme to work.
 - [surround](http://www.vim.org/scripts/script.php?script_id=1697) — quoting/parenthesizing made simple
 - [tabular](http://www.vim.org/scripts/script.php?script_id=3464) — Vim script for text filtering and alignment 
 
-# Inspired/Stolen by
+## Inspired/Stolen by
 
 - [Gianni Chiappetta](https://github.com/gf3/dotfiles)
 - [Mathias Bynens](https://github.com/mathiasbynens/dotfiles)
