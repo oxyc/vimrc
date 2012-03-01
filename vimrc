@@ -139,6 +139,7 @@ nnoremap <C-y> 3<C-y>
 map <C-l> :bnext<cr>
 map <C-h> :bprev<cr>
 nnoremap <leader>p :set invpaste paste?<cr>
+noremap <leader>W :w !sudo tee % > /dev/null<CR>
 
 
 " Align text
@@ -173,11 +174,25 @@ augroup line_return
       \ endif
 augroup END
 
+function! SetWPConfig ()
+  au FileType php setlocal shiftwidth=4 softtabstop=4 tabstop=4 noexpandtab
+  au FileType php setlocal listchars=trail:·
+endfunction
+
+function! SetDrupalConfig ()
+  au FileType php setlocal shiftwidth=2 softtabstop=2 tabstop=2 expandtab
+  au FileType php setlocal listchars=tab:▸\ ,trail:·
+endfunction
+
+" Wordpress files
+au BufRead,BufNewFile */wp-content/* call SetWPConfig()
+
 " Drupal files
 augroup module
     au BufRead,BufNewFile *.module set filetype=php
     au BufRead,BufNewFile *.install set filetype=php
     au BufRead,BufNewFile *.test set filetype=php
+    au BufRead,BufNewFile */sites/all/* call SetDrupalConfig()
 augroup END
 
 augroup css
@@ -227,13 +242,25 @@ function! StripWhitespace ()
 endfunction
 noremap <leader>ss :call StripWhitespace ()<CR>
 
+" When you're working remotely and need to copy something to your clipboard
+function! ToggleCopyMode ()
+  if &mouse == 'a'
+    set mouse=
+  else
+    set mouse=a
+  endif
+  set number!
+  set list!
+endfunction
+nnoremap <leader>c :call ToggleCopyMode ()<cr>
+
 function! TrackTime (...)
   let command = (a:0 > 0) ? a:1 : ''
   exec ':! track ' . command
 endfunction
 
-function! TrackShow (limit)
-  exec ':! track --show ' . a:limit
+function! TrackShow (...)
+  exec ':! track --show ' . a:1
 endfunction
 
 function! TrackFind (...)
