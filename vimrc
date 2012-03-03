@@ -114,6 +114,20 @@ let g:syntastic_stl_format = '[%E{Error 1/%e: line %fe}%B{, }%W{Warning 1/%w: li
 
 let g:gist_open_browser_after_post=1
 
+" Fix matchpairs for PHP (for matchit.vim plugin)
+" http://zmievski.org/files/talks/vancouver-2007/vim-for-php-programmers.pdf
+if exists("loaded_matchit")
+  let b:match_skip = 's:comment\|string'
+  let b:match_words = '<?\(php\)\?:?>,\<switch\>:\<endswitch\>,' .
+    \ '\<if\>:\<elseif\>:\<else\>:\<endif\>,' .
+    \ '\<while\>:\<endwhile\>,\<do\>:\<while\>,' .
+    \ '\<for\>:\<endfor\>,\<foreach\>:\<endforeach\>' .
+    \ '<\@<=[ou]l\>[^>]*\%(>\|$\):<\@<=li\>:<\@<=/[ou]l>,' .
+    \ '<\@<=dl\>[^>]*\%(>\|$\):<\@<=d[td]\>:<\@<=/dl>,' .
+    \ '<\@<=\([^/?][^ \t>]*\)[^>]*\%(>\|$\):<\@<=/\1>,' .
+    \ '<:>'
+endif
+
 " }
 " GUI / Looks {
 
