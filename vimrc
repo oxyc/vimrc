@@ -196,6 +196,11 @@ au BufWinEnter * silent! loadview " make vim load view state,folds,cursor,etc
 au FileType stylus setlocal shiftwidth=2 softtabstop=2 tabstop=2
 au FileType php setlocal shiftwidth=2 softtabstop=2 tabstop=2
 
+
+" @TODO
+"match UsingWS /\v^\ +/
+"match TrailingWS /\s+$)/
+
 " Make sure Vim returns to the same line when you reopen a file.
 " By Amit
 augroup line_return
@@ -207,14 +212,19 @@ augroup line_return
 augroup END
 
 function! SetWPConfig ()
-  au FileType php setlocal shiftwidth=4 softtabstop=4 tabstop=4 noexpandtab
-  au FileType php setlocal listchars=trail:·
+  if &filetype == 'php'
+    setlocal shiftwidth=4 softtabstop=4 tabstop=4
+    setlocal noexpandtab
+    setlocal nolist
+  endif
 endfunction
 
 function! SetDrupalConfig ()
-  au FileType php setlocal shiftwidth=2 softtabstop=2 tabstop=2 expandtab
-  au FileType php setlocal listchars=tab:▸\ ,trail:·
-  au FileType php setlocal dictionary+=~/.vim/dictionaries/drupal7
+  if &filetype == 'php'
+    setlocal shiftwidth=2 softtabstop=2 tabstop=2 expandtab
+    setlocal listchars=tab:▸\ ,trail:·
+    setlocal dictionary+=~/.vim/dictionaries/drupal7
+  endif
 endfunction
 
 " Wordpress files
