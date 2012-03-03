@@ -14,7 +14,7 @@ call pathogen#infect()
 
 set shiftwidth=2                                  " auto-indent amount when using cindent, etc
 set softtabstop=2                                 " how many spaces is a tab
-set tabstop=4                                     " real tabs should be 4
+set tabstop=2                                     " real tabs should be 4
 set expandtab                                     " no real tabs
 set autoindent
 set smartindent
@@ -83,7 +83,7 @@ set virtualedit=block                             " Allow moving to unexisting l
 set foldlevelstart=0
 set foldmarker={,}                                " fold C style code
 set foldmethod=marker                             " fold based on indent
-set foldlevel=1                                   " don't autofold
+set foldlevel=0                                   " don't autofold
 set foldnestmax=10                                " deepest fold is 10
 set foldopen=block,hor,mark,percent,quickfix,tag  " what movements open folds
 
@@ -96,7 +96,7 @@ vnoremap <space> zA
 nnoremap zO zCzO
 
 " Use ,z to focus the current fold
-nnoremap <leader>z zMzvzz
+nnoremap <leader>z zMzv
 
 " }
 " GUI / Looks {
@@ -129,18 +129,20 @@ au VimResized * exe "normal! \<c-w>="
 " Custom key mappings {
 
 let mapleader = ","
-map nt :NERDTreeToggle<cr>
 map å *<C-o>
 map <silent> ö ^
 map <silent> ä $
 map <silent> Å <C-]>
-nnoremap <C-e> 3<C-e>
-nnoremap <C-y> 3<C-y>
+nnoremap <C-e> 5<C-e>
+nnoremap <C-y> 5<C-y>
 map <C-l> :bnext<cr>
 map <C-h> :bprev<cr>
 nnoremap <leader>p :set invpaste paste?<cr>
 noremap <leader>W :w !sudo tee % > /dev/null<CR>
 
+" Visual shifting without exiting visual mode
+vnoremap < <gv
+vnoremap > >gv
 
 " Align text
 nnoremap <leader>Al :left<cr>
@@ -245,11 +247,7 @@ noremap <leader>ss :call StripWhitespace ()<CR>
 
 " When you're working remotely and need to copy something to your clipboard
 function! ToggleCopyMode ()
-  if &mouse == 'a'
-    set mouse=
-  else
-    set mouse=a
-  endif
+  if &mouse == 'a' |set mouse=|else |set mouse=a|endif
   set number!
   set list!
 endfunction
@@ -301,7 +299,7 @@ function! DoxygenComment (...)
   endif
   set nopaste
 endfunction
-noremap <leader>d :call DoxygenComment ()<CR>
-noremap <leader>c :call DrupalImplementsComment ()<CR>
+noremap <leader>dc :call DoxygenComment ()<CR>
+noremap <leader>di :call DrupalImplementsComment ()<CR>
 
 " }
