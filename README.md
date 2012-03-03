@@ -11,7 +11,7 @@ You need a terminal with support for 256 colors for the JellyX theme to work.
 #### Generate Drupal dictionary-list
 
 ```bash
-grep --exclude="*.test" --exclude="*.install" "^function" modules/ includes/ -hR | awk '!/^function\ _/ { sub(/\(.+/, "(", $2); print $2 }' | sort -u > ~/.vim/dictionaries/drupal7
+grep --exclude-dir="tests" --exclude="*.install" "^function" modules/ includes/ -hR | awk '!/^function\ _/ { sub(/\(.+/, "(", $2); print $2 }' | sort -u > ~/.vim/dictionaries/drupal7
 ```
 
 #### Use Inconsolata as your font
