@@ -10,6 +10,14 @@ runtime bundle/vim-pathogen/autoload/pathogen.vim
 call pathogen#infect()
 
 " }
+" Local files and directories {
+
+set backupdir=~/.vim/backup                       " backup directory
+set directory=~/.vim/swap                         " swap directory
+set dictionary+=~/.vim/dictionaries/dictionary    " custom auto-complete dictionary
+set undodir=~/.vim/undo                           " undo directory
+
+" }
 " Tabs {
 
 set shiftwidth=2                                  " auto-indent amount when using cindent, etc
@@ -24,6 +32,9 @@ set smartindent
 
 set backup                                        " make backup files
 set autochdir                                     " switch to current file directory automatically
+set undofile                                      " store all undos
+set undolevels=1000                               " remember 1000 undos
+set undoreload=10000                              " save up to 10000 lines for undo on a buffer reload
 set backspace=indent,eol,start                    " make backspace more flexible
 set fileformats=unix,dos,mac                      " support all three, in this order
 set hidden                                        " change buffers without saving
@@ -35,13 +46,6 @@ set ofu=syntaxcomplete#Complete                   " Enable omnicomplete
 set completeopt=longest,menuone,preview           " Better completion
 set history=1000                                  " Keep a longer history
 set gdefault                                      " Add the g flag to search/replace by default
-
-" }
-" Local files and directories {
-
-set backupdir=~/.vim/backup                       " backup directory
-set directory=~/.vim/swap                         " swap directory
-set dictionary+=~/.vim/dictionaries/dictionary    " custom auto-complete dictionary
 
 " }
 " Vim UI {
