@@ -99,6 +99,17 @@ nnoremap zO zCzO
 nnoremap <leader>z zMzv
 
 " }
+" Configurations {
+
+let g:syntastic_enable_signs=1 " Use :sign interace to mark syntax errors
+let g:syntastic_check_on_open=1 "Check for errors on buffer load
+let g:syntastic_auto_loc_list=1 "Open Error window automatically
+let g:syntastic_auto_jump=1 " Automatically jump to first detected error
+let g:syntastic_stl_format = '[%E{Error 1/%e: line %fe}%B{, }%W{Warning 1/%w: line %fw}]'
+
+let g:gist_open_browser_after_post=1
+
+" }
 " GUI / Looks {
 
 set guioptions-=T
@@ -215,21 +226,12 @@ au FileType html,php nnoremap <buffer> <s-cr> vit<esc>a<cr><esc>vito<esc>i<cr><e
 " }
 " Plugins {
 
-" Syntastic
-let g:syntastic_enable_signs=1
-let g:syntastic_stl_format = '[%E{Error 1/%e: line %fe}%B{, }%W{Warning 1/%w: line %fw}]'
-
 " Ack
 map <leader>a :Ack!
 
 " Ack for the last search.
 " https://bitbucket.org/sjl/dotfiles/src/tip/vim/.vimrc
 nnoremap <silent> <leader>? :execute "Ack! '" . substitute(substitute(substitute(@/, "\\\\<", "\\\\b", ""), "\\\\>", "\\\\b", ""), "\\\\v", "", "") . "'"<CR>
-
-" }
-" Gist {
-
-let g:gist_open_browser_after_post = 1
 
 " }
 " Custom functions {
