@@ -101,6 +101,11 @@ nnoremap <leader>z zMzv
 " }
 " Configurations {
 
+let g:php_sql_query=1 " Highlight SQL queries expressed in strings
+let g:php_htmlInStrings=1 "Highlight HTML expressed in strings
+let g:php_folding=1
+let g:PHP_vintage_case_default_indent=1 "Indent switch case and default
+
 let g:syntastic_enable_signs=1 " Use :sign interace to mark syntax errors
 let g:syntastic_check_on_open=1 "Check for errors on buffer load
 let g:syntastic_auto_loc_list=1 "Open Error window automatically
