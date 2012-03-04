@@ -349,7 +349,7 @@ noremap <leader>dc :call DoxygenComment ()<CR>
 noremap <leader>di :call DrupalImplementsComment ()<CR>
 
 " Insert <Tab> or complete identifier if the cursor is after a keyword character
-function MyTabOrComplete()
+function! MyTabOrComplete()
   let col = col('.')-1
   if !col || getline('.')[col-1] !~ '\k'
     return "\<tab>"
