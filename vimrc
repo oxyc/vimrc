@@ -178,11 +178,16 @@ map <C-l> :bnext<cr>
 map <C-h> :bprev<cr>
 nnoremap <leader>p :set invpaste paste?<cr>
 noremap <leader>W :w !sudo tee % > /dev/null<CR>
-map <C-G> <C-]>
+nmap <C-N> <C-T>
+nmap <C-M> :sp <CR> :exec("tag ". expand("<cword>"))<CR>
 
 " Visual shifting without exiting visual mode
 vnoremap < <gv
 vnoremap > >gv
+
+" Perl style regular expressions by default
+nnoremap / /\v
+vnoremap / /\v
 
 " Align text
 nnoremap <leader>Al :left<cr>
