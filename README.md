@@ -14,6 +14,12 @@ You need a terminal with support for 256 colors for the JellyX theme to work.
 grep --exclude-dir="tests" --exclude="*.install" "^function" modules/ includes/ -hR | awk '!/^function\ _/ { sub(/\(.+/, "(", $2); print $2 }' | sort -u > ~/.vim/dictionaries/drupal7
 ```
 
+#### Generate Drupal core tag-list.
+
+```bash
+ctags --langmap=php:.inc.module.theme.php --languages=php --php-kinds=f --exclude=.git --exclude=*/tests/* --exclude=*.test --exclude=*.install --recurse -f - modules/ includes/ | awk '!/^_/' > ~/.vim/tags/drupal7
+```
+
 #### Use Inconsolata as your font
 
 ```bash

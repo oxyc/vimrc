@@ -42,6 +42,7 @@ set gdefault                                      " Add the g flag to search/rep
 set backupdir=~/.vim/backup                       " backup directory
 set directory=~/.vim/swap                         " swap directory
 set dictionary+=~/.vim/dictionaries/dictionary    " custom auto-complete dictionary
+"set tags=./tags,../tags,../../tags,../../../tags,../../../../tags,../../../../../tags
 
 " }
 " Vim UI {
@@ -169,6 +170,7 @@ map <C-l> :bnext<cr>
 map <C-h> :bprev<cr>
 nnoremap <leader>p :set invpaste paste?<cr>
 noremap <leader>W :w !sudo tee % > /dev/null<CR>
+map <C-G> <C-]>
 
 " Visual shifting without exiting visual mode
 vnoremap < <gv
@@ -223,7 +225,7 @@ function! SetDrupalConfig ()
   if &filetype == 'php'
     setlocal shiftwidth=2 softtabstop=2 tabstop=2 expandtab
     setlocal listchars=tab:▸\ ,trail:·
-    setlocal dictionary+=~/.vim/dictionaries/drupal7
+    setlocal tags=~/.vim/tags/drupal7
   endif
 endfunction
 
