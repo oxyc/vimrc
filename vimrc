@@ -15,7 +15,7 @@ call pathogen#infect()
 set backupdir=~/.vim/backup                       " backup directory
 set directory=~/.vim/swap                         " swap directory
 set dictionary+=~/.vim/dictionaries/dictionary    " custom auto-complete dictionary
-set undodir=~/.vim/undo                           " undo directory
+set tags=./tags;/                                 " recursively look for tag-file in parent directories
 
 " }
 " Tabs {
@@ -32,9 +32,6 @@ set smartindent
 
 set backup                                        " make backup files
 set autochdir                                     " switch to current file directory automatically
-set undofile                                      " store all undos
-set undolevels=1000                               " remember 1000 undos
-set undoreload=10000                              " save up to 10000 lines for undo on a buffer reload
 set backspace=indent,eol,start                    " make backspace more flexible
 set fileformats=unix,dos,mac                      " support all three, in this order
 set hidden                                        " change buffers without saving
@@ -48,12 +45,14 @@ set history=1000                                  " Keep a longer history
 set gdefault                                      " Add the g flag to search/replace by default
 
 " }
-" Local files and directories {
+" Backwards compability {
 
-set backupdir=~/.vim/backup                       " backup directory
-set directory=~/.vim/swap                         " swap directory
-set dictionary+=~/.vim/dictionaries/dictionary    " custom auto-complete dictionary
-"set tags=./tags,../tags,../../tags,../../../tags,../../../../tags,../../../../../tags
+if version >= 703
+  set undodir=~/.vim/undo                           " undo directory
+  set undofile                                      " store all undos
+  set undolevels=1000                               " remember 1000 undos
+  set undoreload=10000                              " save up to 10000 lines for undo on a buffer reload
+endif
 
 " }
 " Vim UI {
@@ -128,17 +127,15 @@ let g:gist_open_browser_after_post=1
 
 " Fix matchpairs for PHP (for matchit.vim plugin)
 " http://zmievski.org/files/talks/vancouver-2007/vim-for-php-programmers.pdf
-if exists("loaded_matchit")
-  let b:match_skip = 's:comment\|string'
-  let b:match_words = '<?\(php\)\?:?>,\<switch\>:\<endswitch\>,' .
-    \ '\<if\>:\<elseif\>:\<else\>:\<endif\>,' .
-    \ '\<while\>:\<endwhile\>,\<do\>:\<while\>,' .
-    \ '\<for\>:\<endfor\>,\<foreach\>:\<endforeach\>' .
-    \ '<\@<=[ou]l\>[^>]*\%(>\|$\):<\@<=li\>:<\@<=/[ou]l>,' .
-    \ '<\@<=dl\>[^>]*\%(>\|$\):<\@<=d[td]\>:<\@<=/dl>,' .
-    \ '<\@<=\([^/?][^ \t>]*\)[^>]*\%(>\|$\):<\@<=/\1>,' .
-    \ '<:>'
-endif
+let b:match_skip = 's:comment\|string'
+let b:match_words = '<?\(php\)\?:?>,\<switch\>:\<endswitch\>,' .
+  \ '\<if\>:\<elseif\>:\<else\>:\<endif\>,' .
+  \ '\<while\>:\<endwhile\>,\<do\>:\<while\>,' .
+  \ '\<for\>:\<endfor\>,\<foreach\>:\<endforeach\>' .
+  \ '<\@<=[ou]l\>[^>]*\%(>\|$\):<\@<=li\>:<\@<=/[ou]l>,' .
+  \ '<\@<=dl\>[^>]*\%(>\|$\):<\@<=d[td]\>:<\@<=/dl>,' .
+  \ '<\@<=\([^/?][^ \t>]*\)[^>]*\%(>\|$\):<\@<=/\1>,' .
+  \ '<:>'
 
 " }
 " GUI / Looks {
