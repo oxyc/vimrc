@@ -89,27 +89,6 @@ set whichwrap+=h,l,<,>,[,]                        " http://vim.wikia.com/wiki/Au
 set virtualedit=block                             " Allow moving to unexisting lines/spaces in VB mode
 
 " }
-" Folding {
-
-set foldlevelstart=0
-set foldmarker={,}                                " fold C style code
-set foldmethod=marker                             " fold based on indent
-set foldlevel=0                                   " don't autofold
-set foldnestmax=10                                " deepest fold is 10
-set foldopen=block,hor,mark,percent,quickfix,tag  " what movements open folds
-
-" Space to toggle folds
-nnoremap <space> zA
-vnoremap <space> zA
-
-" Make zO recursively open whatever top level fold we're in, no matter where the
-" cursor happens to be.
-nnoremap zO zCzO
-
-" Use ,z to focus the current fold
-nnoremap <leader>z zMzv
-
-" }
 " Configurations {
 
 let mapleader = ","
@@ -137,6 +116,28 @@ let b:match_words = '<?\(php\)\?:?>,\<switch\>:\<endswitch\>,' .
   \ '<\@<=dl\>[^>]*\%(>\|$\):<\@<=d[td]\>:<\@<=/dl>,' .
   \ '<\@<=\([^/?][^ \t>]*\)[^>]*\%(>\|$\):<\@<=/\1>,' .
   \ '<:>'
+
+" }
+" Folding {
+
+set foldlevelstart=0
+set foldmarker={,}                                " fold C style code
+set foldmethod=marker                             " fold based on indent
+set foldlevel=0                                   " don't autofold
+set foldnestmax=10                                " deepest fold is 10
+set foldopen=block,hor,mark,percent,quickfix,tag  " what movements open folds
+
+" Space to toggle folds
+nnoremap <space> zA
+vnoremap <space> zA
+
+" Make zO recursively open whatever top level fold we're in, no matter where the
+" cursor happens to be.
+nnoremap zO zCzO
+
+" Use ,z to focus the current fold
+" @TODO, why the hell does this not work?
+nnoremap <leader>z zMzvzz
 
 " }
 " GUI / Looks {
