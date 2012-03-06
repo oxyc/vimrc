@@ -301,24 +301,30 @@ function! ToggleCopyMode ()
 endfunction
 nnoremap <leader>c :call ToggleCopyMode ()<cr>
 
+" Track time, pass in a command or a message to log
 function! TrackTime (...)
   let command = (a:0 > 0) ? a:1 : ''
   exec ':! track ' . command
 endfunction
 
+" Show tracked time, pass in a command
 function! TrackShow (...)
   exec ':! track --show ' . a:1
 endfunction
 
+" Grep through tracked time.
 function! TrackFind (...)
   let regex = (a:0 > 0) ? a:1 : ''
   exec ':! track --find ' . regex
 endfunction
 
+" Time tracker vim wrapper, @TODO find out proper way to implement this.
 noremap <leader>tt :call TrackTime (input("Message: "))<CR>
 noremap <leader>ts :call TrackShow (input("Count: "))<CR>
 noremap <leader>tf :call TrackShow (input("Regex: "))<CR>
 
+" Generate a doxygen comment for implement hooks according to function under
+" cursor.
 function! DrupalImplementsComment ()
   let filename = bufname("%")
   let dot = stridx(filename, ".")
@@ -333,7 +339,10 @@ function! DrupalImplementsComment ()
     call DoxygenComment ()
   endif
 endfunction
+noremap <leader>di :call DrupalImplementsComment ()<CR>
 
+" Generate a doxygen comment, if a message is passed the cursor will remain
+" put, if not, vim will be in insert mode ready for comment message.
 function! DoxygenComment (...)
   set paste
   let message = (a:0 > 0) ? a:1 : ''
@@ -348,7 +357,6 @@ function! DoxygenComment (...)
   set nopaste
 endfunction
 noremap <leader>dc :call DoxygenComment ()<CR>
-noremap <leader>di :call DrupalImplementsComment ()<CR>
 
 " Insert <Tab> or complete identifier if the cursor is after a keyword character
 function! MyTabOrComplete()
