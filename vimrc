@@ -113,7 +113,6 @@ nnoremap <leader>z zMzv
 " Configurations {
 
 let g:php_sql_query=1 " Highlight SQL queries expressed in strings
-let g:php_htmlInStrings=1 "Highlight HTML expressed in strings
 let g:php_folding=1
 let g:PHP_vintage_case_default_indent=1 "Indent switch case and default
 
