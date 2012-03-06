@@ -136,7 +136,6 @@ vnoremap <space> zA
 nnoremap zO zCzO
 
 " Use ,z to focus the current fold
-" @TODO, why the hell does this not work?
 nnoremap <leader>z zMzvzz
 
 " }
