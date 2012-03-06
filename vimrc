@@ -212,11 +212,6 @@ au BufWinEnter * silent! loadview " make vim load view state,folds,cursor,etc
 au FileType stylus setlocal shiftwidth=2 softtabstop=2 tabstop=2
 au FileType php setlocal shiftwidth=2 softtabstop=2 tabstop=2
 
-
-" @TODO
-"match UsingWS /\v^\ +/
-"match TrailingWS /\s+$)/
-
 " Make sure Vim returns to the same line when you reopen a file.
 " By Amit
 augroup line_return
@@ -227,14 +222,19 @@ augroup line_return
       \ endif
 augroup END
 
+" Set Wordpres specific settings according to code conventions
 function! SetWPConfig ()
   if &filetype == 'php'
+    " @TODO, highglight tabs and trailing whitespace
+    "match UsingWS /\v^\ +/
+    "match TrailingWS /\s+$)/
     setlocal shiftwidth=4 softtabstop=4 tabstop=4
     setlocal noexpandtab
     setlocal nolist
   endif
 endfunction
 
+" Set Drupal specific settings according to code conventions
 function! SetDrupalConfig ()
   if &filetype == 'php'
     setlocal shiftwidth=2 softtabstop=2 tabstop=2 expandtab
