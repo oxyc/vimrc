@@ -249,6 +249,7 @@ augroup module
     au BufRead,BufNewFile *.module set filetype=php
     au BufRead,BufNewFile *.install set filetype=php
     au BufRead,BufNewFile *.test set filetype=php
+    au BufRead,BufNewFile *.inc set filetype=php
     au BufRead,BufNewFile */sites/all/* call SetDrupalConfig()
 augroup END
 
