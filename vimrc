@@ -112,6 +112,8 @@ nnoremap <leader>z zMzv
 " }
 " Configurations {
 
+let mapleader = ","
+
 let g:php_sql_query=1 " Highlight SQL queries expressed in strings
 let g:php_folding=1
 let g:PHP_vintage_case_default_indent=1 "Indent switch case and default
@@ -166,7 +168,6 @@ au VimResized * exe "normal! \<c-w>="
 " }
 " Custom key mappings {
 
-let mapleader = ","
 map å *<C-o>
 map <silent> ö ^
 map <silent> ä $
