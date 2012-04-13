@@ -58,3 +58,6 @@
 [submodule "bundle/clam.vim"]
 	path = bundle/clam.vim
 	url = https://github.com/sjl/clam.vim.git
+[submodule "bundle/vim-diff-toggle"]
+	path = bundle/vim-diff-toggle
+	url = https://github.com/twe4ked/vim-diff-toggle.git

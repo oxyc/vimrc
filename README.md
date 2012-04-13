@@ -38,6 +38,7 @@ mkdir -p ~/.fonts && cd ~/.fonts && wget http://levien.com/type/myfonts/Inconsol
 - [syntastic](http://www.vim.org/scripts/script.php?script_id=2736) — Syntax checking hacks for vim
 - [tcomment](http://www.vim.org/scripts/script.php?script_id=1173) — An extensible & universal comment vim-plugin that also handles embedded filetypes
 - [vim-css3-syntax](https://github.com/hail2u/vim-css3-syntax) — Add CSS3 syntax support to vim's built-in syntax/css.vim
+- [vim-diff-toggle](https://github.com/twe4ked/vim-diff-toggle.git) — Vim plugin to speed up editing diff files
 - [vim-haml](http://www.vim.org/scripts/script.php?script_id=1433) — Vim runtime files for Haml, Sass, and SCSS
 - [vim-jade](https://github.com/digitaltoad/vim-jade) — Vim Jade template engine syntax highlighting and indention
 - [vim-javascript](http://www.vim.org/scripts/script.php?script_id=2765) — Vastly improved vim's javascript indentation.
