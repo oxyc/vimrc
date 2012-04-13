@@ -1,24 +1,26 @@
-" Basics {
+" Basics {{{
 
 set nocompatible                                  " get out of vi-compatible mode
 syntax on
 scriptencoding utf-8
-filetype plugin indent on
 
 " Enable pathogen
+filetype off
 runtime bundle/vim-pathogen/autoload/pathogen.vim
 call pathogen#infect()
 
-" }
-" Local files and directories {
+filetype plugin indent on
+
+" }}}
+" Local files and directories {{{
 
 set backupdir=~/.vim/backup                       " backup directory
 set directory=~/.vim/swap                         " swap directory
 set dictionary+=~/.vim/dictionaries/dictionary    " custom auto-complete dictionary
 set tags=./tags;/                                 " recursively look for tag-file in parent directories
 
-" }
-" Tabs {
+" }}}
+" Tabs {{{
 
 set shiftwidth=2                                  " auto-indent amount when using cindent, etc
 set softtabstop=2                                 " how many spaces is a tab
@@ -27,8 +29,8 @@ set expandtab                                     " no real tabs
 set autoindent
 set smartindent
 
-" }
-" General {
+" }}}
+" General {{{
 
 set backup                                        " make backup files
 set autochdir                                     " switch to current file directory automatically
@@ -43,67 +45,80 @@ set ofu=syntaxcomplete#Complete                   " Enable omnicomplete
 set completeopt=longest,menuone,preview           " Better completion
 set history=1000                                  " Keep a longer history
 set gdefault                                      " Add the g flag to search/replace by default
+set ignorecase                                    " case insensitive by default
+set smartcase                                     " if there are caps, go case-sensitive
 
-" }
-" Backwards compability {
+" }}}
+" Backwards compability {{{
 
+set number
 if version >= 703
-  set undodir=~/.vim/undo                           " undo directory
-  set undofile                                      " store all undos
-  set undolevels=1000                               " remember 1000 undos
-  set undoreload=10000                              " save up to 10000 lines for undo on a buffer reload
+  set undodir=~/.vim/undo                         " undo directory
+  set undofile                                    " store all undos
+  set undolevels=1000                             " remember 1000 undos
+  set undoreload=10000                            " save up to 10000 lines for undo on a buffer reload
+  set relativenumber                              " use relative instead of absolute line numbers.
 endif
 
-" }
-" Vim UI {
+" }}}
+" Vim UI {{{
 
 set cursorline                                    " highlight the current line
 set incsearch                                     " highlight as you type your search
 set hlsearch                                      " highlight search
-set ignorecase                                    " case insensitive by default
-set smartcase                                     " if there are caps, go case-sensitive
 set laststatus=2                                  " always show the status line
 set linespace=0                                   " don't insert any extra lineheight
 set matchtime=5                                   " how many ms to blinkmatching bracket
-set number                                        " turn on line numbers
 set report=0                                      " tell us when anything is changed via exec
 set ruler                                         " always show current position
 set scrolloff=10                                  " keep 10 lines for scope
+set sidescrolloff=10                              " keep 10 lines at the size?
 set showcmd                                       " show the command being typed
+set showmode                                      " show the which mode
 set showmatch                                     " show matching brackets
-set sidescrolloff=10                              " keep 5 lines at the size?
 set splitright                                    " open vsplits on rightside
 set splitbelow                                    " open splits at bottom
 set listchars=tab:▸\ ,trail:·                     " distinguish tabs and trailing whitespace
 set list
-set shortmess+=filmnrxoOtT                        " abbrev of messages (avoids hit enter)
+set showbreak=↪                                   " distinguish wrapped lines
+set shortmess+=filmnrxoOtT                        " abbrevation of messages (avoids hit enter)
 set mouse=a                                       " enable mouse in all modes
 set nostartofline                                 " don't reset cursor to start of line when moving around
+set title                                         " set window title to filename
+set ttyfast                                       " faster redrawing
+set lazyredraw                                    " don't redraw while executing macros etc.
 
-" }
-" Text formatting/layout {
+" }}}
+" Text formatting/layout {{{
 
 set formatoptions+=rq                             " automatically insert comment leader on return and let gq format comments
 set nowrap                                        " do not wrap line
 set whichwrap+=h,l,<,>,[,]                        " http://vim.wikia.com/wiki/Automatically_wrap_left_and_right
 set virtualedit=block                             " Allow moving to unexisting lines/spaces in VB mode
+set shiftround                                    " Round indent to multiple of shiftwidth
+set colorcolumn=+1                                " Highlight column after textwidth, if used
 
-" }
-" Configurations {
+" }}}
+" Configurations {{{
 
 let mapleader = ","
+let mapleader = "\\"
 
-let g:php_sql_query=1 " Highlight SQL queries expressed in strings
-let g:php_folding=1
-let g:PHP_vintage_case_default_indent=1 "Indent switch case and default
-
-let g:syntastic_enable_signs=1 " Use :sign interace to mark syntax errors
-let g:syntastic_check_on_open=1 "Check for errors on buffer load
-let g:syntastic_auto_loc_list=1 "Open Error window automatically
-let g:syntastic_auto_jump=1 " Automatically jump to first detected error
+" Syntastic settings
+let g:syntastic_enable_signs=1          " Use :sign interace to mark syntax errors
+let g:syntastic_check_on_open=1         " Check for errors on buffer load
+let g:syntastic_auto_loc_list=1         " Open Error window automatically
+let g:syntastic_auto_jump=1             " Automatically jump to first detected error
 let g:syntastic_stl_format = '[%E{Error 1/%e: line %fe}%B{, }%W{Warning 1/%w: line %fw}]'
+let g:syntastic_node_map = { 'mode': 'active', 'passive_filetypes': ['javascript'] }
 
+" Gist settings
 let g:gist_open_browser_after_post=1
+
+" PHP settings
+let g:php_sql_query=1                   " Highlight SQL queries expressed in strings
+let g:php_folding=1
+let g:PHP_vintage_case_default_indent=1 " Indent switch case and default
 
 " Fix matchpairs for PHP (for matchit.vim plugin)
 " http://zmievski.org/files/talks/vancouver-2007/vim-for-php-programmers.pdf
@@ -117,15 +132,32 @@ let b:match_words = '<?\(php\)\?:?>,\<switch\>:\<endswitch\>,' .
   \ '<\@<=\([^/?][^ \t>]*\)[^>]*\%(>\|$\):<\@<=/\1>,' .
   \ '<:>'
 
-" }
-" Folding {
+" }}}
+" Folding {{{
 
 set foldlevelstart=0
-set foldmarker={,}                                " fold C style code
-set foldmethod=marker                             " fold based on indent
-set foldlevel=0                                   " don't autofold
-set foldnestmax=10                                " deepest fold is 10
-set foldopen=block,hor,mark,percent,quickfix,tag  " what movements open folds
+" set foldmarker={,}                                " fold C style code
+" set foldmethod=marker                             " fold based on indent
+" set foldlevel=0                                   " don't autofold
+" set foldnestmax=10                                " deepest fold is 10
+" set foldopen=block,hor,mark,percent,quickfix,tag  " what movements open folds
+
+function! MyFoldText() " {{{
+    let line = getline(v:foldstart)
+
+    let nucolwidth = &fdc + &number * &numberwidth
+    let windowwidth = winwidth(0) - nucolwidth - 3
+    let foldedlinecount = v:foldend - v:foldstart
+
+    " expand tabs into spaces
+    let onetab = strpart('          ', 0, &tabstop)
+    let line = substitute(line, '\t', onetab, 'g')
+
+    let line = strpart(line, 0, windowwidth - 2 -len(foldedlinecount))
+    let fillcharcount = windowwidth - len(line) - len(foldedlinecount)
+    return line . '…' . repeat(" ",fillcharcount) . foldedlinecount . '…' . ' '
+endfunction " }}}
+set foldtext=MyFoldText()
 
 " Space to toggle folds
 nnoremap <space> zA
@@ -138,7 +170,7 @@ nnoremap zO zCzO
 " Use ,z to focus the current fold
 nnoremap <leader>z zMzvzz
 
-" }
+" }}}
 " GUI / Looks {
 
 set guioptions-=T
@@ -165,21 +197,46 @@ set statusline+=\ [line\ %l\/%L:%c]          " Line and column position and coun
 " Resize splits when the window is resized
 au VimResized * exe "normal! \<c-w>="
 
-" }
-" Custom key mappings {
+" }}}
+" Custom key mappings {{{
+
+" Move by file line not screen line
+nnoremap j gj
+nnoremap k gk
 
 map å *<C-o>
 map <silent> ö ^
 map <silent> ä $
 map <silent> Å <C-]>
-nnoremap <C-e> 5<C-e>
-nnoremap <C-y> 5<C-y>
+noremap <C-e> 5<C-e>
+noremap <C-y> 5<C-y>
 map <C-l> :bnext<cr>
 map <C-h> :bprev<cr>
-nnoremap <leader>p :set invpaste paste?<cr>
-noremap <leader>W :w !sudo tee % > /dev/null<CR>
 nmap <C-N> <C-T>
 nmap <C-M> :sp <CR> :exec("tag ". expand("<cword>"))<CR>
+
+" Make backspace delete in visual mode
+vnoremap <bs> x
+
+" Save as root
+cnoremap <leader>W :w !sudo tee % > /dev/null<CR>
+
+" System clipboard interaction
+" https://github.com/henrik/dotfiles/blob/master/vim/config/mappings.vim
+noremap <leader>y "*y
+noremap <leader>p :set paste<CR>"*p<CR>:set nopaste<CR>
+noremap <leader>P :set paste<CR>"*P<CR>:set nopaste<CR>
+
+" Reselect text that was just pasted
+" http://stevelosh.com/blog/2010/09/coming-home-to-vim/
+nnoremap <leader>v V`]
+
+" Clean trailing whitespace
+" https://github.com/sjl/dotfiles/blob/master/vim/vimrc
+nnoremap <leader>ss mz:%s/\s\+$//<cr>:let @/=''<cr>`z
+
+" Toggle invisible characters
+nnoremap <leader>i :set list!<CR>
 
 " Visual shifting without exiting visual mode
 vnoremap < <gv
@@ -189,25 +246,32 @@ vnoremap > >gv
 nnoremap / /\v
 vnoremap / /\v
 
+" Clear seach
+nnoremap <leader><space> :noh<cr>
+
 " Align text
 nnoremap <leader>Al :left<cr>
 nnoremap <leader>Ac :center<cr>
-nnoremap <leader>Ar :right<cr>
-vnoremap <leader>Al :left<cr>
+nnoremap <leader>Ar :right<cr> vnoremap <leader>Al :left<cr>
 vnoremap <leader>Ac :center<cr>
 vnoremap <leader>Ar :right<cr>
 
 " Open a Quickfix window for the last search.
 nnoremap <silent> <leader>/ :execute 'vimgrep /'.@/.'/g %'<CR>:copen<CR>
 
-" }
-" Auto commands {
+" Easy filetype switching
+nnoremap _md :set ft=markdown<CR>
+nnoremap _js :set ft=javascript<CR>
+nnoremap _css :set ft=css<CR>
+nnoremap _php :set ft=php<CR>
+nnoremap _d :set ft=diff<CR>
+
+" }}}
+" Auto commands {{{
 
 au BufWinLeave * silent! mkview   " make vim save view state,folds,cursor,etc
 au BufWinEnter * silent! loadview " make vim load view state,folds,cursor,etc
-
-au FileType stylus setlocal shiftwidth=2 softtabstop=2 tabstop=2
-au FileType php setlocal shiftwidth=2 softtabstop=2 tabstop=2
+au FocusLost * :wa                " Save on losing focus
 
 " Make sure Vim returns to the same line when you reopen a file.
 " By Amit
@@ -218,6 +282,55 @@ augroup line_return
       \     execute 'normal! g`"zvzz' |
       \ endif
 augroup END
+
+" https://bitbucket.org/sjl/dotfiles/src/tip/vim/.vimrc
+au FileType html,php nnoremap <buffer> <s-cr> vit<esc>a<cr><esc>vito<esc>i<cr><esc>
+
+" }}}
+" Filetype-specific {{{
+
+" C {{{
+
+augroup ft_c
+  au!
+  au FileType c setlocal foldmethod=syntax
+augroup END
+
+" }}}
+" CSS {{{
+
+augroup ft_css
+  au!
+
+  au FileType less,css,sass setlocal foldmethod=marker
+  au FileType less,css,sass setlocal foldmarker={,}
+  au Filetype less,css,sass setlocal omnifunc=csscomplete#CompleteCSS
+
+  "Sort CSS attributes alphabetically
+  "Stolen from https://bitbucket.org/sjl/dotfiles/src/tip/vim/.vimrc
+  au BufNewFile,BufRead *.less,*.css,*.sass nnoremap <buffer> <leader>S ?{<CR>jV/\v^\s*\}?$<CR>k:sort<CR>:noh<CR>
+augroup END
+
+" }}}
+" HTML {{{
+
+augroup ft_html
+  au!
+  au FileType html setlocal foldmethod=manual
+augroup END
+
+" }}}
+" JavaScript {{{
+
+augroup ft_javascript
+  au!
+
+  au FileType javascript setlocal foldmethod=marker
+  au FileType javascript setlocal foldmarker={,}
+augroup END
+
+" }}}
+" PHP {{{
 
 " Set Wordpres specific settings according to code conventions
 function! SetWPConfig ()
@@ -240,92 +353,96 @@ function! SetDrupalConfig ()
   endif
 endfunction
 
-" Wordpress files
-au BufRead,BufNewFile */wp-content/* call SetWPConfig()
+augroup ft_php
+  au!
 
-" Drupal files
-augroup module
-    au BufRead,BufNewFile *.module set filetype=php
-    au BufRead,BufNewFile *.install set filetype=php
-    au BufRead,BufNewFile *.test set filetype=php
-    au BufRead,BufNewFile *.inc set filetype=php
-    au BufRead,BufNewFile */sites/all/* call SetDrupalConfig()
+  au FileType php setlocal foldmethod=marker
+  au FileType php setlocal foldmarker={,}
+
+  au BufRead,BufNewFile *.module set filetype=php
+  au BufRead,BufNewFile *.install set filetype=php
+  au BufRead,BufNewFile *.test set filetype=php
+  au BufRead,BufNewFile *.inc set filetype=php
+
+  " Wordpress and Drupal files
+  au BufRead,BufNewFile */wp-content/* call SetWPConfig()
+  au BufRead,BufNewFile */sites/all/* call SetDrupalConfig()
 augroup END
 
-augroup css
-  "Sort CSS attributes alphabetically
-  "Stolen from https://bitbucket.org/sjl/dotfiles/src/tip/vim/.vimrc
-  au BufNewFile,BufRead *.less,*.css nnoremap <buffer> <leader>S ?{<CR>jV/\v^\s*\}?$<CR>k:sort<CR>:noh<CR>
+" }}}
+" Java {{{
+
+augroup ft_java
+  au!
+
+  au FileType java setlocal foldmethod=marker
+  au FileType java setlocal foldmarker={,}
 augroup END
 
-au BufNewFile,BufRead *.js setf javascript
-au BufNewFile,BufRead *.jsm setf javascript
-au BufNewFile,BufRead Jakefile setf javascript
-au BufNewFile,BufRead *.json set ft=json syntax=javascript
+" }}}
+" Markdown {{{
 
-" https://bitbucket.org/sjl/dotfiles/src/tip/vim/.vimrc
-au FileType html,php nnoremap <buffer> <s-cr> vit<esc>a<cr><esc>vito<esc>i<cr><esc>
+augroup ft_markdown
+  au!
 
-" }
-" Plugins {
+  au BufNewFile,BufRead *.m*down setlocal filetype=markdown
+
+  " Use <localleader>1/2/3 to add headings.
+  au Filetype markdown nnoremap <buffer> <localleader>1 yypVr=
+  au Filetype markdown nnoremap <buffer> <localleader>2 yypVr-
+  au Filetype markdown nnoremap <buffer> <localleader>3 I### <ESC>
+augroup END
+
+" }}}
+" Ruby {{{
+
+augroup ft_ruby
+  au!
+  au Filetype ruby setlocal foldmethod=syntax
+augroup END
+
+" }}}
+" Vim {{{
+
+augroup ft_vim
+  au!
+
+  au FileType vim setlocal foldmethod=marker
+  au FileType help setlocal textwidth=78
+  au BufWinEnter *.txt if &ft == 'help' | wincmd L | endif
+augroup END
+
+" }}}
+
+" }}}
+" Plugins {{{
 
 " Ack
-map <leader>a :Ack!
+nnoremap <leader>a :Ack!
 
 " Ack for the last search.
 " https://bitbucket.org/sjl/dotfiles/src/tip/vim/.vimrc
 nnoremap <silent> <leader>? :execute "Ack! '" . substitute(substitute(substitute(@/, "\\\\<", "\\\\b", ""), "\\\\>", "\\\\b", ""), "\\\\v", "", "") . "'"<CR>
 
-" }
-" Custom functions {
-
-" Strip trailing whitespace (,ss)
-" https://github.com/mathiasbynens/dotfiles/blob/master/.vimrc
-function! StripWhitespace ()
-  let save_cursor = getpos(".")
-  let old_query = getreg('/')
-  :%s/\s\+$//e
-  call setpos('.', save_cursor)
-  call setreg('/', old_query)
-endfunction
-noremap <leader>ss :call StripWhitespace ()<CR>
 " Clam
 nnoremap ! :Clam<space>
 vnoremap ! :ClamVisual<space>
 
+" }}}
+" Custom functions {{{
 
-" When you're working remotely and need to copy something to your clipboard
-function! ToggleCopyMode ()
-  if &mouse == 'a' |set mouse=|else |set mouse=a|endif
-  set number!
-  set list!
-endfunction
+" When you're working remotely and need to copy something to your clipboard {{{
 nnoremap <leader>c :call ToggleCopyMode ()<cr>
 
-" Track time, pass in a command or a message to log
-function! TrackTime (...)
-  let command = (a:0 > 0) ? a:1 : ''
-  exec ':! track ' . command
-endfunction
+function! ToggleCopyMode ()
+  if &mouse == 'a' |set mouse=|else |set mouse=a|endif
+  set relativenumber!
+  set list!
+endfunction " }}}
 
-" Show tracked time, pass in a command
-function! TrackShow (...)
-  exec ':! track --show ' . a:1
-endfunction
+" Generate a doxygen comment for implement hooks {{{
+noremap <leader>di :call DrupalImplementsComment ()<CR>
 
-" Grep through tracked time.
-function! TrackFind (...)
-  let regex = (a:0 > 0) ? a:1 : ''
-  exec ':! track --find ' . regex
-endfunction
-
-" Time tracker vim wrapper, @TODO find out proper way to implement this.
-noremap <leader>tt :call TrackTime (input("Message: "))<CR>
-noremap <leader>ts :call TrackShow (input("Count: "))<CR>
-noremap <leader>tf :call TrackShow (input("Regex: "))<CR>
-
-" Generate a doxygen comment for implement hooks according to function under
-" cursor.
 function! DrupalImplementsComment ()
   let filename = bufname("%")
   let dot = stridx(filename, ".")
@@ -339,11 +456,13 @@ function! DrupalImplementsComment ()
   else
     call DoxygenComment ()
   endif
-endfunction
-noremap <leader>di :call DrupalImplementsComment ()<CR>
+endfunction " }}}
 
-" Generate a doxygen comment, if a message is passed the cursor will remain
+" Doxygen comment {{{
+" if a message is passed the cursor will remain
 " put, if not, vim will be in insert mode ready for comment message.
+noremap <leader>dc :call DoxygenComment ()<CR>
+
 function! DoxygenComment (...)
   set paste
   let message = (a:0 > 0) ? a:1 : ''
@@ -356,10 +475,11 @@ function! DoxygenComment (...)
     +1
   endif
   set nopaste
-endfunction
-noremap <leader>dc :call DoxygenComment ()<CR>
+endfunction " }}}
 
-" Insert <Tab> or complete identifier if the cursor is after a keyword character
+" Insert <Tab> or complete identifier if the cursor is after a keyword character {{{
+inoremap <Tab> <C-R>=MyTabOrComplete()<CR> 
+
 function! MyTabOrComplete()
   let col = col('.')-1
   if !col || getline('.')[col-1] !~ '\k'
@@ -367,7 +487,32 @@ function! MyTabOrComplete()
   else
     return "\<C-N>"
   endif
-endfunction
-inoremap <Tab> <C-R>=MyTabOrComplete()<CR>
+endfunction " }}}
 
-" }
+" Motion for numbers {{{
+" https://github.com/sjl/dotfiles/blob/master/vim/vimrc
+
+onoremap N :<c-u>call <SID>NumberTextObject(0)<cr>
+xnoremap N :<c-u>call <SID>NumberTextObject(0)<cr>
+onoremap aN :<c-u>call <SID>NumberTextObject(1)<cr>
+xnoremap aN :<c-u>call <SID>NumberTextObject(1)<cr>
+onoremap iN :<c-u>call <SID>NumberTextObject(1)<cr>
+xnoremap iN :<c-u>call <SID>NumberTextObject(1)<cr>
+
+function! s:NumberTextObject(whole)
+    normal! v
+
+    while getline('.')[col('.')] =~# '\v[0-9]'
+        normal! l
+    endwhile
+
+    if a:whole
+        normal! o
+
+        while col('.') > 1 && getline('.')[col('.') - 2] =~# '\v[0-9]'
+            normal! h
+        endwhile
+    endif
+endfunction " }}}
+
+" }}}
