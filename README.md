@@ -49,6 +49,7 @@ mkdir -p ~/.fonts && cd ~/.fonts && wget http://levien.com/type/myfonts/Inconsol
 - [stylus](http://www.vim.org/scripts/script.php?script_id=3513) — Syntax Highlighting for Stylus
 - [surround](http://www.vim.org/scripts/script.php?script_id=1697) — quoting/parenthesizing made simple
 - [tabular](http://www.vim.org/scripts/script.php?script_id=3464) — Vim script for text filtering and alignment 
+- [webapi-vim](https://github.com/mattn/webapi-vim) — vim interface to Web API
 
 ## Inspired/Stolen by
 

@@ -61,3 +61,6 @@
 [submodule "bundle/vim-diff-toggle"]
 	path = bundle/vim-diff-toggle
 	url = https://github.com/twe4ked/vim-diff-toggle.git
+[submodule "bundle/webapi-vim"]
+	path = bundle/webapi-vim
+	url = https://github.com/mattn/webapi-vim.git

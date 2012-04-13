@@ -114,6 +114,7 @@ let g:syntastic_node_map = { 'mode': 'active', 'passive_filetypes': ['javascript
 
 " Gist settings
 let g:gist_open_browser_after_post=1
+let g:gist_detect_filetype=1
 
 " PHP settings
 let g:php_sql_query=1                   " Highlight SQL queries expressed in strings
