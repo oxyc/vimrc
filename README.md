@@ -30,6 +30,7 @@ mkdir -p ~/.fonts && cd ~/.fonts && wget http://levien.com/type/myfonts/Inconsol
 
 - [ack.vim](http://www.vim.org/scripts/script.php?script_id=2572) — Vim plugin for the Perl module / CLI script 'ack'
 - [buftabs](http://www.vim.org/scripts/script.php?script_id=1664) — Minimalistic buffer tabs saving screen space
+- [clam.vim](https://github.com/sjl/clam.vim) — A lightweight Vim plugin for working with shell commands
 - [Gist.vim](http://www.vim.org/scripts/script.php?script_id=2423) — vimscript for gist
 - [html5.vim](http://www.vim.org/scripts/script.php?script_id=3236) — HTML5 omnicomplete and syntax
 - [JellyX](http://www.vim.org/scripts/script.php?script_id=3408) — JellyX: A delicious collision of Jellybeans and Xoria256
