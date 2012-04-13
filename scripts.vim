@@ -3,11 +3,11 @@ if did_filetype()
 endif
 
 if getline(1) =~ '^#!.*node'
-  setf=node
+  setfiletype node
 elseif getline(1) =~ '^#!/bin/bash'
-  setf=sh
+  setfiletype sh
 elseif getline(1) =~ '^#!/bin/sh'
-  setf=sh
+  setfiletype sh
 elseif getline(1) =~ '^#!.*php'
-  setf=php
+  setfiletype php
 endif
