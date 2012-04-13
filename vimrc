@@ -102,7 +102,7 @@ set colorcolumn=+1                                " Highlight column after textw
 " Configurations {{{
 
 let mapleader = ","
-let mapleader = "\\"
+let maplocalleader = "\\"
 
 " Syntastic settings
 let g:syntastic_enable_signs=1          " Use :sign interace to mark syntax errors
