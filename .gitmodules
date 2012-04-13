@@ -55,3 +55,6 @@
 [submodule "bundle/vim-css3-syntax"]
 	path = bundle/vim-css3-syntax
 	url = https://github.com/hail2u/vim-css3-syntax.git
+[submodule "bundle/clam.vim"]
+	path = bundle/clam.vim
+	url = https://github.com/sjl/clam.vim.git

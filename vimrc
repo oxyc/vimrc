@@ -289,6 +289,10 @@ function! StripWhitespace ()
   call setreg('/', old_query)
 endfunction
 noremap <leader>ss :call StripWhitespace ()<CR>
+" Clam
+nnoremap ! :Clam<space>
+vnoremap ! :ClamVisual<space>
+
 
 " When you're working remotely and need to copy something to your clipboard
 function! ToggleCopyMode ()
