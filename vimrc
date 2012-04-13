@@ -269,6 +269,8 @@ nnoremap _d :set ft=diff<CR>
 " }}}
 " Auto commands {{{
 
+au BufEnter * cd %:p:h            " Automatically change current dir to that of the file in the buffer
+
 au BufWinLeave * silent! mkview   " make vim save view state,folds,cursor,etc
 au BufWinEnter * silent! loadview " make vim load view state,folds,cursor,etc
 au FocusLost * :wa                " Save on losing focus
