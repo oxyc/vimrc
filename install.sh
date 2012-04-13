@@ -20,7 +20,7 @@ case "$1" in
   --update|-u)
     cd ~/.vim \
       && git pull \
-      && git submodule foreach git pull \
+      && git submodule foreach git pull origin master \
       || echo "Something went wrong"
     ;;
   *)
