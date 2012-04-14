@@ -96,7 +96,6 @@ set nowrap                                        " do not wrap line
 set whichwrap+=h,l,<,>,[,]                        " http://vim.wikia.com/wiki/Automatically_wrap_left_and_right
 set virtualedit=block                             " Allow moving to unexisting lines/spaces in VB mode
 set shiftround                                    " Round indent to multiple of shiftwidth
-set colorcolumn=+1                                " Highlight column after textwidth, if used
 
 " }}}
 " Configurations {{{
