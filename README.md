@@ -44,6 +44,7 @@ mkdir -p ~/.fonts && cd ~/.fonts && wget http://levien.com/type/myfonts/Inconsol
 - [vim-javascript](http://www.vim.org/scripts/script.php?script_id=2765) — Vastly improved vim's javascript indentation.
 - [vim-less](https://github.com/groenewege/vim-less) — vim syntax for LESS (dynamic CSS)
 - [vim-markdown](https://github.com/tpope/vim-markdown) — Vim Markdown runtime files
+- [vim-powerline](https://github.com/Lokaltog/vim-powerline) — The ultimate vim statusline utility
 - [matchit](http://www.vim.org/scripts/script.php?script_id=39) — Extended % matching for HTML, LaTeX, and many other languages 
 - [pathogen.vim](http://www.vim.org/scripts/script.php?script_id=2332) — pathogen.vim: manage your runtimepath
 - [stylus](http://www.vim.org/scripts/script.php?script_id=3513) — Syntax Highlighting for Stylus
