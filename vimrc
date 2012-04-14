@@ -174,7 +174,7 @@ nnoremap zO zCzO
 nnoremap <leader>z zMzvzz
 
 " }}}
-" GUI / Looks {
+" GUI / Looks {{{
 
 set guioptions-=T
 set t_Co=256                                 " support 256 colors
