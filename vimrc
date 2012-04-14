@@ -47,6 +47,7 @@ set history=1000                                  " Keep a longer history
 set gdefault                                      " Add the g flag to search/replace by default
 set ignorecase                                    " case insensitive by default
 set smartcase                                     " if there are caps, go case-sensitive
+set pastetoggle=<F2>                              " toggle paste mode
 
 " }}}
 " Backwards compability {{{
