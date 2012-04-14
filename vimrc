@@ -51,13 +51,14 @@ set smartcase                                     " if there are caps, go case-s
 " }}}
 " Backwards compability {{{
 
-set number
 if version >= 703
   set undodir=~/.vim/undo                         " undo directory
   set undofile                                    " store all undos
   set undolevels=1000                             " remember 1000 undos
   set undoreload=10000                            " save up to 10000 lines for undo on a buffer reload
   set relativenumber                              " use relative instead of absolute line numbers.
+else
+  set number
 endif
 
 " }}}
@@ -109,7 +110,7 @@ let g:syntastic_check_on_open=1         " Check for errors on buffer load
 let g:syntastic_auto_loc_list=1         " Open Error window automatically
 let g:syntastic_auto_jump=1             " Automatically jump to first detected error
 let g:syntastic_stl_format = '[%E{Error 1/%e: line %fe}%B{, }%W{Warning 1/%w: line %fw}]'
-let g:syntastic_node_map = { 'mode': 'active', 'passive_filetypes': ['javascript'] }
+let g:syntastic_mode_map = { 'mode': 'active', 'passive_filetypes': ['javascript'] }
 
 " Gist settings
 let g:gist_open_browser_after_post=1
