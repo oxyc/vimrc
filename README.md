@@ -56,7 +56,7 @@ mkdir -p ~/.fonts && cd ~/.fonts && wget http://levien.com/type/myfonts/Inconsol
 
 - [Gianni Chiappetta](https://github.com/gf3/dotfiles)
 - [Mathias Bynens](https://github.com/mathiasbynens/dotfiles)
-- [Steve Losh](https://bitbucket.org/sjl/dotfiles/src/tip/vim/.vimrc)
+- [Steve Losh](https://github.com/sjl/dotfiles)
 - [Derek Wyatt](https://github.com/derekwyatt/vim-config)
 
 and probably many others.
