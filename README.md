@@ -43,7 +43,7 @@ mkdir -p ~/.fonts && cd ~/.fonts && wget http://levien.com/type/myfonts/Inconsol
 - [vim-jade](https://github.com/digitaltoad/vim-jade) — Vim Jade template engine syntax highlighting and indention
 - [vim-javascript](http://www.vim.org/scripts/script.php?script_id=2765) — Vastly improved vim's javascript indentation.
 - [vim-less](https://github.com/groenewege/vim-less) — vim syntax for LESS (dynamic CSS)
-- [vim-markdown](http://plasticboy.com/markdown-vim-mode/) — Markdown Vim Mode
+- [vim-markdown](https://github.com/tpope/vim-markdown) — Vim Markdown runtime files
 - [matchit](http://www.vim.org/scripts/script.php?script_id=39) — Extended % matching for HTML, LaTeX, and many other languages 
 - [pathogen.vim](http://www.vim.org/scripts/script.php?script_id=2332) — pathogen.vim: manage your runtimepath
 - [stylus](http://www.vim.org/scripts/script.php?script_id=3513) — Syntax Highlighting for Stylus
