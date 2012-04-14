@@ -133,6 +133,9 @@ let b:match_words = '<?\(php\)\?:?>,\<switch\>:\<endswitch\>,' .
   \ '<\@<=\([^/?][^ \t>]*\)[^>]*\%(>\|$\):<\@<=/\1>,' .
   \ '<:>'
 
+" Powerline
+let g:Powerline_symbols = 'fancy'
+
 " }}}
 " Folding {{{
 
@@ -177,23 +180,6 @@ nnoremap <leader>z zMzvzz
 set guioptions-=T
 set t_Co=256                                 " support 256 colors
 colorscheme jellyx
-
-set statusline=%f                            " Path.
-set statusline+=%m                           " Modified flag.
-set statusline+=%r                           " Readonly flag.
-set statusline+=%w                           " Preview window flag.
-
-set statusline+=\                            " Space.
-
-set statusline+=%#redbar#                    " Highlight the following as a warning.
-set statusline+=%{SyntasticStatuslineFlag()} " Syntastic errors.
-set statusline+=%*                           " Reset highlighting.
-
-set statusline+=%=                           " Right align.
-
-set statusline+=[buf\ #%n]                   " Show buffer number
-
-set statusline+=\ [line\ %l\/%L:%c]          " Line and column position and counts.
 
 " Resize splits when the window is resized
 au VimResized * exe "normal! \<c-w>="
@@ -270,7 +256,10 @@ nnoremap _d :set ft=diff<CR>
 " }}}
 " Auto commands {{{
 
-au BufEnter * cd %:p:h            " Automatically change current dir to that of the file in the buffer
+" Automatically change current dir to that of the file in the buffer
+" @see https://github.com/tpope/vim-fugitive/issues/3
+"au BufEnter * cd %:p:h            " Automatically change current dir to that of the file in the buffer
+au BufEnter * if expand('%:p') !~ '://' | cd %:p:h | endif
 
 au BufWinLeave * silent! mkview   " make vim save view state,folds,cursor,etc
 au BufWinEnter * silent! loadview " make vim load view state,folds,cursor,etc
