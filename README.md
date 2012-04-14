@@ -26,6 +26,10 @@ ctags --langmap=php:.inc.module.theme.php --languages=php --php-kinds=f --exclud
 mkdir -p ~/.fonts && cd ~/.fonts && wget http://levien.com/type/myfonts/Inconsolata.otf && sudo fc-cache -f -v
 ```
 
+## Screenshot
+
+![Vim screenshot](http://i.imgur.com/LcliI.png)
+
 ## Plugins
 
 - [ack.vim](http://www.vim.org/scripts/script.php?script_id=2572) — Vim plugin for the Perl module / CLI script 'ack'
@@ -39,6 +43,7 @@ mkdir -p ~/.fonts && cd ~/.fonts && wget http://levien.com/type/myfonts/Inconsol
 - [tcomment](http://www.vim.org/scripts/script.php?script_id=1173) — An extensible & universal comment vim-plugin that also handles embedded filetypes
 - [vim-css3-syntax](https://github.com/hail2u/vim-css3-syntax) — Add CSS3 syntax support to vim's built-in syntax/css.vim
 - [vim-diff-toggle](https://github.com/twe4ked/vim-diff-toggle.git) — Vim plugin to speed up editing diff files
+- [vim-fugitive](https://github.com/tpope/vim-fugitive) — a Git wrapper so awesome, it should be illegal
 - [vim-haml](http://www.vim.org/scripts/script.php?script_id=1433) — Vim runtime files for Haml, Sass, and SCSS
 - [vim-jade](https://github.com/digitaltoad/vim-jade) — Vim Jade template engine syntax highlighting and indention
 - [vim-javascript](http://www.vim.org/scripts/script.php?script_id=2765) — Vastly improved vim's javascript indentation.
