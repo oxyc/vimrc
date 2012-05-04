@@ -370,6 +370,15 @@ augroup ft_php
 augroup END
 
 " }}}
+" Mail {{{
+
+augroup ft_mail
+  au!
+
+  au Filetype mail setlocal spell
+augroup END
+
+" }}}
 " Java {{{
 
 augroup ft_java
