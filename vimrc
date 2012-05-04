@@ -160,8 +160,8 @@ endfunction " }}}
 set foldtext=MyFoldText()
 
 " Space to toggle folds
-nnoremap <space> za
-vnoremap <space> za
+nnoremap <space> zA
+vnoremap <space> zA
 
 " Make zO recursively open whatever top level fold we're in, no matter where the
 " cursor happens to be.
