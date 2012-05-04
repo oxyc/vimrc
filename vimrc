@@ -489,7 +489,7 @@ function! DoxygenComment (...)
 endfunction " }}}
 
 " Insert <Tab> or complete identifier if the cursor is after a keyword character {{{
-inoremap <Tab> <C-R>=MyTabOrComplete()<CR> 
+inoremap <Tab> <C-R>=MyTabOrComplete()<CR>
 
 function! MyTabOrComplete()
   let col = col('.')-1
