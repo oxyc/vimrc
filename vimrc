@@ -313,6 +313,7 @@ augroup END
 augroup ft_html
   au!
   au FileType html setlocal foldmethod=manual
+  " @todo
 augroup END
 
 " }}}
