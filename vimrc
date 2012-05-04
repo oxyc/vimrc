@@ -140,11 +140,7 @@ let g:Powerline_symbols = 'fancy'
 " Folding {{{
 
 set foldlevelstart=0
-" set foldmarker={,}                                " fold C style code
-" set foldmethod=marker                             " fold based on indent
-" set foldlevel=0                                   " don't autofold
-" set foldnestmax=10                                " deepest fold is 10
-" set foldopen=block,hor,mark,percent,quickfix,tag  " what movements open folds
+set foldopen=hor,mark,percent,quickfix,tag          " what movements open folds
 
 function! MyFoldText() " {{{
     let line = getline(v:foldstart)
@@ -359,10 +355,7 @@ augroup ft_php
   au FileType php setlocal foldmethod=marker
   au FileType php setlocal foldmarker={,}
 
-  au BufRead,BufNewFile *.module set filetype=php
-  au BufRead,BufNewFile *.install set filetype=php
-  au BufRead,BufNewFile *.test set filetype=php
-  au BufRead,BufNewFile *.inc set filetype=php
+  au BufRead,BufNewFile *.module,*.install,*.test,*.inc setlocal filetype=php
 
   " Wordpress and Drupal files
   au BufRead,BufNewFile */wp-content/* call SetWPConfig()
