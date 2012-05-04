@@ -363,15 +363,6 @@ augroup ft_php
 augroup END
 
 " }}}
-" Mail {{{
-
-augroup ft_mail
-  au!
-
-  au Filetype mail setlocal spell
-augroup END
-
-" }}}
 " Java {{{
 
 augroup ft_java
@@ -412,6 +403,24 @@ augroup ft_vim
   au FileType vim setlocal foldmethod=marker
   au FileType help setlocal textwidth=78
   au BufWinEnter *.txt if &ft == 'help' | wincmd L | endif
+augroup END
+
+" }}}
+" Mail {{{
+
+augroup ft_mail
+  au!
+
+  au Filetype mail setlocal spell
+augroup END
+
+" }}}
+" QuickFix {{{
+
+augroup ft_quickfix
+  au!
+
+  au Filetype qf setlocal colorcolumn=0 nolist nocursorline nowrap tw=0
 augroup END
 
 " }}}
