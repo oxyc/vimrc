@@ -296,10 +296,15 @@ augroup ft_css
 
   au FileType less,css,sass,scss setlocal foldmethod=marker
   au Filetype less,css,sass,scss setlocal omnifunc=csscomplete#CompleteCSS
+  " Make - part of a word
+  au Filetype less,css,sass,scss setlocal iskeyword+=-
 
   "Sort CSS attributes alphabetically
   "Stolen from https://bitbucket.org/sjl/dotfiles/src/tip/vim/.vimrc
   au BufNewFile,BufRead *.less,*.css,*.sass,*.scss nnoremap <buffer> <leader>S ?{<CR>jV/\v^\s*\}?$<CR>k:sort<CR>:noh<CR>
+
+  " Autocopmlete {<cr> properly
+  au BufNewFile,BufRead *.less,*.css inoremap <buffer> {<cr> {}<left><cr><esc>O
 augroup END
 
 " }}}
