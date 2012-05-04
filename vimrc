@@ -324,6 +324,9 @@ augroup ft_javascript
 
   au FileType javascript setlocal foldmethod=marker
   au FileType javascript setlocal foldmarker={,}
+
+  " Autocopmlete {<cr> properly
+  au BufNewFile,BufRead *.js inoremap <buffer> {<cr> {}<left><cr><esc>O
 augroup END
 
 " }}}
