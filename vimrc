@@ -139,8 +139,8 @@ let g:Powerline_symbols = 'fancy'
 " }}}
 " Folding {{{
 
-set foldlevelstart=0
-set foldopen=hor,mark,percent,quickfix,tag          " what movements open folds
+set foldlevelstart=99
+set foldopen=hor,mark,percent,quickfix,tag " what movements open folds
 
 function! MyFoldText() " {{{
     let line = getline(v:foldstart)
