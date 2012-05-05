@@ -198,7 +198,7 @@ au VimResized * exe "normal! \<c-w>="
 nnoremap j gj
 nnoremap k gk
 
-map å *<C-o>
+noremap å *<C-o>
 map <silent> ö ^
 map <silent> ä $
 map <silent> Å <C-]>
@@ -207,19 +207,15 @@ noremap <C-y> 5<C-y>
 nmap <C-N> <C-T>
 nmap <C-M> :sp <CR> :exec("tag ". expand("<cword>"))<CR>
 
-" Buffer movement
-map <C-l> :bnext<cr>
-map <C-h> :bprev<cr>
-
 " Window movement
-" @todo enable once comfortable with ctrlp
-" noremap <C-h> <C-w>h
-" noremap <C-j> <C-w>j
-" noremap <C-k> <C-w>k
-" noremap <C-l> <C-w>l
+noremap <C-h> <C-w>h
+noremap <C-j> <C-w>j
+noremap <C-k> <C-w>k
+noremap <C-l> <C-w>l
 
 " Tab movement
-nnoremap <C-Tab> :tabn<CR>
+noremap <S-Tab> :tabn<CR>
+noremap <leader>tn :tabnew<CR>
 
 " Make backspace delete in visual mode
 vnoremap <bs> x
@@ -242,7 +238,7 @@ nnoremap <leader>v V`]
 nnoremap <leader>ss mz:%s/\s\+$//<cr>:let @/=''<cr>`z
 
 " Toggle invisible characters
-nnoremap <leader>i :set list!<CR>
+nnoremap <leader>ii :set list!<CR>
 
 " Visual shifting without exiting visual mode
 vnoremap < <gv
@@ -322,11 +318,14 @@ nnoremap <leader>gu :GundoToggle<CR>
 let g:gundo_right = 1
 let g:gundo_preview_bottom = 1
 
+" Ctrl-P
+noremap <C-_> :CtrlPMRU<CR>
+
 " }}}
 " Custom functions {{{
 
 " When you're working remotely and need to copy something to your clipboard {{{
-nnoremap <leader>c :call ToggleCopyMode ()<cr>
+nnoremap <leader>cc :call ToggleCopyMode ()<cr>
 
 function! ToggleCopyMode ()
   if &mouse == 'a' | set mouse= | else | set mouse=a | endif
