@@ -220,6 +220,8 @@ noremap <leader>tn :tabnew<CR>
 " Make backspace delete in visual mode
 vnoremap <bs> x
 
+nnoremap <leader>ma :marks<CR>
+
 " Save as root
 cnoremap <leader>W :w !sudo tee % > /dev/null<CR>
 
