@@ -204,10 +204,22 @@ map <silent> ä $
 map <silent> Å <C-]>
 noremap <C-e> 5<C-e>
 noremap <C-y> 5<C-y>
-map <C-l> :bnext<cr>
-map <C-h> :bprev<cr>
 nmap <C-N> <C-T>
 nmap <C-M> :sp <CR> :exec("tag ". expand("<cword>"))<CR>
+
+" Buffer movement
+map <C-l> :bnext<cr>
+map <C-h> :bprev<cr>
+
+" Window movement
+" @todo enable once comfortable with ctrlp
+" noremap <C-h> <C-w>h
+" noremap <C-j> <C-w>j
+" noremap <C-k> <C-w>k
+" noremap <C-l> <C-w>l
+
+" Tab movement
+nnoremap <C-Tab> :tabn<CR>
 
 " Make backspace delete in visual mode
 vnoremap <bs> x
