@@ -14,10 +14,22 @@ filetype plugin indent on
 " }}}
 " Local files and directories {{{
 
-set backupdir=~/.vim/backup                       " backup directory
-set directory=~/.vim/swap                         " swap directory
-set dictionary+=~/.vim/dictionaries/dictionary    " custom auto-complete dictionary
+" Create directories if they dont exist
+" These are commented out as we assume they're created
+"if !isdirectory($HOME . '/.vim/swap') | :silent !mkdir -p ~/.vim/swap >/dev/null 2>&1 | endif
+"if !isdirectory($HOME . '/.vim/undo') | :silent !mkdir -p ~/.vim/undo >/dev/null 2>&1 | endif
+"if !isdirectory($HOME . '/.vim/backup') | :silent !mkdir -p ~/.vim/backup >/dev/null 2>&1 | endif
+
+if exists("+undofile")
+  set undodir=~/.vim/undo//                       " undo directory
+endif
+set backupdir=~/.vim/backup//                     " backup directory
+set directory=~/.vim/swap//                       " swap directory
 set tags=./tags;/                                 " recursively look for tag-file in parent directories
+
+if filereadable($HOME . '/.vim/dictionaries/dictionary')
+  set dictionary+=~/.vim/dictionaries/dictionary  " custom auto-complete dictionary
+endif
 
 " }}}
 " Tabs {{{
@@ -49,14 +61,13 @@ set ignorecase                                    " case insensitive by default
 set smartcase                                     " if there are caps, go case-sensitive
 set pastetoggle=<F2>                              " toggle paste mode
 
-" }}}
-" Backwards compability {{{
-
-if version >= 703
-  set undodir=~/.vim/undo                         " undo directory
+if exists("+undofile")
   set undofile                                    " store all undos
   set undolevels=1000                             " remember 1000 undos
   set undoreload=10000                            " save up to 10000 lines for undo on a buffer reload
+endif
+
+if exists("+realtivenumber")
   set relativenumber                              " use relative instead of absolute line numbers.
 else
   set number
