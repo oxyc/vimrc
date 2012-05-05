@@ -261,6 +261,11 @@ nnoremap _css :set ft=css<CR>
 nnoremap _php :set ft=php<CR>
 nnoremap _d :set ft=diff<CR>
 
+" Local config
+if filereadable("vimrc.local")
+  source vimrc.local
+endif
+
 " }}}
 " Auto commands {{{
 
