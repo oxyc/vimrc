@@ -179,7 +179,7 @@ vnoremap <space> zA
 nnoremap zO zCzO
 
 " Use ,z to focus the current fold
-nnoremap <leader>z zMzvzz
+nnoremap <leader>z zMzAzz
 
 " }}}
 " GUI / Looks {{{
