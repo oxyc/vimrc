@@ -66,7 +66,7 @@ if exists("+undofile")
   set undoreload=10000                            " save up to 10000 lines for undo on a buffer reload
 endif
 
-if exists("+realtivenumber")
+if exists("+relativenumber")
   set relativenumber                              " use relative instead of absolute line numbers.
 else
   set number
