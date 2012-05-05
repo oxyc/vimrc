@@ -113,9 +113,10 @@ set shiftround                                    " Round indent to multiple of 
 " Configurations {{{
 
 let mapleader = ","
-let maplocalleader = "\\"
+let maplocalleader = ";"
 
 " Syntastic settings
+
 let g:syntastic_enable_signs=1          " Use :sign interace to mark syntax errors
 let g:syntastic_check_on_open=1         " Check for errors on buffer load
 let g:syntastic_auto_loc_list=1         " Open Error window automatically
