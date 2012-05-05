@@ -292,6 +292,112 @@ augroup END
 au FileType html,php nnoremap <buffer> <s-cr> vit<esc>a<cr><esc>vito<esc>i<cr><esc>
 
 " }}}
+" Plugins {{{
+
+" Ack
+nnoremap <leader>a :Ack!
+
+" Ack for the last search.
+" https://bitbucket.org/sjl/dotfiles/src/tip/vim/.vimrc
+nnoremap <silent> <leader>? :execute "Ack! '" . substitute(substitute(substitute(@/, "\\\\<", "\\\\b", ""), "\\\\>", "\\\\b", ""), "\\\\v", "", "") . "'"<CR>
+
+" Clam
+nnoremap ! :Clam<space>
+vnoremap ! :ClamVisual<space>
+
+" Gundo
+nnoremap <leader>gu :GundoToggle<CR>
+let g:gundo_right = 1
+let g:gundo_preview_bottom = 1
+
+" }}}
+" Custom functions {{{
+
+" When you're working remotely and need to copy something to your clipboard {{{
+nnoremap <leader>c :call ToggleCopyMode ()<cr>
+
+function! ToggleCopyMode ()
+  if &mouse == 'a' | set mouse= | else | set mouse=a | endif
+  set relativenumber!
+  set list!
+endfunction " }}}
+
+" Generate a doxygen comment for implement hooks {{{
+noremap <leader>di :call DrupalImplementsComment ()<CR>
+
+function! DrupalImplementsComment ()
+  let filename = bufname("%")
+  let dot = stridx(filename, ".")
+  let module = strpart(filename, 0, dot)
+  let current_line = getline(".")
+  let hook_idx = matchend(current_line, "function " . module . "_")
+  if !empty(module) && hook_idx != -1
+    let hook_length = match(current_line, "(") - hook_idx
+    let hook_name = strpart(current_line, hook_idx, hook_length)
+    call DoxygenComment ("Implements hook_" . hook_name . "().")
+  else
+    call DoxygenComment ()
+  endif
+endfunction " }}}
+
+" Doxygen comment {{{
+" if a message is passed the cursor will remain
+" put, if not, vim will be in insert mode ready for comment message.
+noremap <leader>dc :call DoxygenComment ()<CR>
+
+function! DoxygenComment (...)
+  set paste
+  let message = (a:0 > 0) ? a:1 : ''
+  exe "normal! O/**\<CR>"
+    \ . " * " . message . "\<CR>"
+    \ . " */\<Esc>"
+  if empty(message)
+    -1 | startinsert!
+  else
+    +1
+  endif
+  set nopaste
+endfunction " }}}
+
+" Insert <Tab> or complete identifier if the cursor is after a keyword character {{{
+inoremap <Tab> <C-R>=MyTabOrComplete()<CR>
+
+function! MyTabOrComplete()
+  let col = col('.')-1
+  if !col || getline('.')[col-1] !~ '\k'
+    return "\<tab>"
+  else
+    return "\<C-N>"
+  endif
+endfunction " }}}
+
+" Motion for numbers {{{
+" https://github.com/sjl/dotfiles/blob/master/vim/vimrc
+
+onoremap N :<c-u>call <SID>NumberTextObject(0)<cr>
+xnoremap N :<c-u>call <SID>NumberTextObject(0)<cr>
+onoremap aN :<c-u>call <SID>NumberTextObject(1)<cr>
+xnoremap aN :<c-u>call <SID>NumberTextObject(1)<cr>
+onoremap iN :<c-u>call <SID>NumberTextObject(1)<cr>
+xnoremap iN :<c-u>call <SID>NumberTextObject(1)<cr>
+
+function! s:NumberTextObject(whole)
+  normal! v
+
+  while getline('.')[col('.')] =~# '\v[0-9]'
+    normal! l
+  endwhile
+
+  if a:whole
+    normal! o
+
+    while col('.') > 1 && getline('.')[col('.') - 2] =~# '\v[0-9]'
+      normal! h
+    endwhile
+  endif
+endfunction " }}}
+
+" }}}
 " Filetype-specific {{{
 
 " C {{{
@@ -441,106 +547,5 @@ augroup ft_quickfix
 augroup END
 
 " }}}
-
-" }}}
-" Plugins {{{
-
-" Ack
-nnoremap <leader>a :Ack!
-
-" Ack for the last search.
-" https://bitbucket.org/sjl/dotfiles/src/tip/vim/.vimrc
-nnoremap <silent> <leader>? :execute "Ack! '" . substitute(substitute(substitute(@/, "\\\\<", "\\\\b", ""), "\\\\>", "\\\\b", ""), "\\\\v", "", "") . "'"<CR>
-
-" Clam
-nnoremap ! :Clam<space>
-vnoremap ! :ClamVisual<space>
-
-" }}}
-" Custom functions {{{
-
-" When you're working remotely and need to copy something to your clipboard {{{
-nnoremap <leader>c :call ToggleCopyMode ()<cr>
-
-function! ToggleCopyMode ()
-  if &mouse == 'a' | set mouse= | else | set mouse=a | endif
-  set relativenumber!
-  set list!
-endfunction " }}}
-
-" Generate a doxygen comment for implement hooks {{{
-noremap <leader>di :call DrupalImplementsComment ()<CR>
-
-function! DrupalImplementsComment ()
-  let filename = bufname("%")
-  let dot = stridx(filename, ".")
-  let module = strpart(filename, 0, dot)
-  let current_line = getline(".")
-  let hook_idx = matchend(current_line, "function " . module . "_")
-  if !empty(module) && hook_idx != -1
-    let hook_length = match(current_line, "(") - hook_idx
-    let hook_name = strpart(current_line, hook_idx, hook_length)
-    call DoxygenComment ("Implements hook_" . hook_name . "().")
-  else
-    call DoxygenComment ()
-  endif
-endfunction " }}}
-
-" Doxygen comment {{{
-" if a message is passed the cursor will remain
-" put, if not, vim will be in insert mode ready for comment message.
-noremap <leader>dc :call DoxygenComment ()<CR>
-
-function! DoxygenComment (...)
-  set paste
-  let message = (a:0 > 0) ? a:1 : ''
-  exe "normal! O/**\<CR>"
-    \ . " * " . message . "\<CR>"
-    \ . " */\<Esc>"
-  if empty(message)
-    -1 | startinsert!
-  else
-    +1
-  endif
-  set nopaste
-endfunction " }}}
-
-" Insert <Tab> or complete identifier if the cursor is after a keyword character {{{
-inoremap <Tab> <C-R>=MyTabOrComplete()<CR>
-
-function! MyTabOrComplete()
-  let col = col('.')-1
-  if !col || getline('.')[col-1] !~ '\k'
-    return "\<tab>"
-  else
-    return "\<C-N>"
-  endif
-endfunction " }}}
-
-" Motion for numbers {{{
-" https://github.com/sjl/dotfiles/blob/master/vim/vimrc
-
-onoremap N :<c-u>call <SID>NumberTextObject(0)<cr>
-xnoremap N :<c-u>call <SID>NumberTextObject(0)<cr>
-onoremap aN :<c-u>call <SID>NumberTextObject(1)<cr>
-xnoremap aN :<c-u>call <SID>NumberTextObject(1)<cr>
-onoremap iN :<c-u>call <SID>NumberTextObject(1)<cr>
-xnoremap iN :<c-u>call <SID>NumberTextObject(1)<cr>
-
-function! s:NumberTextObject(whole)
-  normal! v
-
-  while getline('.')[col('.')] =~# '\v[0-9]'
-    normal! l
-  endwhile
-
-  if a:whole
-    normal! o
-
-    while col('.') > 1 && getline('.')[col('.') - 2] =~# '\v[0-9]'
-      normal! h
-    endwhile
-  endif
-endfunction " }}}
 
 " }}}
