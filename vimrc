@@ -53,7 +53,6 @@ set wildmenu                                      " turn on cli completion wild 
 set wildmode=list:longest                         " turn on wild mode huge list
 set wildignore=*.jpg,*.png,.git                   " ignore these file extensions
 set complete+=k                                   " use the dictionary for autocompletion
-set ofu=syntaxcomplete#Complete                   " Enable omnicomplete
 set completeopt=longest,menuone,preview           " Better completion
 set history=1000                                  " Keep a longer history
 set gdefault                                      " Add the g flag to search/replace by default
