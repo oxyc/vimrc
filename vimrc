@@ -150,23 +150,23 @@ let g:Powerline_symbols = 'fancy'
 " }}}
 " Folding {{{
 
-set foldlevelstart=99
+set foldlevelstart=99                      " Open all folds by default
 set foldopen=hor,mark,percent,quickfix,tag " what movements open folds
 
 function! MyFoldText() " {{{
-    let line = getline(v:foldstart)
+  let line = getline(v:foldstart)
 
-    let nucolwidth = &fdc + &number * &numberwidth
-    let windowwidth = winwidth(0) - nucolwidth - 3
-    let foldedlinecount = v:foldend - v:foldstart
+  let nucolwidth = &fdc + &number * &numberwidth
+  let windowwidth = winwidth(0) - nucolwidth - 3
+  let foldedlinecount = v:foldend - v:foldstart
 
-    " expand tabs into spaces
-    let onetab = strpart('          ', 0, &tabstop)
-    let line = substitute(line, '\t', onetab, 'g')
+  " expand tabs into spaces
+  let onetab = strpart('          ', 0, &tabstop)
+  let line = substitute(line, '\t', onetab, 'g')
 
-    let line = strpart(line, 0, windowwidth - 2 -len(foldedlinecount))
-    let fillcharcount = windowwidth - len(line) - len(foldedlinecount) - 2
-    return line . repeat(" ",fillcharcount) . foldedlinecount . ' '
+  let line = strpart(line, 0, windowwidth - 2 -len(foldedlinecount))
+  let fillcharcount = windowwidth - len(line) - len(foldedlinecount) - 2
+  return line . repeat(" ",fillcharcount) . foldedlinecount . ' '
 endfunction " }}}
 set foldtext=MyFoldText()
 
@@ -246,7 +246,8 @@ nnoremap <leader><space> :noh<cr>
 " Align text
 nnoremap <leader>Al :left<cr>
 nnoremap <leader>Ac :center<cr>
-nnoremap <leader>Ar :right<cr> vnoremap <leader>Al :left<cr>
+nnoremap <leader>Ar :right<cr>
+vnoremap <leader>Al :left<cr>
 vnoremap <leader>Ac :center<cr>
 vnoremap <leader>Ar :right<cr>
 
@@ -277,9 +278,9 @@ au FocusLost * :wa                " Save on losing focus
 augroup line_return
   au!
   au BufReadPost *
-      \ if line("'\"") > 0 && line("'\"") <= line("$") |
-      \     execute 'normal! g`"zvzz' |
-      \ endif
+    \ if line("'\"") > 0 && line("'\"") <= line("$") |
+    \   execute 'normal! g`"zvzz' |
+    \ endif
 augroup END
 
 " https://bitbucket.org/sjl/dotfiles/src/tip/vim/.vimrc
@@ -457,7 +458,7 @@ vnoremap ! :ClamVisual<space>
 nnoremap <leader>c :call ToggleCopyMode ()<cr>
 
 function! ToggleCopyMode ()
-  if &mouse == 'a' |set mouse=|else |set mouse=a|endif
+  if &mouse == 'a' | set mouse= | else | set mouse=a | endif
   set relativenumber!
   set list!
 endfunction " }}}
@@ -522,19 +523,19 @@ onoremap iN :<c-u>call <SID>NumberTextObject(1)<cr>
 xnoremap iN :<c-u>call <SID>NumberTextObject(1)<cr>
 
 function! s:NumberTextObject(whole)
-    normal! v
+  normal! v
 
-    while getline('.')[col('.')] =~# '\v[0-9]'
-        normal! l
+  while getline('.')[col('.')] =~# '\v[0-9]'
+    normal! l
+  endwhile
+
+  if a:whole
+    normal! o
+
+    while col('.') > 1 && getline('.')[col('.') - 2] =~# '\v[0-9]'
+      normal! h
     endwhile
-
-    if a:whole
-        normal! o
-
-        while col('.') > 1 && getline('.')[col('.') - 2] =~# '\v[0-9]'
-            normal! h
-        endwhile
-    endif
+  endif
 endfunction " }}}
 
 " }}}
