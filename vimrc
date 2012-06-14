@@ -199,6 +199,7 @@ nnoremap j gj
 nnoremap k gk
 
 noremap å *<C-o>
+nnoremap <CR> j
 map <silent> ö ^
 map <silent> ä $
 map <silent> Å <C-]>
