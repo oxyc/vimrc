@@ -266,13 +266,13 @@ vnoremap <leader>Ar :right<cr>
 nnoremap <silent> <leader>/ :execute 'vimgrep /'.@/.'/g %'<CR>:copen<CR>
 
 " Spell check with aspell
-noremap <leader>as :w!<CR>:!aspell -l sv check %<CR>:e! %<CR>
-noremap <leader>ae :w!<CR>:!aspell -l en check %<CR>:e! %<CR>
-noremap <leader>af :w!<CR>:!aspell -l fi check %<CR>:e! %<CR>
+noremap <leader>as :w!<CR>:!aspell -l en check %<CR>:e! %<CR>
+noremap <leader>ass :w!<CR>:!aspell -l sv check %<CR>:e! %<CR>
+noremap <leader>asf :w!<CR>:!aspell -l fi check %<CR>:e! %<CR>
 
 " Spell check with vim
-noremap <leader>spell :setlocal spell spelllang=en_us<CR>
-noremap <leader>sspell :setlocal spell spelllang=sv_se<CR>
+noremap <leader>sc :setlocal spell spelllang=en_us<CR>
+noremap <leader>scs :setlocal spell spelllang=sv_se<CR>
 
 " Easy filetype switching
 nnoremap _md :set ft=markdown<CR>
