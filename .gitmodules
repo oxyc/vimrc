@@ -79,3 +79,6 @@
 [submodule "bundle/vim-easymotion"]
 	path = bundle/vim-easymotion
 	url = https://github.com/Lokaltog/vim-easymotion.git
+[submodule "bundle/latex-box"]
+	path = bundle/latex-box
+	url = https://github.com/vim-scripts/LaTeX-Box.git
