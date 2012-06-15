@@ -294,9 +294,9 @@ augroup END
 augroup ft_css
   au!
 
-  au FileType less,css,sass setlocal foldmethod=marker
-  au FileType less,css,sass setlocal foldmarker={,}
-  au Filetype less,css,sass setlocal omnifunc=csscomplete#CompleteCSS
+  au FileType less,css,sass,scss setlocal foldmethod=marker
+  "au FileType less,css,sass setlocal foldmarker={,}
+  au Filetype less,css,sass,scss setlocal omnifunc=csscomplete#CompleteCSS
 
   "Sort CSS attributes alphabetically
   "Stolen from https://bitbucket.org/sjl/dotfiles/src/tip/vim/.vimrc
