@@ -440,8 +440,8 @@ augroup ft_css
   au!
 
   au FileType less,css,sass,scss setlocal foldmethod=marker
+  "au FileType less,css,sass setlocal foldmarker={,}
   au Filetype less,css,sass,scss setlocal omnifunc=csscomplete#CompleteCSS
-  " Make - part of a word
   au Filetype less,css,sass,scss setlocal iskeyword+=-
 
   "Sort CSS attributes alphabetically
