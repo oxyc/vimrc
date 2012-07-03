@@ -331,6 +331,7 @@ let g:gundo_right = 1
 let g:gundo_preview_bottom = 1
 
 " Ctrl-P
+noremap <C-_> :bnext<CR>
 noremap <C-P> :CtrlP<CR>
 noremap <leader>m :CtrlPMRU<CR>
 noremap <leader>b :CtrlPBuffer<CR>

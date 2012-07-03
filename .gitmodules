@@ -85,3 +85,6 @@
 [submodule "bundle/editorconfig-vim"]
 	path = bundle/editorconfig-vim
 	url = https://github.com/editorconfig/editorconfig-vim.git
+[submodule "bundle/taghighlight"]
+	path = bundle/taghighlight
+	url = https://github.com/abudden/TagHighlight.git
