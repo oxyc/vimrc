@@ -482,7 +482,7 @@ function! SetWPConfig ()
     " @TODO, highglight tabs and trailing whitespace
     "match UsingWS /\v^\ +/
     "match TrailingWS /\s+$)/
-    setlocal shiftwidth=4 softtabstop=4 tabstop=4
+    setlocal shiftwidth=2 softtabstop=2 tabstop=2
     setlocal noexpandtab
     setlocal nolist
   endif

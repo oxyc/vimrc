@@ -82,3 +82,6 @@
 [submodule "bundle/latex-box"]
 	path = bundle/latex-box
 	url = https://github.com/vim-scripts/LaTeX-Box.git
+[submodule "bundle/editorconfig-vim"]
+	path = bundle/editorconfig-vim
+	url = https://github.com/editorconfig/editorconfig-vim.git
