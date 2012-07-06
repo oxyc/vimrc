@@ -479,14 +479,12 @@ augroup END
 
 " Set Wordpres specific settings according to code conventions
 function! SetWPConfig ()
-  if &filetype == 'php'
-    " @TODO, highglight tabs and trailing whitespace
-    "match UsingWS /\v^\ +/
-    "match TrailingWS /\s+$)/
-    setlocal shiftwidth=2 softtabstop=2 tabstop=2
-    setlocal noexpandtab
-    setlocal nolist
-  endif
+  " @TODO, highglight tabs and trailing whitespace
+  "match UsingWS /\v^\ +/
+  "match TrailingWS /\s+$)/
+  setlocal shiftwidth=2 softtabstop=2 tabstop=2
+  setlocal noexpandtab
+  setlocal nolist
 endfunction
 
 " Set Drupal specific settings according to code conventions
