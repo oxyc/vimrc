@@ -1,10 +1,14 @@
 ## Installation
 
 ```bash
-wget https://raw.github.com/oxyc/vimrc/master/install.sh -O - | bash
+wget https://raw.github.com/oxyc/vimrc/master/Makefile -O - | make -- install
 ```
 
 You need a terminal with support for 256 colors for the JellyX theme to work.
+
+```bash
+make install|update
+```
 
 ## Tips
 
