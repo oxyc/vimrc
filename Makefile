@@ -5,7 +5,7 @@ dest=~/.vim
 
 all: update
 
-install:
+install: clean
 	@git clone --recursive $(master) $(dest)
 	@cd $(dest)
 	@ln -s $(dest)/vimrc ~/.vimrc
