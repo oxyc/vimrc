@@ -145,6 +145,11 @@ let b:match_words = '<?\(php\)\?:?>,\<switch\>:\<endswitch\>,' .
   \ '<:>'
 
 " Powerline
+if has('python')
+  python from powerline.bindings.vim import source_plugin; source_plugin()
+elseif has ('python3')
+  python3 from powerline.bindings.vim import source_plugin; source_plugin()
+endif
 let g:Powerline_symbols = 'fancy'
 
 " }}}
