@@ -189,9 +189,13 @@ nnoremap <leader>z zMzAzz
 " }}}
 " GUI / Looks {{{
 
-set guioptions-=T
-set t_Co=256                                 " support 256 colors
-colorscheme jellyx
+" set guioptions-=T
+set t_Co=256                                      " support 256 colors
+set background=dark
+colorscheme base16-default
+
+" Use terminal background
+" highlight Normal ctermfg=none ctermbg=none
 
 " Resize splits when the window is resized
 au VimResized * exe "normal! \<c-w>="
