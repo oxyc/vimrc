@@ -148,6 +148,9 @@ let b:match_words = '<?\(php\)\?:?>,\<switch\>:\<endswitch\>,' .
 set rtp+=~/.vim/bundle/powerline/powerline/bindings/vim
 let g:Powerline_symbols = 'fancy'
 
+" EasyMotion
+let g:EasyMotion_leader_key = '<Leader>'
+
 " }}}
 " Folding {{{
 
@@ -204,14 +207,13 @@ nnoremap j gj
 nnoremap k gk
 
 noremap å *<C-o>
-nnoremap <CR> j
+nnoremap <CR> <nop>
 map <silent> ö ^
 map <silent> ä $
 map <silent> Å <C-]>
 noremap <C-e> 5<C-e>
 noremap <C-y> 5<C-y>
 nmap <C-N> <C-T>
-nmap <C-M> :sp <CR> :exec("tag ". expand("<cword>"))<CR>
 
 " Window movement
 noremap <C-h> <C-w>h
@@ -256,7 +258,7 @@ vnoremap > >gv
 nnoremap / /\v
 vnoremap / /\v
 
-" Clear seach
+" Clear search
 nnoremap <leader><space> :noh<cr>
 
 " Align text
