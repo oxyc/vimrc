@@ -34,31 +34,31 @@ endif
 " }}}
 " Tabs {{{
 
+set autoindent
+set expandtab                                     " no real tabs
 set shiftwidth=2                                  " auto-indent amount when using cindent, etc
+set smartindent
 set softtabstop=2                                 " how many spaces is a tab
 set tabstop=2                                     " real tabs should be 4
-set expandtab                                     " no real tabs
-set autoindent
-set smartindent
 
 " }}}
 " General {{{
 
-set backup                                        " make backup files
 set autochdir                                     " switch to current file directory automatically
 set backspace=indent,eol,start                    " make backspace more flexible
-set fileformats=unix,dos,mac                      " support all three, in this order
-set hidden                                        " change buffers without saving
-set wildmenu                                      " turn on cli completion wild style
-set wildmode=list:longest                         " turn on wild mode huge list
-set wildignore=*.jpg,*.png,.git                   " ignore these file extensions
+set backup                                        " make backup files
 set complete+=k                                   " use the dictionary for autocompletion
 set completeopt=longest,menuone,preview           " Better completion
-set history=1000                                  " Keep a longer history
+set fileformats=unix,dos,mac                      " support all three, in this order
 set gdefault                                      " Add the g flag to search/replace by default
+set hidden                                        " change buffers without saving
+set history=1000                                  " Keep a longer history
 set ignorecase                                    " case insensitive by default
-set smartcase                                     " if there are caps, go case-sensitive
 set pastetoggle=<F2>                              " toggle paste mode
+set smartcase                                     " if there are caps, go case-sensitive
+set wildignore=*.jpg,*.png,.git                   " ignore these file extensions
+set wildmenu                                      " turn on cli completion wild style
+set wildmode=list:longest                         " turn on wild mode huge list
 
 if exists("+undofile")
   set undofile                                    " store all undos
@@ -76,38 +76,39 @@ endif
 " Vim UI {{{
 
 set cursorline                                    " highlight the current line
-set incsearch                                     " highlight as you type your search
 set hlsearch                                      " highlight search
+set incsearch                                     " highlight as you type your search
 set laststatus=2                                  " always show the status line
+set lazyredraw                                    " don't redraw while executing macros etc.
 set linespace=0                                   " don't insert any extra lineheight
+set list
+set listchars=tab:▸\ ,trail:·                     " distinguish tabs and trailing whitespace
 set matchtime=5                                   " how many ms to blinkmatching bracket
+set mouse=a                                       " enable mouse in all modes
+set nostartofline                                 " don't reset cursor to start of line when moving around
 set report=0                                      " tell us when anything is changed via exec
 set ruler                                         " always show current position
 set scrolloff=10                                  " keep 10 lines for scope
-set sidescrolloff=10                              " keep 10 lines at the size?
-set showcmd                                       " show the command being typed
-set showmode                                      " show the which mode
-set showmatch                                     " show matching brackets
-set splitright                                    " open vsplits on rightside
-set splitbelow                                    " open splits at bottom
-set listchars=tab:▸\ ,trail:·                     " distinguish tabs and trailing whitespace
-set list
-set showbreak=↪                                   " distinguish wrapped lines
 set shortmess+=filmnrxoOtT                        " abbrevation of messages (avoids hit enter)
-set mouse=a                                       " enable mouse in all modes
-set nostartofline                                 " don't reset cursor to start of line when moving around
+set showbreak=↪                                   " distinguish wrapped lines
+set showcmd                                       " show the command being typed
+set showmatch                                     " show matching brackets
+set showmode                                      " show the which mode
+set sidescrolloff=10                              " keep 10 lines at the size?
+set splitbelow                                    " open splits at bottom
+set splitright                                    " open vsplits on rightside
+set synmaxcol=200                                 " limit syntax highlighting of long lines.
 set title                                         " set window title to filename
 set ttyfast                                       " faster redrawing
-set lazyredraw                                    " don't redraw while executing macros etc.
 
 " }}}
 " Text formatting/layout {{{
 
 set formatoptions+=rq                             " automatically insert comment leader on return and let gq format comments
 set nowrap                                        " do not wrap line
-set whichwrap+=h,l,<,>,[,]                        " http://vim.wikia.com/wiki/Automatically_wrap_left_and_right
-set virtualedit=block                             " Allow moving to unexisting lines/spaces in VB mode
 set shiftround                                    " Round indent to multiple of shiftwidth
+set virtualedit=block                             " Allow moving to unexisting lines/spaces in VB mode
+set whichwrap+=h,l,<,>,[,]                        " http://vim.wikia.com/wiki/Automatically_wrap_left_and_right
 
 " }}}
 " Configurations {{{
