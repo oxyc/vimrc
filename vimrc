@@ -145,12 +145,15 @@ let b:match_words = '<?\(php\)\?:?>,\<switch\>:\<endswitch\>,' .
   \ '<\@<=\([^/?][^ \t>]*\)[^>]*\%(>\|$\):<\@<=/\1>,' .
   \ '<:>'
 
-" Powerline
-set rtp+=~/.vim/bundle/powerline/powerline/bindings/vim
-let g:Powerline_symbols = 'fancy'
-
 " EasyMotion
 let g:EasyMotion_leader_key = '<Leader>'
+
+" Airline
+let g:airline_powerline_fonts = 1
+"let g:airline#extensions#tabline#enabled = 1
+
+" Ack
+let g:ackprg = 'ag --nogroup --nocolor --column'
 
 " }}}
 " Folding {{{
@@ -340,10 +343,59 @@ let g:gundo_right = 1
 let g:gundo_preview_bottom = 1
 
 " Ctrl-P
-noremap <C-_> :bnext<CR>
-noremap <C-P> :CtrlP<CR>
-noremap <leader>m :CtrlPMRU<CR>
-noremap <leader>b :CtrlPBuffer<CR>
+nnoremap <C-_> :bnext<CR>
+nnoremap <C-P> :CtrlP<CR>
+nnoremap <leader>m :CtrlPMRU<CR>
+nnoremap <leader>b :CtrlPBuffer<CR>
+
+" }}}
+" Autocompletion {{{
+
+let g:neocomplete#enable_at_startup = 1
+let g:neocomplete#enable_smart_case = 1
+" let g:neocomplete#enable_auto_select = 1 " ?
+let g:neocomplete#sources#syntax#min_keyword_length = 0
+let g:neocomplete#lock_buffer_name_pattern = '\*ku\*'
+let g:neocomplete#data_directory = '~/.vim/neocomplete'
+let g:neocomplete#sources#buffer#cache_limit_size = 0
+
+" Define keywords
+if !exists('g:neocomplete#keyword_patterns')
+  let g:neocomplete#keyword_patterns = {}
+endif
+let g:neocomplete#keyword_patterns['default'] = '\h\w*'
+
+" Plugin key-mappings.
+inoremap <expr><C-g> neocomplete#undo_completion()
+inoremap <expr><C-l> neocomplete#complete_common_string()
+
+" If item is selected, insert it otherwise close popup
+inoremap <expr><Space> pumvisible() ? "\<C-y><Space>" : neocomplete#cancel_popup()."<Space>"
+
+" <TAB>: snippets, autocomplete, <tab>
+imap <expr><Tab> neosnippet#expandable_or_jumpable() ?
+  \ "\<Plug>(neosnippet_expand_or_jump)"
+  \: pumvisible() ? "\<C-n>" : "\<Tab>"
+
+smap <expr><Tab> neosnippet#expandable_or_jumpable() ?
+\ "\<Plug>(neosnippet_expand_or_jump)"
+\: "\<Tab>"
+
+" <C-h>, <BS>: close popup and delete backword char.
+inoremap <expr><C-h>  neocomplete#smart_close_popup()."\<C-h>"
+inoremap <expr><BS>   neocomplete#smart_close_popup()."\<C-h>"
+inoremap <expr><C-y>  neocomplete#close_popup()
+inoremap <expr><C-e>  neocomplete#cancel_popup()
+
+" }}}
+" Snippets {{{
+
+imap <C-k>     <Plug>(neosnippet_expand_or_jump)
+smap <C-k>     <Plug>(neosnippet_expand_or_jump)
+xmap <C-k>     <Plug>(neosnippet_expand_target)
+
+" let g:neosnippet#enable_snipmate_compatibility = 1
+" let g:neosnippet#snippets_directory='~/.vim/bundle/vim-snippets/snippets'
 
 " }}}
 " Custom functions {{{
@@ -392,18 +444,6 @@ function! DoxygenComment (...)
     +1
   endif
   set nopaste
-endfunction " }}}
-
-" Insert <Tab> or complete identifier if the cursor is after a keyword character {{{
-inoremap <Tab> <C-R>=MyTabOrComplete()<CR>
-
-function! MyTabOrComplete()
-  let col = col('.')-1
-  if !col || getline('.')[col-1] !~ '\k'
-    return "\<tab>"
-  else
-    return "\<C-N>"
-  endif
 endfunction " }}}
 
 " Motion for numbers {{{
@@ -467,7 +507,7 @@ augroup END
 augroup ft_html
   au!
   au FileType html setlocal foldmethod=manual
-  " @todo
+  au Filetype html setlocal omnifunc=htmlcomplete#CompleteTags
 augroup END
 
 " }}}
@@ -535,19 +575,12 @@ augroup ft_markdown
   au!
 
   au BufNewFile,BufRead *.m*down setlocal filetype=markdown
+  au Filetype markdown setlocal omnifunc=htmlcomplete#CompleteTags
 
   " Use <localleader>1/2/3 to add headings.
   au Filetype markdown nnoremap <buffer> <localleader>1 yypVr=
   au Filetype markdown nnoremap <buffer> <localleader>2 yypVr-
   au Filetype markdown nnoremap <buffer> <localleader>3 I### <ESC>
-augroup END
-
-" }}}
-" Ruby {{{
-
-augroup ft_ruby
-  au!
-  au Filetype ruby setlocal foldmethod=syntax
 augroup END
 
 " }}}
