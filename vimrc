@@ -196,6 +196,8 @@ nnoremap <leader>z zMzAzz
 set t_Co=256                                      " support 256 colors
 set background=dark
 colorscheme base16-default
+hi Matchmaker term=underline ctermbg=11
+hi MatchParen cterm=bold ctermbg=03
 
 " Use terminal background
 " highlight Normal ctermfg=none ctermbg=none
