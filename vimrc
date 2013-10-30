@@ -146,7 +146,7 @@ let b:match_words = '<?\(php\)\?:?>,\<switch\>:\<endswitch\>,' .
   \ '<:>'
 
 " EasyMotion
-let g:EasyMotion_leader_key = '<Leader>'
+let g:EasyMotion_leader_key = '<Leader><Leader>'
 
 " Airline
 let g:airline_powerline_fonts = 1
@@ -342,11 +342,8 @@ let g:gundo_prefer_python3 = 1
 let g:gundo_right = 1
 let g:gundo_preview_bottom = 1
 
-" Ctrl-P
-nnoremap <C-_> :bnext<CR>
-nnoremap <C-P> :CtrlP<CR>
-nnoremap <leader>m :CtrlPMRU<CR>
-nnoremap <leader>b :CtrlPBuffer<CR>
+" Matchmaker
+let g:matchmaker_enable_startup = 1
 
 " }}}
 " Autocompletion {{{
@@ -396,6 +393,69 @@ xmap <C-k>     <Plug>(neosnippet_expand_target)
 
 " let g:neosnippet#enable_snipmate_compatibility = 1
 " let g:neosnippet#snippets_directory='~/.vim/bundle/vim-snippets/snippets'
+
+" }}}
+" Unite {{{
+
+let g:unite_source_history_yank_enable = 1
+let g:unite_enable_start_insert = 1
+let g:unite_enable_short_source_names = 1
+let g:unite_enable_smart_case = 1
+
+call unite#custom_source('file_rec,file_rec/async,file_mru,file,buffer,grep',
+  \ 'ignore_pattern', join([
+  \ '\.git/', 'bower_components/', 'node_modules/'
+  \ ], '\|'))
+
+call unite#filters#matcher_default#use(['matcher_fuzzy'])
+call unite#filters#sorter_default#use(['sorter_rank'])
+
+autocmd FileType unite call s:unite_settings()
+
+function! s:unite_settings()
+  imap <buffer> <C-j>   <Plug>(unite_select_next_line)
+  imap <buffer> <C-k>   <Plug>(unite_select_previous_line)
+  imap <silent><buffer><expr> <C-x> unite#do_action('split')
+  imap <silent><buffer><expr> <C-v> unite#do_action('vsplit')
+  imap <silent><buffer><expr> <C-t> unite#do_action('tabopen')
+
+  nmap <buffer> <ESC>   <Plug>(unite_exit)
+  imap <buffer> jj      <Plug>(unite_insert_leave)
+  imap <buffer> <TAB>   <Plug>(unite_select_next_line)
+  imap <buffer> <C-p>   <Plug>(unite_toggle_auto_preview)
+  nmap <buffer> <C-p>   <Plug>(unite_toggle_auto_preview)
+endfunction
+
+if executable('ag')
+  let g:unite_source_grep_command = 'ag'
+  let g:unite_source_grep_default_opts = '--nogroup --nocolor --column'
+  let g:unite_source_grep_recursive_opt = ''
+elseif executable('ack')
+  let g:unite_source_grep_command = 'ack'
+  let g:unite_source_grep_default_opts = '--no-heading --no-color -a -H'
+  let g:unite_source_grep_recursive_opt = ''
+endif
+
+let g:unite_source_menu_menus = {}
+let g:unite_source_menu_menus.custom = { 'description': 'Custom commands', }
+let g:unite_source_menu_menus.custom.candidates = {
+  \'git status           (fugitive)        ⌘ ,gs': 'Gstatus',
+  \'git diff             (fugitive)        ⌘ ,gd': 'Gdiff',
+  \'gundo toggle         (gundo)           ⌘ ,gu': 'GundoToggle',
+\}
+function g:unite_source_menu_menus.custom.map(key, value)
+  return { 'word' : a:key, 'kind' : 'command', 'action__command' : a:value, }
+endfunction
+
+" @TODO figure out where resume is non intuitive
+noremap <leader>f :<C-u>Unite -resume -buffer-name=files   file_rec/async:!<CR>
+noremap <leader>m :<C-u>Unite -resume -buffer-name=files   file_mru<CR>
+noremap <leader>b :<C-u>Unite -resume -buffer-name=buffers -quick-match buffer<CR>
+noremap <leader>y :<C-u>Unite -resume -buffer-name=history history/yank<CR>
+noremap <leader>g :<C-u>Unite -resume -buffer-name=grep    grep:.<CR>
+noremap <leader>o :<C-u>Unite -resume -buffer-name=outline outline<CR>
+noremap <leader>l :<C-u>Unite -resume -buffer-name=line    line<CR>
+noremap <leader>c :<C-u>Unite -resume -buffer-name=custom  menu:custom<Cr>
 
 " }}}
 " Custom functions {{{
