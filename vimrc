@@ -368,17 +368,30 @@ let g:neocomplete#keyword_patterns['default'] = '\h\w*'
 inoremap <expr><C-g> neocomplete#undo_completion()
 inoremap <expr><C-l> neocomplete#complete_common_string()
 
-" If item is selected, insert it otherwise close popup
-inoremap <expr><Space> pumvisible() ? "\<C-y><Space>" : neocomplete#cancel_popup()."<Space>"
+" 1. If expandable -> Expand
+" 2. If selected -> Insert
+" 3. Close popup and insert <space>
+imap <expr><Space> neosnippet#expandable() ?
+  \ "\<Plug>(neosnippet_expand)"
+  \: pumvisible() ? "\<C-y><Space>" : neocomplete#cancel_popup()."<Space>"
 
-" <TAB>: snippets, autocomplete, <tab>
-imap <expr><Tab> neosnippet#expandable_or_jumpable() ?
-  \ "\<Plug>(neosnippet_expand_or_jump)"
+" 1. If jumpable -> Jump
+" 2. If selected -> Insert
+" 3. Insert <tab>
+imap <expr><Tab> neosnippet#jumpable() ?
+  \ "\<Plug>(neosnippet_jump)"
   \: pumvisible() ? "\<C-n>" : "\<Tab>"
 
-smap <expr><Tab> neosnippet#expandable_or_jumpable() ?
-\ "\<Plug>(neosnippet_expand_or_jump)"
-\: "\<Tab>"
+smap <expr><Tab> neosnippet#jumpable() ?
+  \ "\<Plug>(neosnippet_jump)"
+  \: "\<Tab>"
+
+" 1. If expandable or jumpable -> Expand/Jump
+" 2. If selected -> Insert
+" 3. Insert <CR>
+imap <expr><CR> neosnippet#expandable_or_jumpable() ?
+  \ "\<Plug>(neosnippet_expand_or_jump)"
+  \: pumvisible() ? "\<C-y>" : "<CR>"
 
 " <C-h>, <BS>: close popup and delete backword char.
 inoremap <expr><C-h>  neocomplete#smart_close_popup()."\<C-h>"
@@ -393,8 +406,9 @@ imap <C-k>     <Plug>(neosnippet_expand_or_jump)
 smap <C-k>     <Plug>(neosnippet_expand_or_jump)
 xmap <C-k>     <Plug>(neosnippet_expand_target)
 
-" let g:neosnippet#enable_snipmate_compatibility = 1
-" let g:neosnippet#snippets_directory='~/.vim/bundle/vim-snippets/snippets'
+let g:neosnippet#enable_snipmate_compatibility = 1
+let g:neosnippet#snippets_directory='~/.vim/snippets'
+let g:neosnippet#enable_preview = 1
 
 " }}}
 " Unite {{{
