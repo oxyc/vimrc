@@ -1,0 +1,228 @@
+snippet function
+	function ${1:#:function}(${2}) {
+		${3:TARGET}
+	}
+
+snippet php
+	<?php
+	${1:TARGET}
+
+snippet pecho
+	<?php echo ${1} ?>${0}
+
+snippet pfore
+	<?$php foreach ($${1:#:variable} as $${2:#:key}${3: =>}): ?>
+	${0:TARGET}
+	<?php endforeach ?>
+
+snippet pife
+	<?php if (${1:#:condition}): ?>
+	${2:TARGET}
+	<?php else: ?>
+	${0}
+	<?php endif ?>
+
+snippet pif
+	<?php if (${1:#:condition}): ?>
+	${0:TARGET}
+	<?php endif ?>
+
+snippet pelse
+	<?php else: ?>
+
+snippet c
+	/**
+	 * $0
+	 */
+
+snippet class_with_constructor
+	/**
+	 * ${1}
+	 */
+	class ${2:#:ClassName}${3:#:extends}
+	{
+		$5
+		function ${4:__construct}(${5:#:argument})
+		{
+			${0:# code...}
+		}
+	}
+
+snippet class
+	class ${2:#:ClassName} {
+		${0:TARGET}
+	}
+
+snippet def
+	define('${1}', '${2}');
+
+snippet do
+	do {
+		${0:TARGET}
+	} while (${1:#:condition});
+
+snippet ifelse
+	if (${1:#:condition}) {
+		${2:TARGET}
+	}
+	else {
+		${3:#:code...}
+	}
+	${0}
+
+snippet if
+	if (${1:#:condition}) {
+		${0:TARGET}
+	}
+
+snippet echo
+	echo "${1:#:string}"${0};
+
+snippet else
+	else {
+		${0:TARGET}
+	}
+
+snippet elseif
+	elseif (${1:#:condition}) {
+		${0:TARGET}
+	}
+
+snippet for
+	for ($${1:i}=${2:0}; $$1 < ${3}; $$1++) {
+		${0:TARGET}
+	}
+
+snippet fore
+	foreach ($${1:#:variable} as $${2:#:key}${3: =>} $${4:#:value}) {
+		${0:TARGET}
+	}
+
+snippet con
+	function __construct(${1})
+	{
+		${0:TARGET}
+	}
+
+snippet here
+	<<<${1:HTML}
+	${2:TARGET:#:content here}
+	$1;
+
+snippet inc
+	include '${1:#:file}';${0}
+
+snippet inco
+	include_once '${1:#:file}';${0}
+
+snippet array
+	array(
+		'${1}'${2: => },
+	);
+
+snippet arraycomma
+	array(
+		'${1}'${2: => },
+	),
+
+snippet req
+	require '${1:#:file}';${0}
+
+snippet reqo
+	require_once '${1:#:file}';${0}
+
+snippet ret
+	return ${1};
+
+snippet retf
+	return FALSE;
+
+snippet rett
+	return TRUE;
+
+snippet case
+	case '${1:#:variable}':
+		${0:#:code...}
+		break;
+
+snippet switch
+abbr wh
+	switch (${1:#:variable}) {
+		case '${2:#:value}':
+			${3:#:code...}
+			break;
+		${0}
+		default:
+			${4:#:code...}
+			break;
+		}
+
+snippet while
+abbr wh
+	while (${1}) {
+		${0:TARGET}
+	}
+
+snippet gloabals
+	\$GLOBALS['${1:#:variable}']${2: = }${3:#:something}${4:;}${0}
+
+snippet cookie
+	\$_COOKIE['${1:#:variable}']
+
+snippet env
+	\$_ENV['${1:#:variable}']
+
+snippet files
+	\$_FILES['${1:#:variable}']
+
+snippet get
+	\$_GET['${1:#:variable}']
+
+snippet post
+	\$_POST['${1:#:variable}']
+
+snippet request
+	\$_REQUEST['${1:#:variable}']
+
+snippet server
+	\$_SERVER['${1:#:variable}']
+
+snippet session
+	\$_SESSION['${1:#:variable}']
+
+# Drupal
+
+snippet hook
+options head indent
+	/*
+	 * Implements hook_${1:#:HookName}().
+	 */
+	function `Filename()`_$1(${2}) {
+		${3:TARGET}
+	}
+
+snippet hook_permission
+	/**
+	 * Implements of hook_permission().
+	 */
+	function `Filename()`_permission() {
+		return array('${1:#:permission}' => array(
+			'title' => t('${2}'),
+			'description' => t('${3:#:optional'),
+		));
+	}
+
+snippet hook_menu
+	/**
+	 * Implements of hook_menu().
+	 */
+	function `Filename()`_menu() {
+		$items['${1:#:item}'] = array(
+			'page callback' => '${2}',
+			'title' => t('${3}'),
+		);
+		return $items;
+	}
+
+snippet t
+	t('${1:#:text}}', array(${2:#:arguments}));
