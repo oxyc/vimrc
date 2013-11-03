@@ -240,7 +240,7 @@ nnoremap <leader>ma :marks<CR>
 noremap qq :bd<CR>
 
 " Save as root
-cnoremap <leader>W :w !sudo tee % > /dev/null<CR>
+cnoremap w!! :w !sudo tee % > /dev/null<CR>
 
 " System clipboard interaction
 " https://github.com/henrik/dotfiles/blob/master/vim/config/mappings.vim
@@ -302,7 +302,41 @@ noremap <leader>gd :Gdiff<CR>
 noremap <leader>gb :Gblame<CR>
 noremap <leader>gg :Gbrowse<CR>
 
-noremap <leader>s :SyntasticToggle<CR>
+nmap <silent> <leader>tg :GundoToggle<CR>
+nmap <silent> <leader>ts :SyntasticToggle<CR>
+nmap <silent> <leader>tl :call ToggleList("Location List", 'l')<CR>
+nmap <silent> <leader>tq :call ToggleList("Quickfix List", 'c')<CR>
+nmap <silent> <leader>tc :call ToggleCopyMode ()<cr>
+
+" ` is difficult to press on a swedish keyboard
+noremap '. `.
+noremap '< `<
+noremap '> '>
+noremap '[ `[
+noremap '] ']
+
+" Find merge conflict markers
+map <leader>fc /\v^[<\|=>]{7}( .*\|$)<CR>
+
+" Allow using the repeat operator with a visual selection (!)
+" http://stackoverflow.com/a/8064607/127816
+vnoremap . :normal .<CR>
+
+" Tabularize
+nmap <Leader>a& :Tabularize /&<CR>
+vmap <Leader>a& :Tabularize /&<CR>
+nmap <Leader>a= :Tabularize /=<CR>
+vmap <Leader>a= :Tabularize /=<CR>
+nmap <Leader>a: :Tabularize /:<CR>
+vmap <Leader>a: :Tabularize /:<CR>
+nmap <Leader>a:: :Tabularize /:\zs<CR>
+vmap <Leader>a:: :Tabularize /:\zs<CR>
+nmap <Leader>a, :Tabularize /,<CR>
+vmap <Leader>a, :Tabularize /,<CR>
+nmap <Leader>a,, :Tabularize /,\zs<CR>
+vmap <Leader>a,, :Tabularize /,\zs<CR>
+nmap <Leader>a<Bar> :Tabularize /<Bar><CR>
+vmap <Leader>a<Bar> :Tabularize /<Bar><CR>
 
 " Local config
 if filereadable("vimrc.local")
@@ -352,7 +386,6 @@ nnoremap ! :Clam<space>
 vnoremap ! :ClamVisual<space>
 
 " Gundo
-nnoremap <leader>gu :GundoToggle<CR>
 let g:gundo_prefer_python3 = 1
 let g:gundo_right = 1
 let g:gundo_preview_bottom = 1
@@ -495,8 +528,34 @@ noremap <leader>c :<C-u>Unite -resume -buffer-name=custom  menu:custom<Cr>
 " }}}
 " Custom functions {{{
 
+function! GetBufferList()
+  redir =>buflist
+  silent! ls
+  redir END
+  return buflist
+endfunction
+
+function! ToggleList(bufname, pfx)
+  let buflist = GetBufferList()
+  for bufnum in map(filter(split(buflist, '\n'), 'v:val =~ "'.a:bufname.'"'), 'str2nr(matchstr(v:val, "\\d\\+"))')
+    if bufwinnr(bufnum) != -1
+      exec(a:pfx.'close')
+      return
+    endif
+  endfor
+  if a:pfx == 'l' && len(getloclist(0)) == 0
+      echohl ErrorMsg
+      echo "Location List is Empty."
+      return
+  endif
+  let winnr = winnr()
+  exec(a:pfx.'open')
+  if winnr() != winnr
+    wincmd p
+  endif
+endfunction
+
 " When you're working remotely and need to copy something to your clipboard {{{
-nnoremap <leader>cc :call ToggleCopyMode ()<cr>
 
 function! ToggleCopyMode ()
   if &mouse == 'a' | set mouse= | else | set mouse=a | endif

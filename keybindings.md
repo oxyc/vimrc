@@ -41,7 +41,7 @@ Gist-vim
 Gundo.vim
 ---------
 ```
-,gu       Toggle Gundo
+,tg       Toggle Gundo
 ```
 
 neocomplete.vim
@@ -58,14 +58,19 @@ C-l        Complete common string
 Syntastic
 ---------
 ```
-,s          Toggle syntastic
+,ts          Toggle syntastic
 ```
 
 Tabularize
 ----------
 ```
-:Tab/:      Tabularize on :
-:Tab/:\zs   Tabularize but align :
+,a&         Tabularize on &
+,a=         Tabularize on =
+,a:         Tabularize on :
+,a::        Tabularize on : with whitespace
+,a,         Tabularize on ,
+,a,,        Tabularize on , with whitespace
+,a<Bar>     Tabularize on<Bar><CR>
 ```
 
 Tcomment vim
@@ -245,10 +250,10 @@ C-hjkl      Window movement
 S-Tab       Next tab
 ,ma         Show marks (Plugin, learn marks)
 qq          Buffer delete
-,W          Save as root
+w!!         Save as root
 ,v          Reselect pasted text
 ,ss         Clean trailing whitespace
-,ii         Toggle invisble characters
+,ii         Toggle invisible characters
 ,y          ???
 ,p          ???
 ,P          ???
@@ -263,15 +268,49 @@ qq          Buffer delete
 ,sc         Spell check
 ,scs        Spell check swedish
 _md         Set markdown etc.
-,cc         Toggle copymode
+,tc         Toggle copymode
+,ts         Toggle syntastic
+,tl         Toggle location list
+,tq         Toggle quickfix list
 ,di         Insert Drupal Doxygen hook
 ,dc         Insert Drupal Doxygen comment
+,fc         find merge conflict markers
+```
+
+Standard keybindings
+--------------------
+*Misc*
+```
+<C-w>w            Cycle tabs
+```
+
+*Quickfix window*
+```
+<C-W><CR>     Jump to error in new window
+:cn         Next error
+:cnf        Go to first error
+```
+
+*Marks*
+```
+''                Jump to previous location
+'.                Last change position
+'[                beginning of changed text
+']                end of changed text
+'<                beginning of last visual selection
+'>                end of last visual selection
+:delmarks {mark}  delete mark
+:delmarks!        delete all marks
+:marks            show marks
+m{mark}           set mark
 ```
 
 TODO
 -----
-- Vim unimpaired
-- Learn quickfix/tags/etc/etc!
+- Vim unimpaired?
+- http://usevim.com/2012/04/13/registers/
+- http://blog.carbonfive.com/2011/10/17/vim-text-objects-the-definitive-guide/
+- http://vimregex.com/
 
 No configuration
 -----------------
