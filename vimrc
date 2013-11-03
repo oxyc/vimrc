@@ -371,8 +371,14 @@ au FileType html,php nnoremap <buffer> <s-cr> vit<esc>a<cr><esc>vito<esc>i<cr><e
 " }}}
 " Plugins {{{
 
+" textmanip
+vmap <C-h> <Plug>(textmanip-move-left)
+vmap <C-j> <Plug>(textmanip-move-down)
+vmap <C-k> <Plug>(textmanip-move-up)
+vmap <C-l> <Plug>(textmanip-move-right)
+
 " Emmet
-let g:user_emmet_leader_key = <C-y>
+let g:user_emmet_leader_key = '<c-y>'
 
 " Ack
 nnoremap <leader>a :Ack!
@@ -453,10 +459,6 @@ inoremap <expr><C-e>  neocomplete#cancel_popup()
 
 " }}}
 " Snippets {{{
-
-imap <C-k>     <Plug>(neosnippet_expand_or_jump)
-smap <C-k>     <Plug>(neosnippet_expand_or_jump)
-xmap <C-k>     <Plug>(neosnippet_expand_target)
 
 let g:neosnippet#enable_snipmate_compatibility = 1
 let g:neosnippet#snippets_directory='~/.vim/snippets'

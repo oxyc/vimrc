@@ -118,3 +118,6 @@
 [submodule "bundle/clever-f.vim"]
 	path = bundle/clever-f.vim
 	url = https://github.com/rhysd/clever-f.vim.git
+[submodule "bundle/vim-textmanip"]
+	path = bundle/vim-textmanip
+	url = https://github.com/t9md/vim-textmanip.git

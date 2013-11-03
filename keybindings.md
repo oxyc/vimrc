@@ -76,7 +76,7 @@ Tabularize
 Tcomment vim
 ------------
 ```
-C-_C-_  Toggle comment
+C-_C-_    Toggle comment
 C-_b      Block comment
 ```
 
@@ -228,12 +228,23 @@ lorem<C-y>, lorem ipsum
 
 Clever-f.vim
 ------------
+```
 f{char}     find char forward
 F{char}     find char backwards
 t{char}     stop before char forward
 T{char}     stop before char backward
 f/t         repeat
 F/T         undo
+```
+
+vim-textmanip
+--------
+```
+C-h         move block left
+C-j         move block down
+C-k         move block up
+C-l         move block right
+```
 
 Keybidings
 ----------
@@ -281,12 +292,12 @@ Standard keybindings
 --------------------
 *Misc*
 ```
-<C-w>w            Cycle tabs
+<C-w>w      Cycle tabs
 ```
 
 *Quickfix window*
 ```
-<C-W><CR>     Jump to error in new window
+<C-W><CR>   Jump to error in new window
 :cn         Next error
 :cnf        Go to first error
 ```
