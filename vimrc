@@ -114,7 +114,7 @@ set whichwrap+=h,l,<,>,[,]                        " http://vim.wikia.com/wiki/Au
 " Configurations {{{
 
 let mapleader = ","
-let maplocalleader = ";"
+let maplocalleader = ",,"
 
 " Syntastic settings
 
@@ -122,6 +122,7 @@ let g:syntastic_enable_signs=1          " Use :sign interace to mark syntax erro
 let g:syntastic_check_on_open=1         " Check for errors on buffer load
 let g:syntastic_auto_loc_list=1         " Open Error window automatically
 let g:syntastic_auto_jump=1             " Automatically jump to first detected error
+let g:syntastic_loc_list_height=3
 let g:syntastic_stl_format = '[%E{Error 1/%e: line %fe}%B{, }%W{Warning 1/%w: line %fw}]'
 
 " Gist settings
@@ -212,14 +213,14 @@ au VimResized * exe "normal! \<c-w>="
 nnoremap j gj
 nnoremap k gk
 
-noremap å *<C-o>
+"noremap å *<C-o> Not required
 nnoremap <CR> <nop>
 map <silent> ö ^
 map <silent> ä $
-map <silent> Å <C-]>
+"map <silent> Å <C-]>
 noremap <C-e> 5<C-e>
 noremap <C-y> 5<C-y>
-nmap <C-N> <C-T>
+"nmap <C-N> <C-T>
 
 " Window movement
 noremap <C-h> <C-w>h
@@ -236,14 +237,16 @@ vnoremap <bs> x
 
 nnoremap <leader>ma :marks<CR>
 
+noremap qq :bd<CR>
+
 " Save as root
 cnoremap <leader>W :w !sudo tee % > /dev/null<CR>
 
 " System clipboard interaction
 " https://github.com/henrik/dotfiles/blob/master/vim/config/mappings.vim
-noremap <leader>y "*y
-noremap <leader>p :set paste<CR>"*p<CR>:set nopaste<CR>
-noremap <leader>P :set paste<CR>"*P<CR>:set nopaste<CR>
+"noremap <leader>y "*y
+"noremap <leader>p :set paste<CR>"*p<CR>:set nopaste<CR>
+"noremap <leader>P :set paste<CR>"*P<CR>:set nopaste<CR>
 
 " Reselect text that was just pasted
 " http://stevelosh.com/blog/2010/09/coming-home-to-vim/
@@ -293,6 +296,13 @@ nnoremap _js :set ft=javascript<CR>
 nnoremap _css :set ft=css<CR>
 nnoremap _php :set ft=php<CR>
 nnoremap _d :set ft=diff<CR>
+
+noremap <leader>gs :Gstatus<CR>
+noremap <leader>gd :Gdiff<CR>
+noremap <leader>gb :Gblame<CR>
+noremap <leader>gg :Gbrowse<CR>
+
+noremap <leader>s :SyntasticToggle<CR>
 
 " Local config
 if filereadable("vimrc.local")
@@ -347,6 +357,11 @@ let g:gundo_preview_bottom = 1
 " Matchmaker
 let g:matchmaker_enable_startup = 1
 
+" Vim-javascript
+let g:javascript_conceal = 1
+let b:javascript_fold = 1
+let javascript_enable_domhtmlcss = 1
+
 " }}}
 " Autocompletion {{{
 
@@ -394,6 +409,7 @@ imap <expr><CR> neosnippet#expandable_or_jumpable() ?
   \: pumvisible() ? "\<C-y>" : "<CR>"
 
 " <C-h>, <BS>: close popup and delete backword char.
+" Sort of useless...
 inoremap <expr><C-h>  neocomplete#smart_close_popup()."\<C-h>"
 inoremap <expr><BS>   neocomplete#smart_close_popup()."\<C-h>"
 inoremap <expr><C-y>  neocomplete#close_popup()
@@ -489,9 +505,7 @@ endfunction " }}}
 noremap <leader>di :call DrupalImplementsComment ()<CR>
 
 function! DrupalImplementsComment ()
-  let filename = bufname("%")
-  let dot = stridx(filename, ".")
-  let module = strpart(filename, 0, dot)
+  let module = matchstr(bufname("%"), '[a-z0-9]*')
   let current_line = getline(".")
   let hook_idx = matchend(current_line, "function " . module . "_")
   if !empty(module) && hook_idx != -1
