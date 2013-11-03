@@ -337,6 +337,9 @@ au FileType html,php nnoremap <buffer> <s-cr> vit<esc>a<cr><esc>vito<esc>i<cr><e
 " }}}
 " Plugins {{{
 
+" Emmet
+let g:user_emmet_leader_key = <C-y>
+
 " Ack
 nnoremap <leader>a :Ack!
 

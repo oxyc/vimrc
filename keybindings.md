@@ -187,6 +187,49 @@ yss{replace}          Add surround for whole line
 ySS{replace}          Add surround for whole line and indent
 ```
 
+vim-signature
+-------------
+```
+m{mark}      Toggle mark
+m<Space>     Delete all marks
+m,           Place the next available mark
+]`           Jump to next mark
+[`           Jump to prev mark
+]'           Jump to start of next line containing a mark
+['           Jump to start of prev line containing a mark
+`]           Jump by alphabetical order to next mark
+`[           Jump by alphabetical order to prev mark
+']           Jump by alphabetical order to start of next line containing a mark
+'[           Jump by alphabetical order to start of prev line containing a mark
+
+m[0-9]       Toggle the corresponding marker !@#$%^&*()
+m<S-[0-9]>   Remove all markers of the same type
+]-           Jump to next line having same marker
+[-           Jump to prev line having same marker
+m<BS> Remove all markers
+```
+
+Emmet-vim
+---------
+```
+<C-y>,      expand emmet abbreviation
+<C-y>n      go to next edit point
+<C-y>N      go to previous edit point
+J           join lines
+<C-y>m      join multiple lines
+<C-y>a      make url into anchor
+lorem<C-y>, lorem ipsum
+```
+
+Clever-f.vim
+------------
+f{char}     find char forward
+F{char}     find char backwards
+t{char}     stop before char forward
+T{char}     stop before char backward
+f/t         repeat
+F/T         undo
+
 Keybidings
 ----------
 ```
@@ -248,3 +291,4 @@ No configuration
 - vim-stylus
 - webapi-vim
 - vim-repeat
+- vim-autoclose
