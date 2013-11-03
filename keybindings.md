@@ -322,6 +322,7 @@ TODO
 - http://usevim.com/2012/04/13/registers/
 - http://blog.carbonfive.com/2011/10/17/vim-text-objects-the-definitive-guide/
 - http://vimregex.com/
+- auto-pairs
 
 No configuration
 -----------------
@@ -341,4 +342,3 @@ No configuration
 - vim-stylus
 - webapi-vim
 - vim-repeat
-- vim-autoclose
