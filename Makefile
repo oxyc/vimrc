@@ -1,23 +1,17 @@
-# wget https://raw.github.com/oxyc/vimrc/master/Makefile -O - | make -- install
-
 master=git://github.com/oxyc/vimrc.git
-dest=~/.vim
+DEST:=$(shell dirname $(realpath $(lastword $(MAKEFILE_LIST))))
 
 all: update
 
-install: clean
-	@git clone --recursive $(master) $(dest)
-	@cd $(dest)
-	@ln -s $(dest)/vimrc ~/.vimrc
-	@cd -
+install:
+	@ln -s $(DEST)/vimrc ~/.vimrc
+	@vim +NeoBundleInstall +q
 
 update:
-	@cd $(dest)
+	@pushd $(DEST)
 	@git pull
 	@git submodule foreach git pull origin master
+	@vim +NeoBundleUpdate +q
+	@popd
 
-clean:
-	@cp -r $(dest){,.old}
-	@rm -rf $(dest)
-	@cp ~/.vimrc{,.old}
-	@rm -f ~/.vimrc
+.PHONY: all install update
