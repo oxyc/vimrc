@@ -318,6 +318,11 @@ endif " }}}
 "   call neobundle#untap()
 " endif " }}}
 
+" https://github.com/qbbr/vim-twig {{{
+" if neobundle#tap('vim-twig')
+"   call neobundle#untap()
+" endif " }}}
+
 " https://github.com/twe4ked/vim-diff-toggle {{{
 if neobundle#tap('vim-diff-toggle')
   call neobundle#untap()

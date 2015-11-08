@@ -16,6 +16,7 @@ augroup MyAutoCmd
       \ | if exists(':AirlineRefresh') | AirlineRefresh | endif
       \ | redraw
 
+  autocmd BufRead,BufNewFile *.twig setlocal filetype=html.twig
   " Associate Drupal files as php
   autocmd BufRead,BufNewFile *.module,*.install,*.test,*.inc setlocal filetype=php
   " Associate all markdown extensions as ghmarkdown

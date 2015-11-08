@@ -256,3 +256,7 @@ filetypes = 'json'
 # https://github.com/shawncplus/phpcomplete.vim
 [[plugins]]
 repository = 'shawncplus/phpcomplete.vim'
+
+[[plugins]]
+repository = 'beyondwords/vim-twig'
+filetypes = ['twig', 'html.twig']
