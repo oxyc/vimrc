@@ -12,32 +12,32 @@ set pastetoggle=<F2>
 " ---------------------------------------------------------------------------
 
 " US layout mappings
-noremap <silent>§ ~
-noremap <silent>° `
-noremap <silent>" @
-noremap <silent>€ $
-noremap <silent>& ^
+" noremap <silent>§ ~
+" noremap <silent>° `
+" noremap <silent>" @
+" noremap <silent>€ $
+" noremap <silent>& ^
 " noremap <silent> / *
 " noremap <silent> = -
 " noremap <silent> + -
 " noremap <silent> ? _
 " noremap <silent> ´ =
 " noremap <silent> ` +
-noremap <silent>å [
-noremap <silent>¨ ]
-noremap <silent>Å {
-noremap <silent>^ }
+" noremap <silent>å [
+" noremap <silent>¨ ]
+" noremap <silent>Å {
+" noremap <silent>^ }
 " Switch these as typing a letter after <shift>ö would easily result in
 "accidentally uppercasing the command
-noremap <silent>ö :
-noremap <silent>öö ;
-noremap <silent>Ö ;
-noremap <silent>ä '
-noremap <silent>Ä "
+" noremap <silent>ö :
+" noremap <silent>öö ;
+" noremap <silent>Ö ;
+" noremap <silent>ä '
+" noremap <silent>Ä "
 " noremap <silent> ' \
 " noremap <silent> * |
-noremap <silent>; <
-noremap <silent>: >
+" noremap <silent>; <
+" noremap <silent>: >
 " noremap <silent> - ?
 " noremap <silent> _ /
 " usefuel leftover: < >
