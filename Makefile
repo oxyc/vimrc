@@ -7,13 +7,13 @@ all: update
 	@ln -s $(DEST)/vimrc ~/.vimrc
 
 install: ~/.vimrc
-	@vim --not-a-term +NeoBundleInstall +q
+	@vim --not-a-term "+silent NeoBundleInstall" +qall
 
 update:
 	@pushd $(DEST)
 	@git pull
 	@git submodule foreach git pull origin master
-	@vim --not-a-term +NeoBundleUpdate +q
+	@vim --not-a-term "+silent NeoBundleUpdate" +qall
 	@popd
 
 .PHONY: all install update
