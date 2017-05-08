@@ -146,7 +146,7 @@ let base16colorspace=256
 " - A terminal capable of modifying colors in the 256 color space (not Terminal.app https://goo.gl/SQTrDd)
 " - A terminal which uses the base16-default.dark.256 theme (https://goo.gl/Dk9cYv)
 " - A shell with base16-based ANSI colors (https://github.com/chriskempson/base16-shell)
-colorscheme base16-default
+silent! colorscheme base16-default
 
 " Custom colorscheme adjustments
 " ---------------------------------------------------------------------------
