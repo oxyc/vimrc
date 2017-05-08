@@ -271,14 +271,7 @@ if neobundle#tap('unite.vim')
     endfunction
   endfunction
 
-  function! neobundle#hooks.on_post_source(bundle)
-    if v:version > 703 || v:version == 703 && has('patch867')
-      " Clear CursorMoved event as it's triggered too often to be performant.
-      autocmd! plugin-unite-history-yank CursorMoved
-  endif
-endfunction
-
-call neobundle#untap()
+  call neobundle#untap()
 endif " }}}
 
 " https://github.com/osyo-manga/unite-quickfix {{{
