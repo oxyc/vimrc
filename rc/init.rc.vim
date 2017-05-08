@@ -44,7 +44,7 @@ if has('vim_starting')
   " First time launch, clone neobundle
   elseif &runtimepath !~ '/neobundle.vim'
     if !isdirectory(s:neobundle_dir)
-      execute printf('!git clone %s://github.com/Shougo/neobundle.vim.git',
+      execute printf('silent !git clone %s://github.com/Shougo/neobundle.vim.git',
             \ (exists('$http_proxy') ? 'https' : 'git'))
             \ s:neobundle_dir
     endif
