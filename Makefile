@@ -3,15 +3,17 @@ DEST:=$(shell dirname $(realpath $(lastword $(MAKEFILE_LIST))))
 
 all: update
 
-install:
+~/.vimrc:
 	@ln -s $(DEST)/vimrc ~/.vimrc
-	@vim +NeoBundleInstall +q
+
+install: ~/.vimrc
+	@vim --not-a-term +NeoBundleInstall +q
 
 update:
 	@pushd $(DEST)
 	@git pull
 	@git submodule foreach git pull origin master
-	@vim +NeoBundleUpdate +q
+	@vim --not-a-term +NeoBundleUpdate +q
 	@popd
 
 .PHONY: all install update
