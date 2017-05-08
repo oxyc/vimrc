@@ -80,8 +80,14 @@ endif " }}}
 
 " https://github.com/Shougo/neomru.vim {{{
 if neobundle#tap('neomru.vim')
-  let g:neomru#directory_mru_path = $VIM_CACHE.'/vim-neomru'
-  let g:neomru#file_mru_path = $VIM_CACHE.'/vim-neomru/file'
+  let neomru_dir = $VIM_CACHE.'/vim-neomru'
+  if !isdirectory(neomru_dir)
+    call mkdir(neomru_dir, 'p')
+  endif
+
+  let g:neomru#directory_mru_path = neomru_dir.'/dir'
+  let g:neomru#file_mru_path = neomru_dir.'/file'
+
 
   call neobundle#untap()
 endif " }}}
