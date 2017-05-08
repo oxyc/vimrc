@@ -115,6 +115,11 @@ unite_sources = 'gista'
 repository = 'lambdalisue/vim-gita'
 commands = 'Gita'
 
+# Dependency.
+# https://github.com/tpope/vim-repeat
+[[plugins]]
+repository = 'tpope/vim-repeat'
+
 # https://github.com/Shougo/neosnippet.vim
 [[plugins]]
 repository = 'Shougo/neosnippet.vim'
@@ -159,10 +164,6 @@ mappings = ['<Plug>(EasyAlign)', '<Plug>(LiveEasyAlign)']
 # Edit experience
 ###########################################################
 
-# https://github.com/tpope/vim-repeat
-# [[Plugins]]
-# REpository = 'tpope/vim-repeat'
-
 # https://github.com/mattn/emmet-vim
 [[plugins]]
 repository = 'mattn/emmet-vim'
@@ -205,10 +206,6 @@ depends = 'vim-repeat'
 [[plugins]]
 repository = 'tpope/vim-surround'
 depends = 'vim-repeat'
-
-# https://github.com/tpope/vim-repeat
-[[plugins]]
-repository = 'tpope/vim-repeat'
 
 # Syntax Colors
 ###########################################################
