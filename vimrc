@@ -75,10 +75,13 @@ if !has('vim_starting')
 endif
 
 " -----------------------------------------------------------------------------------------------
-
 call s:source_rc('ui.rc.vim')
 call s:source_rc('edit.rc.vim')
 call s:source_rc('filetype.rc.vim')
 call s:source_rc('mappings.rc.vim')
+
+if has("gui_running")
+  call s:source_rc('gui.rc.vim')
+endif
 
 " -----------------------------------------------------------------------------------------------
