@@ -28,15 +28,13 @@ if filereadable('$HOME/.vimrc.local')
   source $HOME . '/.vimrc.local'
 endif
 
-call dein#call_hook('source')
-call dein#call_hook('post_source')
-
-" Enable syntax color
-syntax enable
-" Needs to run after dein#end()
-filetype plugin indent on
+if !has('vim_starting')
+  call dein#call_hook('source')
+  call dein#call_hook('post_source')
+endif
 
 " -----------------------------------------------------------------------------------------------
+
 call s:source_rc('ui.rc.vim')
 call s:source_rc('edit.rc.vim')
 call s:source_rc('filetype.rc.vim')

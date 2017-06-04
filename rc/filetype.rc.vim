@@ -2,18 +2,19 @@
 " ---------------------------------------------------------------------------
 
 augroup MyAutoCmd
-  " Update filetype.
+  " Update filetype on save.
   autocmd BufWritePost *
       \ if &l:filetype ==# '' || exists('b:ftdetect')
       \ |   unlet! b:ftdetect
       \ |   filetype detect
       \ | endif
 
+  autocmd BufRead,BufNewFile vimrc setlocal filetype=vim
   autocmd BufRead,BufNewFile *.twig setlocal filetype=html.twig
-  " Associate Drupal files as php
+  " Associate Drupal files as php.
   autocmd BufRead,BufNewFile *.module,*.install,*.test,*.inc setlocal filetype=php
-  " Associate all markdown extensions as ghmarkdown
-  autocmd BufNewFile,BufRead *.m*down setlocal filetype=ghmarkdown
+  " Associate all markdown files as GitHub markdown.
+  autocmd BufNewFile,BufRead *.m*down,*.md setlocal filetype=ghmarkdown
 
   " Fold vimscript based on indentation.
   autocmd FileType vim setlocal foldmethod=indent foldnestmax=1
@@ -58,11 +59,13 @@ augroup MyAutoCmd
 
   " Improved path patterns
   autocmd FileType php setlocal path+=/usr/local/share/pear
+
+  " Fix syntax hihglighting in big files.
+  autocmd FileType toml syntax sync minlines=500
 augroup END
 
 " http://mattn.kaoriya.net/software/vim/20140523124903.htm
 let g:markdown_fenced_languages = [
-    \  'coffee',
     \  'css',
     \  'erb=eruby',
     \  'javascript',

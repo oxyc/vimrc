@@ -11,37 +11,6 @@ set pastetoggle=<F2>
 " Remappings {{{
 " ---------------------------------------------------------------------------
 
-" US layout mappings
-" noremap <silent>§ ~
-" noremap <silent>° `
-" noremap <silent>" @
-" noremap <silent>€ $
-" noremap <silent>& ^
-" noremap <silent> / *
-" noremap <silent> = -
-" noremap <silent> + -
-" noremap <silent> ? _
-" noremap <silent> ´ =
-" noremap <silent> ` +
-" noremap <silent>å [
-" noremap <silent>¨ ]
-" noremap <silent>Å {
-" noremap <silent>^ }
-" Switch these as typing a letter after <shift>ö would easily result in
-"accidentally uppercasing the command
-" noremap <silent>ö :
-" noremap <silent>öö ;
-" noremap <silent>Ö ;
-" noremap <silent>ä '
-" noremap <silent>Ä "
-" noremap <silent> ' \
-" noremap <silent> * |
-" noremap <silent>; <
-" noremap <silent>: >
-" noremap <silent> - ?
-" noremap <silent> _ /
-" usefuel leftover: < >
-
 " Perl style regular expressions by default
 nnoremap / /\v
 vnoremap / /\v
@@ -81,6 +50,10 @@ noremap <leader>tn :tabnew<CR>
 
 " Functionality {{{
 " ---------------------------------------------------------------------------
+"
+" Change current dir to that of the file in the buffer
+nnoremap <leader>cd :cd %:p:h<CR>
+nnoremap <leader>lcd :lcd %:p:h<CR>
 
 " Toggle invisible characters.
 nnoremap <leader>ti :set list!<CR>
@@ -100,7 +73,7 @@ cnoremap w!! :w !sudo tee % > /dev/null<CR>
 " Yank text to the OS X clipboard
 noremap <leader>y "*y
 noremap <leader>yy "*Y
-"
+
 " Preserve indentation while pasting text from the OS X clipboard
 noremap <leader>p :<C-u>set paste<CR>"*p<CR>:set nopaste<CR>
 noremap <leader>P :<C-u>set paste<CR>"*P<CR>:set nopaste<CR>
@@ -288,8 +261,6 @@ if dein#tap('neosnippet.vim')
     endfunction
   endif
 
-
-  "imap <expr><Space> <SID>imap_space()
   " Expand neosnippets in select mode
   smap <expr><Tab> <SID>can_snip() ? "\<Plug>(neosnippet_jump_or_expand)" : "\<Tab>"
 
@@ -377,11 +348,15 @@ endif " }}}
 " ,gb   - open gist in browser
 " ,gy   - yank the url of the gist
 if dein#tap('vim-gista')
-  nnoremap <silent> <leader>gl :<C-u>Unite gista<CR>
-  nnoremap <silent> <leader>gg :<C-u>Gista<CR>
-  nnoremap <silent> <leader>gp :<C-u>Gista --private<CR>
-  nnoremap <silent> <leader>gb :<C-u>Gista --browse<CR>
-  nnoremap <silent> <leader>gy :<C-u>Gista --yank<CR>
+  if dein#tap('vim-gista-unite')
+    nnoremap <silent> <leader>gl :<C-u>Unite gista<CR>
+  else
+    nnoremap <silent> <leader>gl :<C-u>Gista list<CR>
+  endif
+  nnoremap <silent> <leader>gg :<C-u>Gista post<CR>
+  nnoremap <silent> <leader>gp :<C-u>Gista post --private<CR>
+  nnoremap <silent> <leader>gb :<C-u>Gista browse<CR>
+  nnoremap <silent> <leader>gy :<C-u>Gista browse --yank<CR>
 endif " }}}
 
 " https://github.com/lambdalisue/vim-gita {{{
@@ -454,7 +429,7 @@ endif " }}}
 "   <tab> - switch to other window
 if dein#tap('vimfiler.vim')
   nnoremap <silent> <leader>fb   :<C-u>VimFiler -invisible<CR>
-  nnoremap <leader>fe   :<C-u>VimFilerExplorer<CR>
+  nnoremap <leader>fe            :<C-u>VimFilerExplorer<CR>
 endif " }}}
 
 " Motion for numbers {{{
