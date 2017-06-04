@@ -23,10 +23,12 @@ set smarttab
 set modeline
 
 " Use clipboard register, to allow yanking between vim and os.
-if has('unnamedplus')
-  set clipboard& clipboard+=unnamedplus
-else
-  set clipboard& clipboard+=unnamed
+if (!has('nvim') || $DISPLAY != '') && has('clipboard')
+  if has('unnamedplus')
+     set clipboard& clipboard+=unnamedplus
+  else
+     set clipboard& clipboard+=unnamed
+  endif
 endif
 
 " Enable backspace delete indent and newline.
@@ -94,9 +96,13 @@ function! s:mkdir(path)
   endif
 endfunction
 
-set viminfo& viminfo+=!
-" Tell VIM where to store the viminfo file.
-set viminfo+=n$VIM_CACHE/viminfo.txt
+if has('nvim')
+  set shada=!,'300,<50,s10,h
+else
+  set viminfo& viminfo+=!
+  " Tell VIM where to store the viminfo file.
+  set viminfo+=n$VIM_CACHE/viminfo.txt
+endif
 
 " Remove CWD and $HOME/tmp from swaps directory list.
 set directory=$VIM_CACHE
