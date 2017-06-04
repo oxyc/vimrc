@@ -395,16 +395,16 @@ endif " }}}
 " <s>gp   - git push
 " <s>gl   - git log
 " <s>gL   - git log for current file
-if dein#tap('vim-gita')
-  nnoremap <silent> <space>gs :<C-u>Gita status<CR>
-  nnoremap <silent> <space>gc :<C-u>Gita commit<CR>
-  nnoremap <silent> <space>gd :<C-u>Gita diff --cached<CR>
-  nnoremap <silent> <space>gD :<C-u>Gita diff<CR>
-  nnoremap <silent> <space>gb :<C-u>Gita browse<CR>
-  nnoremap <silent> <space>gy :<C-u>Gita browse --yank<CR>
-  nnoremap <silent> <space>gp :<C-u>Gita push<CR>
-  nnoremap <space>gl  :<C-u>Gita log --pretty=oneline<CR>
-  nnoremap <space>gL  :<C-u>Gita log --pretty=oneline --<CR>
+if dein#tap('gina.vim')
+  nnoremap <silent> <space>gs :<C-u>Gina status<CR>
+  nnoremap <silent> <space>gc :<C-u>Gina commit<CR>
+  nnoremap <silent> <space>gd :<C-u>Gina diff --cached<CR>
+  nnoremap <silent> <space>gD :<C-u>Gina diff<CR>
+  nnoremap <silent> <space>gb :<C-u>Gina browse<CR>
+  nnoremap <silent> <space>gy :<C-u>Gina browse --yank<CR>
+  nnoremap <silent> <space>gp :<C-u>Gina push<CR>
+  nnoremap <space>gl  :<C-u>Gina log --pretty=oneline<CR>
+  nnoremap <space>gL  :<C-u>Gina log --pretty=oneline --<CR>
 endif " }}}
 
 " https://github.com/superbrothers/vim-quickrun-markdown-gfm {{{

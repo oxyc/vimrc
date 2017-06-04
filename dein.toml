@@ -307,8 +307,8 @@ on_source = 'unite.vim'
 
 # https://github.com/lambdalisue/vim-gita
 [[plugins]]
-repo = 'lambdalisue/vim-gita'
-on_cmd = 'Gita'
+repo = 'lambdalisue/gina.vim'
+on_cmd = 'Gina'
 
 # Dependency.
 # https://github.com/tpope/vim-repeat
