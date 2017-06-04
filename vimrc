@@ -40,7 +40,11 @@ call s:source_rc('edit.rc.vim')
 call s:source_rc('filetype.rc.vim')
 call s:source_rc('mappings.rc.vim')
 
-if has("gui_running")
+if dein#tap('unite.vim')
+  call s:source_rc('cheatsheet.rc.vim')
+end
+
+if has('gui_running')
   call s:source_rc('gui.rc.vim')
 endif
 

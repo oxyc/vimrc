@@ -290,8 +290,7 @@ if dein#tap('unite.vim')
   noremap <leader>y :<C-u>Unite -resume -buffer-name=history  history/yank<CR>
   noremap <leader>g :<C-u>Unite -resume -buffer-name=grep     grep:.<CR>
   noremap <leader>l :<C-u>Unite -resume -buffer-name=line     line<CR>
-  noremap <leader>u :<C-u>Unite -resume -buffer-name=unite    menu:unite<Cr>
-  noremap <leader>c :<C-u>Unite -resume -buffer-name=mappings mappings<Cr>
+  noremap <leader>c :<C-u>Unite -silent -winheight=29 -start-insert menu:cheatsheet<CR>
   noremap <leader>x <Plug>(unite_redraw)
 endif " }}}
 
@@ -359,7 +358,8 @@ if dein#tap('vim-gista')
   nnoremap <silent> <leader>gy :<C-u>Gista browse --yank<CR>
 endif " }}}
 
-" https://github.com/lambdalisue/vim-gita {{{
+" @todo unite/denite
+" https://github.com/lambdalisue/gina.vim {{{
 " ---------------------------------------------------------------------------
 " <s>gs   - git status
 " <s>gc   - git commit
