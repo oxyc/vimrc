@@ -204,28 +204,30 @@ if dein#tap('unite.vim')
   " Enable yank history, even if not performant.
   let g:unite_source_history_yank_enable = 1
 
-  " Start insert mode in unite-action buffer.
-  call unite#custom#profile('action', 'context', { 'start_insert' : 1 })
-  " Custom filters @todo
-  " call unite#custom#source(
-  "   \ 'buffer,file_rec,file_rec/async,file_rec/git', 'matchers',
-  "   \ ['converter_relative_word', 'matcher_fuzzy',
-  "   \  'matcher_project_ignore_files'])
-  call unite#custom#source(
-    \ 'file_mru', 'matchers',
-    \ ['matcher_project_files', 'matcher_fuzzy',
-    \  'matcher_hide_hidden_files', 'matcher_hide_current_file'])
-  " call unite#custom#source(
-  "   \ 'file_rec,file_rec/async,file_rec/git,file_mru', 'converters',
-  "   \ ['converter_file_directory'])
+  if exists('unite#custom#profile')
+    " Start insert mode in unite-action buffer.
+    call unite#custom#profile('action', 'context', { 'start_insert' : 1 })
+    " Custom filters @todo
+    " call unite#custom#source(
+    "   \ 'buffer,file_rec,file_rec/async,file_rec/git', 'matchers',
+    "   \ ['converter_relative_word', 'matcher_fuzzy',
+    "   \  'matcher_project_ignore_files'])
+    call unite#custom#source(
+      \ 'file_mru', 'matchers',
+      \ ['matcher_project_files', 'matcher_fuzzy',
+      \  'matcher_hide_hidden_files', 'matcher_hide_current_file'])
+    " call unite#custom#source(
+    "   \ 'file_rec,file_rec/async,file_rec/git,file_mru', 'converters',
+    "   \ ['converter_file_directory'])
 
-  call unite#filters#sorter_default#use(['sorter_length'])
-  call unite#filters#matcher_default#use(['matcher_fuzzy'])
+    call unite#filters#sorter_default#use(['sorter_length'])
+    call unite#filters#matcher_default#use(['matcher_fuzzy'])
 
-  " Optimize file_rec search
-  call unite#custom#source('file_rec/async', 'converters', [])
-  "call unite#custom#source('file_rec/async', 'sorters', [])
-  call unite#custom#source('file_rec/async', 'max_candidates', 10)
+    " Optimize file_rec search
+    call unite#custom#source('file_rec/async', 'converters', [])
+    "call unite#custom#source('file_rec/async', 'sorters', [])
+    call unite#custom#source('file_rec/async', 'max_candidates', 10)
+  endif
 
   autocmd MyAutoCmd FileType unite call s:unite_settings()
 

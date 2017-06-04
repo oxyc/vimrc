@@ -10,8 +10,13 @@ all: update
 	@mkdir -p ~/.config/nvim
 	@ln -s $(DEST)/vimrc ~/.config/nvim/init.vim
 
-install: ~/.vimrc ~/.config/nvim/init.vim
+install: install-vim install-nvim
+
+install-vim: ~/.vimrc
 	@vim --not-a-term "+silent call dein#install()" +qall
+
+install-nvim: ~/.config/nvim/init.vim
+	@command -v nvim >/dev/null 2>&1 && nvim "+silent call dein#install()" +UpdateRemotePlugins +qall
 
 update:
 	@pushd $(DEST)
