@@ -1,5 +1,9 @@
 " User Interface
 " ---------------------------------------------------------------------------
+" Enable syntax color
+syntax enable
+" Needs to run after dein#end()
+filetype plugin indent on
 " Use relative line numbers if available.
 if exists("+relativenumber") | set relativenumber | else | set number | endif
 " Show <Tab> and trailing whitespace
