@@ -185,8 +185,8 @@ on_ft = 'diff'
 # @todo if problems consider https://github.com/Raimondi/delimitMate
 # @see https://github.com/jiangmiao/auto-pairs/issues/171
 # https://github.com/jiangmiao/auto-pairs
-# [[plugins]]
-# repo = 'jiangmiao/auto-pairs'
+[[plugins]]
+repo = 'oxyc/auto-pairs'
 
 # https://github.com/tpope/vim-endwise
 [[plugins]]
