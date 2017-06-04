@@ -4,7 +4,11 @@
 git clone https://github.com/oxyc/vimrc.git && cd vimrc && make install
 ```
 
-## Inspired/Stolen by
+### Screenshot
+
+![Screenshot](http://i.imgur.com/MFYk8fT.jpg)
+
+### Inspired/Stolen by
 
 - [Shougo](https://github.com/Shougo/shougo-s-github)
 - [Junegunn Choi](https://github.com/junegunn/dotfiles)
