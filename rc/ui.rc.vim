@@ -43,7 +43,7 @@ set spelllang=en_us
 " use the dictionary for autocompletion
 set complete+=k
 " Better completion @todo
-set completeopt=longest,menuone,preview
+set completeopt=longest,menuone,preview,noinsert
 " Set popup menu max height.
 set pumheight=20
 

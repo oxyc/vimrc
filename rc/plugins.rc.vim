@@ -95,6 +95,18 @@ if dein#tap('neocomplete.vim')
   let g:neocomplete#keyword_patterns['default'] = '\h\w*'
 endif " }}}
 
+" https://github.com/Shougo/neocomplete.vim {{{
+if dein#tap('deoplete.nvim')
+  let g:deoplete#enable_at_startup = 1
+  let g:deoplete#enable_smart_case = 1
+  " Begin autocompleting at 1 character
+  let g:deoplete#auto_complete_start_leng = 1
+  " auto_select id done with completeopt+=noinsert
+
+  " Maximum targets
+  let g:deoplete#max_list = 10
+endif " }}}
+
 " https://github.com/Shougo/neosnippet.vim {{{
 if dein#tap('neosnippet.vim')
   "let g:neosnippet#snippets_directory = $VIM_CACHE.'/vim-neosnippet'

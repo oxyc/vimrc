@@ -171,8 +171,37 @@ endif " }}}
 " https://github.com/Shougo/neosnippet.vim {{{
 " ---------------------------------------------------------------------------
 if dein#tap('neosnippet.vim')
+
  function! s:can_snip()
     return neosnippet#expandable_or_jumpable() && &filetype != "snippet"
+  endfunction
+
+  let s:has_neocomplete = dein#tap('neocomplete.vim')
+  let s:has_deoplete = dein#tap('deoplete.nvim')
+
+  function! s:close_popup()
+    if s:has_neocomplete | return neocomplete#smart_close_popup() | endif
+    if s:has_deoplete | return deoplete#smart_close_popup() | endif
+  endfunction
+
+  function! s:manual_complete()
+    if s:has_neocomplete | return neocomplete#start_manual_complete() | endif
+    if s:has_deoplete | return deoplete#manual_complete() | endif
+  endfunction
+
+  function! s:undo_completion()
+    if s:has_neocomplete | return neocomplete#undo_completion() | endif
+    if s:has_deoplete | return deoplete#undo_completion() | endif
+  endfunction
+
+  function! s:complete_common_string()
+    if s:has_neocomplete | return neocomplete#complete_common_string() | endif
+    if s:has_deoplete | return deoplete#refresh() | endif
+  endfunction
+
+  function s:cancel_popup()
+    if s:has_neocomplete | return neocomplete#cancel_popup() | endif
+    if s:has_deoplete | return deoplete#cancel_popup() | endif
   endfunction
 
   let s:pair_closes = ["]", "}", ")", "'", '"', ">", "|" , ","]
@@ -180,17 +209,15 @@ if dein#tap('neosnippet.vim')
   let s:char_skip = ['"', "'"]
 
   function! s:imap_tab()
-    let has_emmet = dein#tap('emmet-vim')
-
     " @todo neocomplete#complete_common_string()
     if neosnippet#expandable()
-      call neocomplete#smart_close_popup()
+      call s:close_popup()
       return "\<Plug>(neosnippet_expand)"
     elseif neosnippet#jumpable()
-      call neocomplete#smart_close_popup()
+      call s:close_popup()
       return "\<Plug>(neosnippet_jump)"
     elseif pumvisible()
-      call neocomplete#smart_close_popup()
+      call s:close_popup()
       return "\<C-Y>"
     endif
 
@@ -239,25 +266,25 @@ if dein#tap('neosnippet.vim')
     return "\<Tab>"
   endfunction
 
+  imap <expr><Tab> <SID>imap_tab()
   " Magic tab-completion in insert mode
-  if dein#tap('neocomplete.vim')
-    imap <expr><Tab> <SID>imap_tab()
+  if dein#tap('neocomplete.vim') || dein#tap('deoplete.nvim')
     " Close popup and delete backword char.
-    inoremap <expr> <C-h> neocomplete#smart_close_popup()."\<C-h>"
-    inoremap <expr> <BS> neocomplete#smart_close_popup()."\<C-h>"
+    inoremap <expr> <C-h> <SID>close_popup()."\<C-h>"
+    inoremap <expr> <BS> <SID>close_popup()."\<C-h>"
 
     " Select the next entry in the popup
-    inoremap <expr> <S-tab> pumvisible() ? "\<C-n>" : neocomplete#start_manual_complete()
+    inoremap <expr> <S-tab> pumvisible() ? "\<C-n>" : <SID>manual_complete()
     " Select the previous entry in the popup
-    inoremap <expr> <C-tab> pumvisible() ? "\<C-p>" : neocomplete#start_manual_complete()
+    inoremap <expr> <C-tab> pumvisible() ? "\<C-p>" : <SID>manual_complete()
 
-    inoremap <expr><C-g> neocomplete#undo_completion()
-    inoremap <expr><C-l> neocomplete#complete_common_string()
+    inoremap <expr><C-g> <SID>undo_completion()
+    inoremap <expr><C-l> <SID>complete_common_string()
 
     " Let <cr> cancel any completion and just input a new line
     imap <silent> <cr> <C-r>=<SID>imap_cr()<CR>
     function! s:imap_cr()
-      return neocomplete#cancel_popup() . "\<cr>"
+      return <SID>cancel_popup() . "\<cr>"
     endfunction
   endif
 
