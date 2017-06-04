@@ -215,12 +215,6 @@ repo = 'Shougo/neocomplete.vim'
 depends = 'context_filetype.vim'
 if = "has('lua')"
 
-# https://github.com/Shougo/deoplete.vim
-[[plugins]]
-repo = 'Shougo/deoplete.nvim'
-depends = 'context_filetype.vim'
-on_i = 1
-
 # Syntax Colors
 ###########################################################
 

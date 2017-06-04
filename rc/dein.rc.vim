@@ -13,6 +13,11 @@ call dein#add('Shougo/vimproc.vim', { 'build': 'make' })
 " Install plugins.
 call dein#load_toml('$VIM_DIR/dein.toml')
 
+" Install Neovim plugins.
+if has('nvim')
+  call dein#load_toml('$VIM_DIR/dein-neovim.toml')
+endif
+
 " Disable neocomplete when deoplete is available.
 if dein#tap('deoplete.nvim') && has('nvim')
   call dein#disable('neocomplete.vim')
