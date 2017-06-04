@@ -25,8 +25,6 @@ augroup MyAutoCmd
   autocmd FileType vim setlocal foldmethod=indent foldnestmax=1
   autocmd FileType gitcommit,qfreplace setlocal nofoldenable
 
-  " Enable Emmet in HTML and CSS
-  autocmd FileType html,css EmmetInstall
   " @todo
   autocmd FileType help setlocal textwidth=78
   autocmd BufWinEnter *.txt if &ft == 'help' | wincmd L | endif

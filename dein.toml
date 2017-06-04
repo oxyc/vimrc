@@ -172,11 +172,6 @@ on_map = ['<Plug>(EasyAlign)', '<Plug>(LiveEasyAlign)']
 # Edit experience
 ###########################################################
 
-# https://github.com/mattn/emmet-vim
-[[plugins]]
-repo = 'mattn/emmet-vim'
-on_ft = 'html'
-
 # https://github.com/tpope/vim-commentary
 [[plugins]]
 repo = 'tpope/vim-commentary'

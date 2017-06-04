@@ -32,14 +32,6 @@ if dein#tap('echodoc.vim')
   let g:echodoc_enable_at_startup = 1
 endif " }}}
 
-" https://github.com/mattn/emmet-vim {{{
-if dein#tap('emmet-vim')
-  " Only enable insert mode functions
-  let g:user_emmet_mode='i'
-  " Enable only for HTML and CSS
-  let g:user_emmet_install_global = 0
-endif " }}}
-
 " https://github.com/othree/html5.vim {{{
 " if dein#tap('html5.vim')
 "

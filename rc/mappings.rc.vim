@@ -157,11 +157,6 @@ nnoremap <leader>z zMzAzz
 " T       - find previous character (preceding cursor)
 "  }}}
 "
-" https://github.com/mattn/emmet-vim {{{
-" ---------------------------------------------------------------------------
-" <tab>  - expand abbreviation
-" }}}
-
 " https://github.com/tmhedberg/matchit {{{
 " ---------------------------------------------------------------------------
 " %     - cycle forward
@@ -238,15 +233,6 @@ if dein#tap('neosnippet.vim')
         let pos = pos+1
       endwhile
       return repeat("\<Right>", pos - org_pos + 1)
-    endif
-
-    " If it's an expandable emmet abbreviation, expand it.
-    if has_emmet
-      \ && len(matchstr(&filetype, 'x\?html\|s\?css\|php\|eruby')) > 0
-      \ && emmet#isExpandable()
-      " \ && len(matchstr(getline('.'), '^\(\w*\%'.col('.').'c\)')) > 0
-      call neocomplete#smart_close_popup()
-      return "\<Plug>(emmet-expand-abbr)"
     endif
 
     " Insert a tab as last resort.
