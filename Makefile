@@ -6,14 +6,18 @@ all: update
 ~/.vimrc:
 	@ln -s $(DEST)/vimrc ~/.vimrc
 
-install: ~/.vimrc
-	@vim --not-a-term "+silent NeoBundleInstall" +qall
+~/.config/nvim/init.vim:
+	@mkdir -p ~/.config/nvim
+	@ln -s $(DEST)/vimrc ~/.config/nvim/init.vim
+
+install: ~/.vimrc ~/.config/nvim/init.vim
+	@vim --not-a-term "+silent call dein#install()" +qall
 
 update:
 	@pushd $(DEST)
 	@git pull
 	@git submodule foreach git pull origin master
-	@vim --not-a-term "+silent NeoBundleUpdate" +qall
+	@vim --not-a-term "+silent dein#update()" +qall
 	@popd
 
 .PHONY: all install update

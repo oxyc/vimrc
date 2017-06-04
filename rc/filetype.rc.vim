@@ -10,9 +10,8 @@ augroup MyAutoCmd
       \ | endif
 
   " Reload .vimrc automatically.
-  autocmd BufWritePost .vimrc,vimrc,*.rc.vim,neobundle.toml
-      \ NeoBundleClearCache
-      \ | source $MYVIMRC
+  autocmd BufWritePost .vimrc,vimrc,*.rc.vim,dein.toml
+      \ source $MYVIMRC
       \ | if exists(':AirlineRefresh') | AirlineRefresh | endif
       \ | redraw
 

@@ -5,53 +5,23 @@ if 0 | endif
 " from $HOME.
 let $VIM_DIR = fnamemodify(resolve(expand('<sfile>:p')), ':h')
 " Where to store vim caches.
-let $VIM_CACHE = $HOME.'/.cache/vim'
+let $VIM_CACHE = expand('~/.cache/vim')
+" Where to store vim plugins.
+let $VIM_BUNDLE = expand('~/.cache/dein')
 
-if has('vim_starting')
-  if &compatible
-    set nocompatibleqq
-  endif
+if &compatible
+  set nocompatible
 endif
 
 function! s:source_rc(path)
   execute 'source' fnameescape(expand('$VIM_DIR/rc/' . a:path))
 endfunction
 
-function! s:meet_neocomplete_requirements()
-    return has('lua') && (v:version > 703 || (v:version == 703 && has('patch885')))
-endfunction
+if has('vim_starting')
+  call s:source_rc('init.rc.vim')
+end
 
-call s:source_rc('init.rc.vim')
-
-call neobundle#begin(expand('$VIM_DIR/bundle'))
-
-if neobundle#load_cache()
-  " Let NeoBundle manage NeoBundle
-  NeoBundleFetch 'Shougo/neobundle.vim'
-
-  if s:meet_neocomplete_requirements()
-    " https://github.com/Shougo/neocomplete.vim
-    NeoBundle 'Shougo/neocomplete',
-  else
-    " https://github.com/Shougo/neocomplcache.vim
-    NeoBundle 'Shougo/neocomplcache'
-  endif
-
-  NeoBundle 'Shougo/vimproc.vim', {
-    \ 'build' : {
-    \     'windows' : 'tools\\update-dll-mingw',
-    \     'cygwin' : 'make -f make_cygwin.mak',
-    \     'mac' : 'make -f make_mac.mak',
-    \     'unix' : 'make -f make_unix.mak',
-    \    }
-    \ }
-
-  call neobundle#load_toml('$VIM_DIR/neobundle.toml')
-  " @todo
-  " call neobundle#load_toml("$DIR/neobundle.toml", {'lazy' : 1})
-
-  NeoBundleSaveCache
-endif
+call s:source_rc('dein.rc.vim')
 
 " Local config
 if filereadable('$HOME/.vimrc.local')
@@ -60,19 +30,13 @@ endif
 
 call s:source_rc('plugins.rc.vim')
 
-call neobundle#end()
-
-" Needs to run after neobundle#end
-filetype plugin indent on
+call dein#call_hook('source')
+call dein#call_hook('post_source')
 
 " Enable syntax color
 syntax enable
-
-if !has('vim_starting')
-  " If there are uninstalled bundles found on startup,
-  " this will conveniently prompt you to install them.
-  NeoBundleCheck
-endif
+" Needs to run after dein#end()
+filetype plugin indent on
 
 " -----------------------------------------------------------------------------------------------
 call s:source_rc('ui.rc.vim')

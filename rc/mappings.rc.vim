@@ -170,12 +170,12 @@ nnoremap <leader>z zMzAzz
 
 " https://github.com/Shougo/neocomplete.vim {{{
 " ---------------------------------------------------------------------------
-if neobundle#is_installed('neocomplete.vim')
+if dein#tap('neocomplete.vim')
 endif " }}}
 
 " https://github.com/Shougo/neosnippet.vim {{{
 " ---------------------------------------------------------------------------
-if neobundle#is_installed('neosnippet.vim')
+if dein#tap('neosnippet.vim')
  function! s:can_snip()
     return neosnippet#expandable_or_jumpable() && &filetype != "snippet"
   endfunction
@@ -185,7 +185,7 @@ if neobundle#is_installed('neosnippet.vim')
   let s:char_skip = ['"', "'"]
 
   function! s:imap_tab()
-    let has_emmet = neobundle#is_installed('emmet-vim')
+    let has_emmet = dein#tap('emmet-vim')
 
     " @todo neocomplete#complete_common_string()
     if neosnippet#expandable()
@@ -254,7 +254,7 @@ if neobundle#is_installed('neosnippet.vim')
   endfunction
 
   " Magic tab-completion in insert mode
-  if neobundle#is_installed('neocomplete')
+  if dein#tap('neocomplete.vim')
     imap <expr><Tab> <SID>imap_tab()
     " Close popup and delete backword char.
     inoremap <expr> <C-h> neocomplete#smart_close_popup()."\<C-h>"
@@ -285,7 +285,7 @@ endif " }}}
 " https://github.com/scrooloose/syntastic {{{
 " ---------------------------------------------------------------------------
 " ,ts  - toggle syntastic
-if neobundle#is_installed('syntastic')
+if dein#tap('syntastic')
   " @todok
   nnoremap <silent> <leader>ts :<C-u>SyntasticToggle<cr>
 endif " }}}
@@ -293,13 +293,13 @@ endif " }}}
 " https://github.com/mbbill/undotree {{{
 " ---------------------------------------------------------------------------
 " ,tu  - toggle undo tree
-if neobundle#is_installed('undotree')
+if dein#tap('undotree')
   nnoremap <silent> <leader>tu :<C-u>UndotreeToggle<cr>
 endif " }}}
 
 " https://github.com/Shougo/unite.vim {{{
 " ---------------------------------------------------------------q------------
-if neobundle#is_installed('unite.vim')
+if dein#tap('unite.vim')
   noremap <leader>f :<C-u>Unite -resume -buffer-name=files    file_rec/async<CR>
   noremap <leader>m :<C-u>Unite -resume -buffer-name=files    file_mru<CR>
   noremap <leader>b :<C-u>Unite -resume -buffer-name=buffers -quick-match buffer<CR>
@@ -313,7 +313,7 @@ endif " }}}
 
 " https://github.com/osyo-manga/unite-quickfix {{{
 " ---------------------------------------------------------------------------
-if neobundle#is_installed('unite-quickfix')
+if dein#tap('unite-quickfix')
   " @todo
 endif " }}}}
 
@@ -331,7 +331,7 @@ endif " }}}}
 " https://github.com/junegunn/vim-easy-align {{{
 " ---------------------------------------------------------------------------
 " ,a  - start interactive alignment
-if neobundle#is_installed('vim-easy-align')
+if dein#tap('vim-easy-align')
   " Start interactive EasyAlign in visual mode.
   vmap <Enter> <Plug>(LiveEasyAlign)
 
@@ -347,15 +347,13 @@ endif " }}}
 " n     - repeat search forward
 " N     - repeat search backwards
 " ,,    - easy motion
-if neobundle#is_installed('vim-easymotion')
+if dein#tap('vim-easymotion')
   " Jump to anywhere you want with minimal keystrokes.
   nmap s <Plug>(easymotion-s2)
   nmap t <Plug>(easymotion-t2)
   " JK motions: Line motions
   map <space>h <Plug>(easymotion-linebackward)
   map <space>l <Plug>(easymotion-lineforward)
-
-  call neobundle#untap()
 endif " }}}
 
 " https://github.com/lambdalisue/vim-gista {{{
@@ -365,7 +363,7 @@ endif " }}}
 " ,gp   - create a private gist
 " ,gb   - open gist in browser
 " ,gy   - yank the url of the gist
-if neobundle#is_installed('vim-gista')
+if dein#tap('vim-gista')
   nnoremap <silent> <leader>gl :<C-u>Unite gista<CR>
   nnoremap <silent> <leader>gg :<C-u>Gista<CR>
   nnoremap <silent> <leader>gp :<C-u>Gista --private<CR>
@@ -384,7 +382,7 @@ endif " }}}
 " <s>gp   - git push
 " <s>gl   - git log
 " <s>gL   - git log for current file
-if neobundle#is_installed('vim-gita')
+if dein#tap('vim-gita')
   nnoremap <silent> <space>gs :<C-u>Gita status<CR>
   nnoremap <silent> <space>gc :<C-u>Gita commit<CR>
   nnoremap <silent> <space>gd :<C-u>Gita diff --cached<CR>
@@ -399,21 +397,21 @@ endif " }}}
 " https://github.com/superbrothers/vim-quickrun-markdown-gfm {{{
 " ---------------------------------------------------------------------------
 " ,qm   - render current markdown buffer in browser.
-if neobundle#is_installed('vim-quickrun-markdown-gfm')
+if dein#tap('vim-quickrun-markdown-gfm')
   nnoremap <silent> <leader>qm :<C-u>QuickRun markdown<CR>
 endif " }}}
 "
 " https://github.com/thinca/vim-quickrun {{{
 " ---------------------------------------------------------------------------
 " ,qb   - execute current buffer.
-if neobundle#is_installed('vim-quickrun')
+if dein#tap('vim-quickrun')
   nnoremap <silent> <leader>qb <Plug>(quickrun)
 endif " }}}
 
 " https://github.com/kshenoy/vim-signature {{{
 " ---------------------------------------------------------------------------
 "  @todo
-" if neobundle#is_installed('vim-signature')
+" if dein#tap('vim-signature')
 " endif " }}}
 
 " https://github.com/tpope/vim-speeddating {{{
@@ -441,7 +439,7 @@ endif " }}}
 "   T     - toggle tree recursively
 "   q     - close vimfiler
 "   <tab> - switch to other window
-if neobundle#is_installed('vimfiler.vim')
+if dein#tap('vimfiler.vim')
   nnoremap <silent> <leader>fb   :<C-u>VimFiler -invisible<CR>
   nnoremap <leader>fe   :<C-u>VimFilerExplorer<CR>
 endif " }}}

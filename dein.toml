@@ -1,0 +1,273 @@
+# Dependencies
+###########################################################
+
+# https://github.com/Shougo/dein.vim
+[[plugins]]
+repo = 'Shougo/dein.vim'
+
+# https://github.com/tyru/open-browser.vim
+[[plugins]]
+repo = 'tyru/open-browser.vim'
+on_map = '<Plug>'
+on_cmd = ['OpenBrowser', 'OpenBrowserSearch']
+on_fn = 'openbrowser#open'
+
+# https://github.com/mattn/webapi-vim
+[[plugins]]
+repo = 'mattn/webapi-vim'
+
+# https://github.com/Shougo/context_filetype.vim
+[[plugins]]
+repo = 'Shougo/context_filetype.vim'
+
+# https://github.com/Shougo/neosnippet-snippets.vim
+[[plugins]]
+repo = 'Shougo/neosnippet-snippets'
+
+# User Interface
+###########################################################
+
+# https://github.com/chriskempson/base16-vim
+[[plugins]]
+repo = 'chriskempson/base16-vim'
+
+# https://github.com/vim-airline/vim-airline'
+[[plugins]]
+repo = 'vim-airline/vim-airline'
+
+# https://github.com/rhysd/committia.vim
+[[plugins]]
+repo = 'rhysd/committia.vim'
+on_ft = 'gitcommit'
+
+# https://github.com/mbbill/undotree
+[[plugins]]
+repo = 'mbbill/undotree'
+on_cmd = 'UndotreeToggle'
+
+# https://github.com/Shougo/unite.vim
+[[plugins]]
+repo = 'Shougo/unite.vim'
+depends = 'neomru.vim'
+# hook_source = 'source ~/.vim/rc/plugins/unite.rc.vim'
+
+# https://github.com/mhinz/vim-signify
+[[plugins]]
+repo = 'mhinz/vim-signify'
+
+# https://github.com/osyo-manga/unite-quickfix
+[[plugins]]
+repo = 'osyo-manga/unite-quickfix'
+depends = 'unite.vim'
+
+# https://github.com/Shougo/echodoc.vim
+[[plugins]]
+repo = 'Shougo/echodoc.vim'
+on_event = 'CompleteDone'
+hook_source = 'call echodoc#enable()'
+
+# Visual experience
+###########################################################
+
+# https://github.com/junegunn/rainbow_parentheses.vim
+[[plugins]]
+repo = 'junegunn/rainbow_parentheses.vim'
+
+# https://github.com/qstrahl/vim-matchmaker
+[[plugins]]
+repo = 'qstrahl/vim-matchmaker'
+
+# https://github.com/LeafCage/foldCC.vim
+[[plugins]]
+repo = 'LeafCage/foldCC.vim'
+
+# Tools
+##########################################################
+
+# https://github.com/vim-syntastic/syntastic
+[[plugins]]
+repo = 'vim-syntastic/syntastic'
+
+# https://github.com/thinca/vim-quickrun
+[[plugins]]
+repo = 'thinca/vim-quickrun'
+on_map = '<Plug>'
+on_cmd = 'Quickrun'
+
+# https://github.com/superbrothers/vim-quickrun-markdown-gfm
+[[plugins]]
+repo = 'superbrothers/vim-quickrun-markdown-gfm'
+depends = ['open-browser.vim', 'vim-quickrun', 'webapi-vim']
+on_ft= 'markdown'
+
+#  https://github.com/Shougo/vimfiler.vim
+[[plugins]]
+repo = 'Shougo/vimfiler.vim'
+depends = 'unite.vim'
+on_map = {n = '<Plug>'}
+on_if = "isdirectory(bufname('%'))"
+hook_add = 'nnoremap <silent>   [Space]v   :<C-u>VimFiler -invisible<CR>'
+
+# https://github.com/lambdalisue/vim-gista
+[[plugins]]
+repo = 'lambdalisue/vim-gista'
+depends = ['unite.vim', 'open-browser.vim']
+on_cmd = 'Gista'
+on_map = '<Plug>(gista-'
+
+# https://github.com/lambdalisue/vim-gista-unite
+[[plugins]]
+repo = 'lambdalisue/vim-gista-unite'
+depends = 'vim-gista'
+on_source = 'unite.vim'
+
+# https://github.com/lambdalisue/vim-gita
+[[plugins]]
+repo = 'lambdalisue/vim-gita'
+on_cmd = 'Gita'
+
+# Dependency.
+# https://github.com/tpope/vim-repeat
+[[plugins]]
+repo = 'tpope/vim-repeat'
+
+# https://github.com/Shougo/neomru.vim
+[[plugins]]
+repo = 'Shougo/neomru.vim'
+
+# https://github.com/Shougo/neosnippet.vim
+[[plugins]]
+repo = 'Shougo/neosnippet.vim'
+depends = ['neosnippet-snippets', 'context_filetype.vim']
+
+# Navigation experience
+###########################################################
+
+# https://github.com/tmhedberg/matchit
+[[plugins]]
+repo = 'tmhedberg/matchit'
+on_map = ['nxo', '%', 'g%']
+hook_post_source = 'silent! execute "doautocmd Filetype" &filetype'
+
+# https://github.com/kshenoy/vim-signature
+[[plugins]]
+repo = 'kshenoy/vim-signature'
+
+# https://github.com/rhysd/clever-f.vim
+[[plugins]]
+repo = 'rhysd/clever-f.vim'
+on_map = '<Plug>(clever-f-'
+
+# https://github.com/Lokaltog/vim-easymotion
+[[plugins]]
+repo = 'Lokaltog/vim-easymotion'
+depends = 'vim-repeat'
+on_map = '<Plug>(easymotion-'
+
+# https://github.com/junegunn/vim-easy-align
+[[plugins]]
+repo = 'junegunn/vim-easy-align'
+on_map = ['<Plug>(EasyAlign)', '<Plug>(LiveEasyAlign)']
+
+# Edit experience
+###########################################################
+
+# https://github.com/mattn/emmet-vim
+[[plugins]]
+repo = 'mattn/emmet-vim'
+on_ft = 'html'
+
+# https://github.com/tpope/vim-commentary
+[[plugins]]
+repo = 'tpope/vim-commentary'
+depends = 'vim-repeat'
+on_map = '<Plug>'
+
+# https://github.com/twe4ked/vim-diff-toggle
+[[plugins]]
+repo = 'twe4ked/vim-diff-toggle'
+on_ft = 'diff'
+
+# if problems consider https://github.com/Raimondi/delimitMate
+# https://github.com/jiangmiao/auto-pairs
+[[plugins]]
+repo = 'jiangmiao/auto-pairs'
+
+# https://github.com/tpope/vim-endwise
+[[plugins]]
+repo = 'tpope/vim-endwise'
+on_ft = ['lua', 'ruby', 'sh', 'zsh', 'vim', 'c', 'cpp', 'xdefaults', 'snippets']
+
+# https://github.com/tpope/vim-speeddating
+[[plugins]]
+repo = 'tpope/vim-speeddating'
+depends = 'vim-repeat'
+on_map = '<Plug>'
+
+# https://github.com/tpope/vim-unimpaired
+[[plugins]]
+repo = 'tpope/vim-unimpaired'
+depends = 'vim-repeat'
+on_map = '<Plug>'
+
+# https://github.com/tpope/vim-surround
+[[plugins]]
+repo = 'tpope/vim-surround'
+depends = 'vim-repeat'
+
+# https://github.com/Shougo/neocomplete.vim
+[[plugins]]
+repo = 'Shougo/neocomplete.vim'
+depends = 'context_filetype.vim'
+if = "has('lua')"
+
+# Syntax Colors
+###########################################################
+
+# https://github.com/cespare/vim-toml
+[[plugins]]
+repo = 'cespare/vim-toml'
+on_ft = 'toml'
+
+# https://github.com/hail2u/vim-css3-syntax
+[[plugins]]
+repo = 'hail2u/vim-css3-syntax'
+on_ft = ['css', 'less', 'sass']
+
+# https://github.com/othree/html5.vim
+[[plugins]]
+repo = 'othree/html5.vim'
+on_ft = 'html'
+
+# https://github.com/skammer/vim-css-color
+[[plugins]]
+repo = 'skammer/vim-css-color'
+on_ft = ['css', 'less', 'sass']
+
+# https://github.com/tpope/vim-markdown
+[[plugins]]
+repo = 'tpope/vim-markdown'
+on_ft = 'markdown'
+
+# https://github.com/jtratner/vim-flavored-markdown
+[[plugins]]
+repo = 'jtratner/vim-flavored-markdown'
+on_ft = 'markdown'
+
+# https://github.com/pangloss/vim-javascript
+[[plugins]]
+repo = 'pangloss/vim-javascript'
+on_ft = 'javascript'
+
+# https://github.com/elzr/vim-json
+[[plugins]]
+repo = 'elzr/vim-json'
+on_ft = 'json'
+
+# https://github.com/shawncplus/phpcomplete.vim
+[[plugins]]
+repo = 'shawncplus/phpcomplete.vim'
+
+[[plugins]]
+repo = 'beyondwords/vim-twig'
+on_ft = ['twig', 'html.twig']

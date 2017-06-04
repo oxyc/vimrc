@@ -34,23 +34,22 @@ xnoremap m  <Nop>
 nnoremap ,  <Nop>
 xnoremap ,  <Nop>
 
-let s:neobundle_dir = expand('$VIM_DIR/bundle/neobundle.vim')
+if !isdirectory($VIM_BUNDLE)
+  call mkdir($VIM_BUNDLE, 'p')
+endif
 
-if has('vim_starting')
-  " Load neobundle.
-  if finddir('neobundle.vim', '.;') != ''
-    execute 'set runtimepath^=' .
-          \ fnamemodify(finddir('neobundle.vim', '.;'), ':p')
-  " First time launch, clone neobundle
-  elseif &runtimepath !~ '/neobundle.vim'
-    if !isdirectory(s:neobundle_dir)
-      execute printf('silent !git clone %s://github.com/Shougo/neobundle.vim.git',
-            \ (exists('$http_proxy') ? 'https' : 'git'))
-            \ s:neobundle_dir
+" Load dein.
+let s:dein_dir = finddir('dein.vim', '.;')
+if s:dein_dir != '' || &runtimepath !~ '/dein.vim'
+  if s:dein_dir == '' && &runtimepath !~ '/dein.vim'
+    let s:dein_dir = expand('$VIM_BUNDLE')
+          \. '/repos/github.com/Shougo/dein.vim'
+    if !isdirectory(s:dein_dir)
+      execute 'silent !git clone https://github.com/Shougo/dein.vim' s:dein_dir
     endif
-
-    execute 'set runtimepath^=' . s:neobundle_dir
   endif
+  execute 'set runtimepath^=' . substitute(
+        \ fnamemodify(s:dein_dir, ':p') , '/$', '', '')
 endif
 
 
