@@ -49,7 +49,6 @@ on_cmd = 'UndotreeToggle'
 [[plugins]]
 repo = 'Shougo/unite.vim'
 depends = 'neomru.vim'
-# hook_source = 'source ~/.vim/rc/plugins/unite.rc.vim'
 
 # https://github.com/mhinz/vim-signify
 [[plugins]]

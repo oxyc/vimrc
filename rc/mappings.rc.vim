@@ -199,7 +199,7 @@ if dein#tap('neosnippet.vim')
     if s:has_deoplete | return deoplete#refresh() | endif
   endfunction
 
-  function s:cancel_popup()
+  function! s:cancel_popup()
     if s:has_neocomplete | return neocomplete#cancel_popup() | endif
     if s:has_deoplete | return deoplete#cancel_popup() | endif
   endfunction
