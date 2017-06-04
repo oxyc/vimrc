@@ -3,3 +3,13 @@
 repo = 'Shougo/deoplete.nvim'
 depends = 'context_filetype.vim'
 on_i = 1
+hook_source = '''
+  let g:deoplete#enable_at_startup = 1
+  let g:deoplete#enable_smart_case = 1
+  " Begin autocompleting at 1 character
+  let g:deoplete#auto_complete_start_leng = 1
+  " auto_select id done with completeopt+=noinsert
+
+  " Maximum targets
+  let g:deoplete#max_list = 10
+'''
