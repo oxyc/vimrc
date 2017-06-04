@@ -182,10 +182,11 @@ on_map = '<Plug>'
 repo = 'twe4ked/vim-diff-toggle'
 on_ft = 'diff'
 
-# if problems consider https://github.com/Raimondi/delimitMate
+# @todo if problems consider https://github.com/Raimondi/delimitMate
+# @see https://github.com/jiangmiao/auto-pairs/issues/171
 # https://github.com/jiangmiao/auto-pairs
-[[plugins]]
-repo = 'jiangmiao/auto-pairs'
+# [[plugins]]
+# repo = 'jiangmiao/auto-pairs'
 
 # https://github.com/tpope/vim-endwise
 [[plugins]]
