@@ -10,11 +10,8 @@ augroup MyAutoCmd
       \ | endif
 
   autocmd BufRead,BufNewFile vimrc setlocal filetype=vim
-  autocmd BufRead,BufNewFile *.twig setlocal filetype=html.twig
   " Associate Drupal files as php.
   autocmd BufRead,BufNewFile *.module,*.install,*.test,*.inc setlocal filetype=php
-  " Associate all markdown files as GitHub markdown.
-  autocmd BufNewFile,BufRead *.m*down,*.md setlocal filetype=ghmarkdown
 
   " Fold vimscript based on indentation.
   autocmd FileType vim setlocal foldmethod=indent foldnestmax=1

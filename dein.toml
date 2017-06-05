@@ -268,6 +268,9 @@ hook_source = '''
     \   'regex': 'File to import not found or unreadable'
     \ }
 
+  " tidy is annoying
+  let g:syntastic_html_checkers = []
+
   let g:syntastic_stl_format = '[%E{Error 1/%e: line %fe}%B{, }%W{Warning 1/%w: line %fw}]'
 '''
 
@@ -565,7 +568,11 @@ on_ft = 'markdown'
 # https://github.com/jtratner/vim-flavored-markdown
 [[plugins]]
 repo = 'jtratner/vim-flavored-markdown'
-on_ft = 'markdown'
+on_ft = ['markdown', 'ghmarkdown']
+hook_source = '''
+  " Associate all markdown files as GitHub markdown.
+  autocmd BufNewFile,BufRead *.m*down,*.md setlocal filetype=ghmarkdown
+'''
 
 # JavaScript syntax highlighting
 # https://github.com/pangloss/vim-javascript
@@ -596,3 +603,8 @@ repo = 'shawncplus/phpcomplete.vim'
 [[plugins]]
 repo = 'beyondwords/vim-twig'
 on_ft = ['twig', 'html.twig']
+hook_source = '''
+  " Filetype should be twig while syntax is both html and twig.
+  autocmd BufRead,BufNewFile *.twig set filetype=twig
+  autocmd BufRead,BufNewFile *.twig set syntax=html.twig
+'''
