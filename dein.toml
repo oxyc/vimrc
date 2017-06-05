@@ -439,8 +439,12 @@ on_ft = 'diff'
 # https://github.com/jiangmiao/auto-pairs
 [[plugins]]
 repo = 'oxyc/auto-pairs'
+rev = 'features-neovim'
 hook_source = '''
   let g:AutoPairsFlyMode = 0
+  " let g:AutoPairsOnlyAtEOL = 1
+  let g:AutoPairsOnlyBeforeClose = 1
+  let g:AutoPairsBalanceImmediately =1
   let g:AutoPairsMultilineClose = 0
 '''
 
