@@ -1,12 +1,23 @@
-function! s:is_mac() abort
-  return has('mac') || has('macunix') || has('gui_macvim')
-    \ || (!executable('xdg-open') && system('uname') =~? '^darwin'))
-endfunction
-
 " Inconsolata
-if s:is_mac()
+if has('mac')
   set guifont=Inconsolata-dz\ for\ Powerline:h9
 endif
 
-" Hide some widgets
-set guioptions=aAce
+" Don't focus the window when the mouse pointer is moved.
+set nomousefocus
+" Hide mouse pointer on insert mode.
+set mousehide
+
+" Hide toolbar and menus.
+set guioptions-=Tt
+set guioptions-=m
+" Scrollbar is always off.
+set guioptions-=rL
+" Not guitablabel.
+set guioptions-=e
+" Confirm without window.
+set guioptions+=c
+
+" Don't flick cursor.
+set guicursor&
+set guicursor+=a:blinkon0
