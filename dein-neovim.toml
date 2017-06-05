@@ -1,3 +1,4 @@
+# Neovim version of NeoComplete for autocompleting code.
 # https://github.com/Shougo/deoplete.vim
 [[plugins]]
 repo = 'Shougo/deoplete.nvim'
@@ -12,4 +13,12 @@ hook_source = '''
 
   " Maximum targets
   let g:deoplete#max_list = 10
+'''
+
+# Syntax checker
+# https://github.com/neomake/neomake
+[[plugins]]
+repo = 'neomake/neomake'
+hook_source = '''
+  autocmd! BufWritePost * Neomake
 '''

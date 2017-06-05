@@ -51,13 +51,24 @@ hook_source = '''
   " Disable autoloading extension in runtimepath
   let g:airline#extensions#disable_rtp_load = 1
   " Manually enable extensions
-  let g:airline_extensions = ['syntastic', 'quickfix']
+  let g:airline_extensions = ['quickfix', 'hunks']
   " Disable airline in the preview window
   let g:airline_exclude_preview = 1
   " Performance optimization by not re-evaluating the colors of the theme.
   let g:airline#themes#base16#constant = 1
   " Don't display crypt.
   let g:airline_detect_crypt = 0
+
+  " Show vim-signify change hunks.
+  let g:airline#extensions#hunks#enabled = 1
+  let g:airline#extensions#hunks#non_zero_only = 1
+
+  if dein#tap('syntastic')
+    let g:airline_extensions = g:airline_extensions + ['syntastic']
+  endif
+  if dein#tap('neomake')
+    let g:airline_extensions = g:airline_extensions + ['neomake']
+  endif
 '''
 
 # UI for editing commit messages
@@ -252,6 +263,10 @@ hook_source = '''
   let g:syntastic_warning_symbol = "⚠"
   let g:syntastic_style_error_symbol = "S✗"
   let g:syntastic_style_warning_symbol = "S⚠"
+
+  let g:syntastic_scss_sass_quiet_messages = {
+    \   'regex': 'File to import not found or unreadable'
+    \ }
 
   let g:syntastic_stl_format = '[%E{Error 1/%e: line %fe}%B{, }%W{Warning 1/%w: line %fw}]'
 '''

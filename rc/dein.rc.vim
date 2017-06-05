@@ -16,11 +16,10 @@ call dein#load_toml('$VIM_DIR/dein.toml')
 " Install Neovim plugins.
 if has('nvim')
   call dein#load_toml('$VIM_DIR/dein-neovim.toml')
-endif
 
-" Disable neocomplete when deoplete is available.
-if dein#tap('deoplete.nvim') && has('nvim')
-  call dein#disable('neocomplete.vim')
+  " Disable vim version when neovim versions are available.
+  if dein#tap('deoplete.nvim') | call dein#disable('neocomplete.vim') | endif
+  if dein#tap('neomake') | call dein#disable('syntastic') | endif
 endif
 
 call dein#end()
