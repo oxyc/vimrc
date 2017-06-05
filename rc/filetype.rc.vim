@@ -51,6 +51,9 @@ augroup MyAutoCmd
   autocmd FileType help setlocal textwidth=78
   autocmd BufWinEnter *.txt if &ft == 'help' | wincmd L | endif
 
+  " Wrap markdown
+  autocmd FileType markdown setlocal wrap
+
   " Enable spell checker in emails
   autocmd FileType mail setlocal spell
 

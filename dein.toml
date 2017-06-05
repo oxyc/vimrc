@@ -770,3 +770,8 @@ repo = 'beyondwords/vim-twig'
 # https://github.com/ekalinin/dockerfile.vim
 [[plugins]]
 repo = 'ekalinin/dockerfile.vim'
+
+# Ansible syntax highlighting
+# https://github.com/pearofducks/ansible-vim
+[[plugins]]
+repo = 'pearofducks/ansible-vim'

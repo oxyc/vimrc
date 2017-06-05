@@ -153,10 +153,3 @@ if dein#tap('base16-vim')
 else
   colorscheme delek
 end
-
-" Custom colorscheme adjustments
-" ---------------------------------------------------------------------------
-" @todo doc
-"highlight Matchmaker term=underline ctermbg=11
-"highlight MatchParen cterm=bold ctermbg=03
-"highlight Normal ctermfg=none ctermbg=none
