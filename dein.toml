@@ -277,6 +277,11 @@ hook_source = '''
   let g:syntastic_stl_format = '[%E{Error 1/%e: line %fe}%B{, }%W{Warning 1/%w: line %fw}]'
 '''
 
+# Project based code conventions.
+# https://github.com/editorconfig/editorconfig-vim
+[[plugins]]
+repo = 'editorconfig/editorconfig-vim'
+
 # Run commands quickly
 # https://github.com/thinca/vim-quickrun
 [[plugins]]
