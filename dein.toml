@@ -251,28 +251,87 @@ repo = 'LeafCage/foldCC.vim'
 # Tools
 ##########################################################
 
-# Syntax checker
+# Syntax checker (vim 8 and neovim)
+# https://github.com/neomake/neomake
+[[plugins]]
+repo = 'neomake/neomake'
+if = "has('nvim') || has('channel') && has('job') && has('patch-8.0.0027')"
+hook_source = '''
+  autocmd! BufWritePost * Neomake
+
+  " Sass maker that ignores file import errors.
+  let s:sass_errorformat =
+    \ '%E%\m%\%%(Syntax %\)%\?%trror: %m,' .
+    \ '%+C              %.%#,' .
+    \ '%C        on line %l of %f\, %.%#,' .
+    \ '%C        on line %l of %f,' .
+    \ '%-G %\+from line %.%#,' .
+    \ '%-G %\+Use --trace for backtrace.,' .
+    \ '%W%>DEPRECATION WARNING on line %l of %f:,' .
+    \ '%+C%>  %.%#,' .
+    \ '%W%>WARNING: on line %l of %f:,' .
+    \ '%+C%>  %.%#,' .
+    \ '%W%>WARNING on line %l of %f: %m,' .
+    \ '%+C%>  %.%#,' .
+    \ '%W%>WARNING on line %l of %f:,' .
+    \ '%Z%m,' .
+    \ '%W%>WARNING: %m,' .
+    \ '%C         on line %l of %f\, %.%#,' .
+    \ '%C         on line %l of %f,' .
+    \ '%-G %\+from line %.%#,' .
+    \ 'Syntax %trror on line %l: %m,' .
+    \ '%-G%.%#'
+  let g:neomake_sass_maker = {
+    \ 'exe': 'sass',
+    \ 'args': ['--check'],
+    \ 'errorformat': s:sass_errorformat,
+    \ 'postprocess': {
+        \ entry -> entry.text =~# 'File to import not found or unreadable'
+        \ ? extend(entry, {'valid': -1})
+        \ : entry}
+    \ }
+  let g:neomake_scss_enabled_makers = ['sass']
+
+  " Twig
+  let g:neomake_twig_twiglint_maker = {
+    \ 'exe': 'twig-lint',
+    \ 'args': ['--format=csv', 'lint'],
+    \ 'errorformat': '"%f"\,%l\,%m',
+    \ 'postprocess': { entry -> extend(entry, {'type': 'E'}) }
+    \ }
+  let g:neomake_twig_enabled_makers = ['twiglint']
+
+  " YAML
+  " Relaxed and don't care about line length
+  let g:neomake_yaml_yamllint_args = ['-f', 'parsable', '-d',
+    \   "{extends: relaxed, rules: {line-length: {max: 120}}}"
+    \ ]
+
+ " Ansible
+ " [ANSIBLE0013] Use shell only when shell functionality is required
+ " [ANSIBLE0011] All tasks should be named
+ " [ANSIBLE0018] Deprecated always_run
+  let g:neomake_ansible_ansiblelint_args = ['-p', '--nocolor', '-x', 'ANSIBLE0011,ANSIBLE0013,ANSIBLE0018']
+'''
+
+# Syntax checker (vim 7, vim 8 uses neomake)
 # https://github.com/vim-syntastic/syntastic
 # ---------------------------------------------------------------------------
 # ,ts  - toggle syntastic
 [[plugins]]
 repo = 'vim-syntastic/syntastic'
+if = "!has('nvim') && !(has('channel') && has('job') && has('patch-8.0.0027'))"
 hook_source = '''
-  " Use :sign interace to mark syntax errors
-  let g:syntastic_enable_signs = 1
-  " Always populate the location list
   let g:syntastic_always_populate_loc_list = 1
-  " Open Error window automatically
-  " @todo Unite location_list
   let g:syntastic_auto_loc_list = 1
-  " Automatically jump to first detected error
   let g:syntastic_auto_jump = 1
-  " Window height
   let g:syntastic_loc_list_height = 3
   " Only run on save
   let g:syntastic_check_on_open = 0
   " Run all checkers that apply
   let g:syntastic_aggregate_errors = 1
+  " Use :sign interace to mark syntax errors
+  let g:syntastic_enable_signs = 1
 
   " Prettier icons
   let g:syntastic_error_symbol = "✗"

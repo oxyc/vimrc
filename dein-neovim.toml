@@ -14,11 +14,3 @@ hook_source = '''
   " Maximum targets
   let g:deoplete#max_list = 10
 '''
-
-# Syntax checker
-# https://github.com/neomake/neomake
-[[plugins]]
-repo = 'neomake/neomake'
-hook_add = '''
-  autocmd! BufWritePost * Neomake
-'''
