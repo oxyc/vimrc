@@ -325,9 +325,7 @@ repo = 'superbrothers/vim-quickrun-markdown-gfm'
 depends = ['open-browser.vim', 'vim-quickrun', 'webapi-vim']
 on_ft = 'markdown'
 hook_source = '''
-  if !exists('g:quickrun_config')
-    let g:quickrun_config = {}
-  endif
+  if !exists('g:quickrun_config') | let g:quickrun_config = {} | endif
   let g:quickrun_config['markdown'] = {
     \   'type': 'markdown/gfm',
     \   'outputter': 'browser'
@@ -410,7 +408,6 @@ hook_add = '''
 [[plugins]]
 repo = 'lambdalisue/vim-gista-unite'
 depends = ['vim-gista', 'unite.vim']
-on_source = 'unite.vim'
 
 # Git commands
 # https://github.com/lambdalisue/gina.vim
@@ -624,6 +621,7 @@ on_map = '<Plug>'
 [[plugins]]
 repo = 'tpope/vim-surround'
 depends = 'vim-repeat'
+on_map = '<Plug>'
 
 # Autocompletion (vim)
 # https://github.com/Shougo/neocomplete.vim
@@ -668,47 +666,26 @@ hook_source = '''
 # https://github.com/cespare/vim-toml
 [[plugins]]
 repo = 'cespare/vim-toml'
-on_ft = 'toml'
-hook_source = '''
-  autocmd MyAutoCmd FileType toml syntax sync minlines=500
-'''
 
 # HTML5 syntax highlighting
 # https://github.com/othree/html5.vim
 [[plugins]]
 repo = 'othree/html5.vim'
-on_ft = 'html'
 
-# PHP syntax highlighting
+# PHP syntax highlighting (not lazy)
 # https://github.com/othree/html5.vim
 [[plugins]]
 repo = 'StanAngeloff/php.vim'
-on_ft = 'php'
-hook_source = '''
-  " Highlight SQL queries expressed in strings
-  let g:php_sql_query = 1
-  let g:php_folding = 1
-  " Indent switch case and default
-  let g:PHP_vintage_case_default_indent = 1
-'''
 
-# CSS3 syntax highlighting
+# CSS3 syntax highlighting (not lazy)
 # https://github.com/hail2u/vim-css3-syntax
 [[plugins]]
 repo = 'hail2u/vim-css3-syntax'
-on_ft = ['css', 'less', 'sass', 'html', 'twig']
 
-# Markdown syntax highlighting
-# https://github.com/tpope/vim-markdown
-[[plugins]]
-repo = 'tpope/vim-markdown'
-on_ft = 'markdown'
-
-# JavaScript syntax highlighting
+# JavaScript syntax highlighting (not lazy)
 # https://github.com/pangloss/vim-javascript
 [[plugins]]
 repo = 'pangloss/vim-javascript'
-on_ft = 'javascript'
 
 # JSON syntax highlighting
 # https://github.com/elzr/vim-json
@@ -723,15 +700,14 @@ hook_source = '''
 # https://github.com/shawncplus/phpcomplete.vim
 [[plugins]]
 repo = 'shawncplus/phpcomplete.vim'
+on_ft = 'php'
 
-# Twig syntax highlighting
+# Twig syntax highlighting (not lazy)
 # https://github.com/beyondwords/vim-twig
 [[plugins]]
 repo = 'beyondwords/vim-twig'
-on_ft = ['twig', 'html.twig']
 
-# Dockerfile syntax highlighting
+# Dockerfile syntax highlighting (not lazy)
 # https://github.com/ekalinin/dockerfile.vim
 [[plugins]]
 repo = 'ekalinin/dockerfile.vim'
-on_ft = 'dockerfile'

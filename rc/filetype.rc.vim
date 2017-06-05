@@ -14,6 +14,12 @@ let g:markdown_fenced_languages = [
     \  'vim',
     \]
 
+" Highlight SQL queries expressed in strings
+let g:php_sql_query = 1
+let g:php_folding = 1
+" Indent switch case and default
+let g:PHP_vintage_case_default_indent = 1
+
 " Javascript
 let javascript_enable_domhtmlcss = 1
 let b:javascript_fold = 1
@@ -33,6 +39,9 @@ augroup MyAutoCmd
   " Filetype should be twig while syntax is both html and twig.
   autocmd BufRead,BufNewFile *.twig set filetype=twig
   autocmd BufRead,BufNewFile *.twig set syntax=html.twig
+
+  " Fix syntax highlighting errors with long strins.
+  autocmd FileType toml syntax sync minlines=500
 
   " Fold vimscript based on indentation.
   autocmd FileType vim setlocal foldmethod=indent foldnestmax=1

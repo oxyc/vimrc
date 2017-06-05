@@ -28,6 +28,7 @@ if filereadable('$HOME/.vimrc.local')
   source $HOME . '/.vimrc.local'
 endif
 
+call dein#call_hook('add')
 call dein#call_hook('source')
 call dein#call_hook('post_source')
 
