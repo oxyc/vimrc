@@ -45,9 +45,6 @@ augroup MyAutoCmd
   "Sort CSS attributes alphabetically
   "Stolen from https://bitbucket.org/sjl/dotfiles/src/tip/vim/.vimrc
   autocmd FileType less,css,sass,scss nnoremap <buffer> <localleader>s ?{<CR>jV/\v^\s*\}?$<CR>k:sort<CR>:noh<CR>
-  " Autocopmlete {<cr> properly @todo
-  "autocmd FileType less,css inoremap <buffer> {<cr> {}<left><cr><esc>O
-  "au BufNewFile,BufRead *.js inoremap <buffer> {<cr> {}<left><cr><esc>O
 
   " Use <localleader>1/2/3 to add headings.
   autocmd Filetype markdown nnoremap <buffer> <localleader>1 yypVr=

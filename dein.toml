@@ -538,7 +538,7 @@ hook_source = '''
   let g:neocomplete#keyword_patterns['default'] = '\h\w*'
 '''
 
-# Syntax Colors
+# Filetype plugins
 ###########################################################
 
 # TOML syntax highlighting
@@ -550,12 +550,6 @@ hook_source = '''
   " Fix syntax hihglighting in big files.
   autocmd MyAutoCmd FileType toml syntax sync minlines=500
 '''
-
-# CSS3 syntax highlighting
-# https://github.com/hail2u/vim-css3-syntax
-[[plugins]]
-repo = 'hail2u/vim-css3-syntax'
-on_ft = ['css', 'less', 'sass']
 
 # HTML5 syntax highlighting
 # https://github.com/othree/html5.vim
@@ -581,7 +575,7 @@ hook_source = '''
 # https://github.com/skammer/vim-css-color
 [[plugins]]
 repo = 'skammer/vim-css-color'
-on_ft = ['css', 'less', 'sass']
+on_ft = ['css', 'less', 'sass', 'html', 'twig']
 
 # Markdown syntax highlighting
 # https://github.com/tpope/vim-markdown
@@ -628,7 +622,7 @@ hook_source = '''
 [[plugins]]
 repo = 'shawncplus/phpcomplete.vim'
 
-# Twyg syntax highlighting
+# Twig syntax highlighting
 [[plugins]]
 repo = 'beyondwords/vim-twig'
 on_ft = ['twig', 'html.twig']
