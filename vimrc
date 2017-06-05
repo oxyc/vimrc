@@ -44,6 +44,10 @@ if dein#tap('unite.vim')
   call s:source_rc('cheatsheet.rc.vim')
 end
 
+if has('neovim')
+  call s:source_rc('neovim.rc.vim')
+endif
+
 if has('gui_running')
   call s:source_rc('gui.rc.vim')
 endif
