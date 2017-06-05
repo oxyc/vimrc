@@ -37,6 +37,7 @@ call s:source_rc('ui.rc.vim')
 call s:source_rc('edit.rc.vim')
 call s:source_rc('filetype.rc.vim')
 call s:source_rc('mappings.rc.vim')
+call s:source_rc('autocomplete.rc.vim')
 
 if dein#tap('unite.vim')
   call s:source_rc('cheatsheet.rc.vim')

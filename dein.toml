@@ -1,5 +1,5 @@
 # Dependencies
-###########################################################
+#############################################################################
 
 # Plugin manager
 # https://github.com/Shougo/dein.vim
@@ -29,13 +29,12 @@ repo = 'Shougo/context_filetype.vim'
 [[plugins]]
 repo = 'Shougo/neosnippet-snippets'
 hook_source = '''
-  "let g:neosnippet#snippets_directory = $VIM_CACHE.'/vim-neosnippet'
   let g:neosnippet#data_directory = $VIM_CACHE.'/vim-neosnippet'
   let g:neosnippet#enable_preview = 1
 '''
 
 # User Interface
-###########################################################
+#############################################################################
 
 # Colorscheme
 # https://github.com/chriskempson/base16-vim
@@ -91,6 +90,8 @@ hook_source = '''
 
 # Undo history visualizer
 # https://github.com/mbbill/undotree
+# ---------------------------------------------------------------------------
+# ,tu  - toggle undo tree
 [[plugins]]
 repo = 'mbbill/undotree'
 on_cmd = 'UndotreeToggle'
@@ -98,6 +99,9 @@ hook_source = '''
   let g:undotree_SetFocusWhenToggle = 1
   let g:undotree_SplitWidth = 35
   let g:undotree_DiffpanelHeight = 20
+'''
+hook_add = '''
+  nnoremap <silent> <leader>tu :<C-u>UndotreeToggle<cr>
 '''
 
 # United interfaces
@@ -178,6 +182,16 @@ hook_source = '''
     nmap <buffer> <C-p>   <Plug>(unite_toggle_auto_preview)
   endfunction
 '''
+hook_add = '''
+  noremap <leader>f :<C-u>Unite -resume -buffer-name=files    file_rec/async<CR>
+  noremap <leader>m :<C-u>Unite -resume -buffer-name=files    file_mru<CR>
+  noremap <leader>b :<C-u>Unite -resume -buffer-name=buffers -quick-match buffer<CR>
+  noremap <leader>y :<C-u>Unite -resume -buffer-name=history  history/yank<CR>
+  noremap <leader>g :<C-u>Unite -resume -buffer-name=grep     grep:.<CR>
+  noremap <leader>l :<C-u>Unite -resume -buffer-name=line     line<CR>
+  noremap <leader>c :<C-u>Unite -silent -winheight=29 -start-insert menu:cheatsheet<CR>
+  noremap <leader>x <Plug>(unite_redraw)
+'''
 
 # Show a diff using Vim its sign column.
 # https://github.com/mhinz/vim-signify
@@ -239,6 +253,8 @@ repo = 'LeafCage/foldCC.vim'
 
 # Syntax checker
 # https://github.com/vim-syntastic/syntastic
+# ---------------------------------------------------------------------------
+# ,ts  - toggle syntastic
 [[plugins]]
 repo = 'vim-syntastic/syntastic'
 hook_source = '''
@@ -276,6 +292,9 @@ hook_source = '''
 
   let g:syntastic_stl_format = '[%E{Error 1/%e: line %fe}%B{, }%W{Warning 1/%w: line %fw}]'
 '''
+hook_add = '''
+  nnoremap <silent> <leader>ts :<C-u>SyntasticToggle<cr>
+'''
 
 # Project based code conventions.
 # https://github.com/editorconfig/editorconfig-vim
@@ -284,6 +303,8 @@ repo = 'editorconfig/editorconfig-vim'
 
 # Run commands quickly
 # https://github.com/thinca/vim-quickrun
+# ---------------------------------------------------------------------------
+# ,qb   - execute current buffer.
 [[plugins]]
 repo = 'thinca/vim-quickrun'
 on_map = '<Plug>'
@@ -291,9 +312,14 @@ on_cmd = 'Quickrun'
 hook_source = '''
   let g:quickrun_no_default_key_mappings = 1
 '''
+hook_add = '''
+  nnoremap <silent> <leader>qb <Plug>(quickrun)
+'''
 
 # Converts GitHub markdown to html.
 # https://github.com/superbrothers/vim-quickrun-markdown-gfm
+# ---------------------------------------------------------------------------
+# ,qm   - render current markdown buffer in browser.
 [[plugins]]
 repo = 'superbrothers/vim-quickrun-markdown-gfm'
 depends = ['open-browser.vim', 'vim-quickrun', 'webapi-vim']
@@ -307,9 +333,20 @@ hook_source = '''
     \   'outputter': 'browser'
     \ }
 '''
+hook_add = '''
+  nnoremap <silent> <leader>qm :<C-u>QuickRun markdown<CR>
+'''
 
 # File Explorer
 # https://github.com/Shougo/vimfiler.vim
+# ---------------------------------------------------------------------------
+# ,fb     - open vimfiler in buffer
+# ,fe     - open vimfiler explorer
+#
+#   t     - toggle tree
+#   T     - toggle tree recursively
+#   q     - close vimfiler
+#   <tab> - switch to other window
 [[plugins]]
 repo = 'Shougo/vimfiler.vim'
 depends = 'unite.vim'
@@ -331,9 +368,19 @@ hook_source = '''
     nmap <buffer> <Tab> <Plug>(vimfiler_switch_to_other_window)
   endfunction
 '''
+hook_add = '''
+  nnoremap <silent> <leader>fb   :<C-u>VimFiler -invisible<CR>
+  nnoremap <leader>fe            :<C-u>VimFilerExplorer<CR>
+'''
 
 # Gist manager
 # https://github.com/lambdalisue/vim-gista
+# ---------------------------------------------------------------------------
+# ,gl   - list gists
+# ,gg   - create or update gist
+# ,gp   - create a private gist
+# ,gb   - open gist in browser
+# ,gy   - yank the url of the gist
 [[plugins]]
 repo = 'lambdalisue/vim-gista'
 depends = ['open-browser.vim']
@@ -346,6 +393,17 @@ hook_source = '''
   let g:gista#auto_yank_after_post = 1
   let g:gista#auto_yank_after_save = 1
 '''
+hook_add = '''
+  if dein#tap('vim-gista-unite')
+    nnoremap <silent> <leader>gl :<C-u>Unite gista<CR>
+  else
+    nnoremap <silent> <leader>gl :<C-u>Gista list<CR>
+  endif
+  nnoremap <silent> <leader>gg :<C-u>Gista post<CR>
+  nnoremap <silent> <leader>gp :<C-u>Gista post --private<CR>
+  nnoremap <silent> <leader>gb :<C-u>Gista browse<CR>
+  nnoremap <silent> <leader>gy :<C-u>Gista browse --yank<CR>
+'''
 
 # Unite interface for Gista
 # https://github.com/lambdalisue/vim-gista-unite
@@ -356,9 +414,30 @@ on_source = 'unite.vim'
 
 # Git commands
 # https://github.com/lambdalisue/gina.vim
+# ---------------------------------------------------------------------------
+# <s>gs   - git status
+# <s>gc   - git commit
+# <s>gd   - git diff --cached
+# <s>gD   - git diff
+# <s>gb   - open in browser
+# <s>gy   - yank the url of the file
+# <s>gp   - git push
+# <s>gl   - git log
+# <s>gL   - git log for current file
 [[plugins]]
 repo = 'lambdalisue/gina.vim'
 on_cmd = 'Gina'
+hook_add = '''
+  nnoremap <silent> <space>gs :<C-u>Gina status<CR>
+  nnoremap <silent> <space>gc :<C-u>Gina commit<CR>
+  nnoremap <silent> <space>gd :<C-u>Gina diff --cached<CR>
+  nnoremap <silent> <space>gD :<C-u>Gina diff<CR>
+  nnoremap <silent> <space>gb :<C-u>Gina browse<CR>
+  nnoremap <silent> <space>gy :<C-u>Gina browse --yank<CR>
+  nnoremap <silent> <space>gp :<C-u>Gina push<CR>
+  nnoremap <space>gl  :<C-u>Gina log --pretty=oneline<CR>
+  nnoremap <space>gL  :<C-u>Gina log --pretty=oneline --<CR>
+'''
 
 # Enhanced repeating with `.`
 # https://github.com/tpope/vim-repeat
@@ -386,10 +465,13 @@ repo = 'Shougo/neosnippet.vim'
 depends = ['neosnippet-snippets', 'context_filetype.vim']
 
 # Navigation experience
-###########################################################
+#############################################################################
 
 # Extended % matching for HTML, PHP etc.
 # https://github.com/tmhedberg/matchit
+# ---------------------------------------------------------------------------
+# %     - cycle forward
+# a%    - select mathing group in visual mode
 [[plugins]]
 repo = 'tmhedberg/matchit'
 on_map = ['nxo', '%', 'g%']
@@ -415,6 +497,11 @@ repo = 'kshenoy/vim-signature'
 
 # Extended f, F, t and T for more convenience.
 # https://github.com/rhysd/clever-f.vim
+# ---------------------------------------------------------------------------
+# f       - find next character
+# F       - find previous character
+# t       - find next character (preceding cursor)
+# T       - find previous character (preceding cursor)
 [[plugins]]
 repo = 'rhysd/clever-f.vim'
 on_map = '<Plug>(clever-f-'
@@ -424,14 +511,31 @@ hook_source = '''
 '''
 
 # Vim motions on speed.
-# https://github.com/easymotino/vim-easymotion
+# https://github.com/easymotion/vim-easymotion
+# ---------------------------------------------------------------------------
+# s     - init jump
+# t     - init backwards jump
+# <s>h/l
+# n     - repeat search forward
+# N     - repeat search backwards
+# ,,    - easy motion
 [[plugins]]
 repo = 'easymotion/vim-easymotion'
 depends = 'vim-repeat'
 on_map = '<Plug>(easymotion-'
+hook_add = '''
+  " Jump to anywhere you want with minimal keystrokes.
+  nmap s <Plug>(easymotion-s2)
+  nmap t <Plug>(easymotion-t2)
+  " JK motions: Line motions
+  map <space>h <Plug>(easymotion-linebackward)
+  map <space>l <Plug>(easymotion-lineforward)
+'''
 
 # Code alignment.
 # https://github.com/junegunn/vim-easy-align
+# ---------------------------------------------------------------------------
+# ,a  - start interactive alignment
 [[plugins]]
 repo = 'junegunn/vim-easy-align'
 on_map = ['<Plug>(EasyAlign)', '<Plug>(LiveEasyAlign)']
@@ -442,12 +546,26 @@ hook_source = '''
   " remove ; as a target, as it's difficult to press on swedish keyboard.
   let g:EasyMotion_keys = 'asdghklqwertyuiopzxcvbnmfj'
 '''
+hook_add = '''
+  " Start interactive EasyAlign in visual mode.
+  vmap <Enter> <Plug>(LiveEasyAlign)
+  " Start interactive EasyAlign for a motion/text object.
+  nmap <leader>a <Plug>(LiveEasyAlign)
+'''
 
 # Edit experience
-###########################################################
+#############################################################################
+
+# Automatically set paste
+# https://github.com/roxma/vim-paste-easy
+[[plugins]]
+repo = 'roxma/vim-paste-easy'
 
 # Comment code
 # https://github.com/tpope/vim-commentary
+# ---------------------------------------------------------------------------
+# gcc   - comment out line
+# gc    - comment out motion
 [[plugins]]
 repo = 'tpope/vim-commentary'
 depends = 'vim-repeat'
@@ -455,6 +573,8 @@ on_map = '<Plug>Commentary'
 
 # Toggle changes in a diff.
 # https://github.com/twe4ked/vim-diff-toggle
+# ---------------------------------------------------------------------------
+# <space> - toggle diff add/edit/del
 [[plugins]]
 repo = 'twe4ked/vim-diff-toggle'
 on_ft = 'diff'
@@ -483,6 +603,9 @@ on_ft = ['lua', 'ruby', 'sh', 'zsh', 'vim', 'c', 'cpp', 'xdefaults', 'snippets']
 # @todo
 # Use CTRL-A/CTRL-X to increment dates, times, and more
 # https://github.com/tpope/vim-speeddating
+# ---------------------------------------------------------------------------
+# <C-a>   - Increase number under cursor
+# <C-x>   - Decrease number under cursor
 [[plugins]]
 repo = 'tpope/vim-speeddating'
 depends = 'vim-repeat'
@@ -547,7 +670,6 @@ hook_source = '''
 repo = 'cespare/vim-toml'
 on_ft = 'toml'
 hook_source = '''
-  " Fix syntax hihglighting in big files.
   autocmd MyAutoCmd FileType toml syntax sync minlines=500
 '''
 
@@ -570,11 +692,10 @@ hook_source = '''
   let g:PHP_vintage_case_default_indent = 1
 '''
 
-# @todo
-# rgb, rbga color notation
-# https://github.com/skammer/vim-css-color
+# CSS3 syntax highlighting
+# https://github.com/hail2u/vim-css3-syntax
 [[plugins]]
-repo = 'skammer/vim-css-color'
+repo = 'hail2u/vim-css3-syntax'
 on_ft = ['css', 'less', 'sass', 'html', 'twig']
 
 # Markdown syntax highlighting
@@ -582,31 +703,12 @@ on_ft = ['css', 'less', 'sass', 'html', 'twig']
 [[plugins]]
 repo = 'tpope/vim-markdown'
 on_ft = 'markdown'
-hook_source = '''
-  " http://mattn.kaoriya.net/software/vim/20140523124903.htm
-  let g:markdown_fenced_languages = [
-      \  'css',
-      \  'erb=eruby',
-      \  'javascript',
-      \  'js=javascript',
-      \  'json=javascript',
-      \  'ruby',
-      \  'sass',
-      \  'xml',
-      \  'vim',
-      \]
-'''
 
 # JavaScript syntax highlighting
 # https://github.com/pangloss/vim-javascript
 [[plugins]]
 repo = 'pangloss/vim-javascript'
 on_ft = 'javascript'
-hook_source = '''
-  " Highlight HTML and CSS within JavaScript
-  let javascript_enable_domhtmlcss = 1
-  let b:javascript_fold = 1
-'''
 
 # JSON syntax highlighting
 # https://github.com/elzr/vim-json
@@ -623,11 +725,13 @@ hook_source = '''
 repo = 'shawncplus/phpcomplete.vim'
 
 # Twig syntax highlighting
+# https://github.com/beyondwords/vim-twig
 [[plugins]]
 repo = 'beyondwords/vim-twig'
 on_ft = ['twig', 'html.twig']
-hook_source = '''
-  " Filetype should be twig while syntax is both html and twig.
-  autocmd MyAutoCmd BufRead,BufNewFile *.twig set filetype=twig
-  autocmd MyAutoCmd BufRead,BufNewFile *.twig set syntax=html.twig
-'''
+
+# Dockerfile syntax highlighting
+# https://github.com/ekalinin/dockerfile.vim
+[[plugins]]
+repo = 'ekalinin/dockerfile.vim'
+on_ft = 'dockerfile'

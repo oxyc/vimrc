@@ -1,6 +1,23 @@
 " File types
 " ---------------------------------------------------------------------------
 
+" Markdown http://mattn.kaoriya.net/software/vim/20140523124903.htm
+let g:markdown_fenced_languages = [
+    \  'css',
+    \  'erb=eruby',
+    \  'javascript',
+    \  'js=javascript',
+    \  'json=javascript',
+    \  'ruby',
+    \  'sass',
+    \  'xml',
+    \  'vim',
+    \]
+
+" Javascript
+let javascript_enable_domhtmlcss = 1
+let b:javascript_fold = 1
+
 augroup MyAutoCmd
   " Update filetype on save.
   autocmd BufWritePost *
@@ -12,6 +29,10 @@ augroup MyAutoCmd
   autocmd BufRead,BufNewFile vimrc setlocal filetype=vim
   " Associate Drupal files as php.
   autocmd BufRead,BufNewFile *.module,*.install,*.test,*.inc setlocal filetype=php
+
+  " Filetype should be twig while syntax is both html and twig.
+  autocmd BufRead,BufNewFile *.twig set filetype=twig
+  autocmd BufRead,BufNewFile *.twig set syntax=html.twig
 
   " Fold vimscript based on indentation.
   autocmd FileType vim setlocal foldmethod=indent foldnestmax=1
