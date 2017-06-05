@@ -183,12 +183,14 @@ hook_source = '''
   endfunction
 '''
 hook_add = '''
-  noremap <leader>f :<C-u>Unite -resume -buffer-name=files    file_rec/async<CR>
-  noremap <leader>m :<C-u>Unite -resume -buffer-name=files    file_mru<CR>
+  noremap <leader>f :<C-u>Unite -resume -buffer-name=files          file_rec/async<CR>
+  noremap <leader>m :<C-u>Unite -resume -buffer-name=files          file_mru<CR>
   noremap <leader>b :<C-u>Unite -resume -buffer-name=buffers -quick-match buffer<CR>
-  noremap <leader>y :<C-u>Unite -resume -buffer-name=history  history/yank<CR>
-  noremap <leader>g :<C-u>Unite -resume -buffer-name=grep     grep:.<CR>
-  noremap <leader>l :<C-u>Unite -resume -buffer-name=line     line<CR>
+  noremap <leader>y :<C-u>Unite -resume -buffer-name=history        history/yank<CR>
+  noremap <leader>g :<C-u>Unite -resume -buffer-name=grep           grep:.<CR>
+  noremap <leader>l :<C-u>Unite -resume -buffer-name=line           line<CR>
+  noremap <leader>ll :<C-u>Unite -silent -direction=botright -auto-resize location_list<CR>
+  noremap <leader>ql :<C-u>Unite -silent -direction=botright -auto-resize quickfix<CR>
   noremap <leader>c :<C-u>Unite -silent -winheight=29 -start-insert menu:cheatsheet<CR>
   noremap <leader>x <Plug>(unite_redraw)
 '''

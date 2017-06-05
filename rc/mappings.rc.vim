@@ -103,6 +103,11 @@ inoremap <C-h> <C-o>h
 inoremap <C-l> <C-o>a
 inoremap <C-j> <C-o>j
 inoremap <C-k> <C-o>k
+
+" Location
+nnoremap ln :lnext<CR>
+nnoremap lp :lprev<CR>
+
 " }}}
 
 " Folding {{{
