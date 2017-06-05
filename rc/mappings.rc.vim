@@ -81,6 +81,10 @@ noremap <leader>P :<C-u>set paste<CR>"*P<CR>:set nopaste<CR>
 " Reselect text that was just pasted
 " http://stevelosh.com/blog/2010/09/coming-home-to-vim/
 nnoremap <leader>v V`]
+
+" Search and replace
+xnoremap s :s//g<Left><Left>
+nnoremap %s :%s//g<Left><Left>
 " }}}
 
 " Movement {{{
