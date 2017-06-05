@@ -32,7 +32,7 @@ augroup MyAutoCmd
 
   " Enable omni completion
   autocmd Filetype less,css,sass,scss setlocal omnifunc=csscomplete#CompleteCSS
-  autocmd FileType html,ghmarkdown,markdown setlocal omnifunc=htmlcomplete#CompleteTags
+  autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
   autocmd FileType java setlocal omnifunc=javacomplete#Complete
   autocmd FileType php setlocal omnifunc=phpcomplete#CompletePHP
   autocmd FileType ruby setlocal omnifunc=rubycomplete#Complete
@@ -50,9 +50,9 @@ augroup MyAutoCmd
   "au BufNewFile,BufRead *.js inoremap <buffer> {<cr> {}<left><cr><esc>O
 
   " Use <localleader>1/2/3 to add headings.
-  autocmd Filetype ghmarkdown,markdown nnoremap <buffer> <localleader>1 yypVr=
-  autocmd Filetype ghmarkdown,markdown nnoremap <buffer> <localleader>2 yypVr-
-  autocmd Filetype ghmarkdown,markdown nnoremap <buffer> <localleader>3 I### <esc>
+  autocmd Filetype markdown nnoremap <buffer> <localleader>1 yypVr=
+  autocmd Filetype markdown nnoremap <buffer> <localleader>2 yypVr-
+  autocmd Filetype markdown nnoremap <buffer> <localleader>3 I### <esc>
 
   " Improved path patterns
   autocmd FileType php setlocal path+=/usr/local/share/pear
@@ -60,19 +60,6 @@ augroup MyAutoCmd
   " Fix syntax hihglighting in big files.
   autocmd FileType toml syntax sync minlines=500
 augroup END
-
-" http://mattn.kaoriya.net/software/vim/20140523124903.htm
-let g:markdown_fenced_languages = [
-    \  'css',
-    \  'erb=eruby',
-    \  'javascript',
-    \  'js=javascript',
-    \  'json=javascript',
-    \  'ruby',
-    \  'sass',
-    \  'xml',
-    \  'vim',
-    \]
 
 " Highlight SQL queries expressed in strings
 let g:php_sql_query = 1
