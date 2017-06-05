@@ -56,13 +56,4 @@ augroup MyAutoCmd
 
   " Improved path patterns
   autocmd FileType php setlocal path+=/usr/local/share/pear
-
-  " Fix syntax hihglighting in big files.
-  autocmd FileType toml syntax sync minlines=500
 augroup END
-
-" Highlight SQL queries expressed in strings
-let g:php_sql_query = 1
-let g:php_folding = 1
-" Indent switch case and default
-let g:PHP_vintage_case_default_indent = 1

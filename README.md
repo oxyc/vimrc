@@ -9,8 +9,9 @@ To install neovim plugins and `init.vim`
     make install-nvim
 
 *See also*:
- - [`oxyc/mac-playbook`](https://github.com/oxyc/mac-playbook) (the playbook used to provision my Macbook)
- - [`oxyc/dotfiles`](https://github.com/oxyc/dotfiles) (my dotfiles)
+
+- [`oxyc/mac-playbook`](https://github.com/oxyc/mac-playbook) (the playbook used to provision my Macbook)
+- [`oxyc/dotfiles`](https://github.com/oxyc/dotfiles) (my dotfiles)
 
 ### Screenshot
 
