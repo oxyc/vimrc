@@ -149,7 +149,7 @@ if dein#tap('base16-vim')
   " Use colors from the 256 coolor space.
   let base16colorspace=256
   " Set colorscheme.
-  colorscheme base16-default-dark
+  silent! colorscheme base16-default-dark
 else
   colorscheme delek
 end
