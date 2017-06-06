@@ -67,13 +67,16 @@ augroup MyAutoCmd
   autocmd Filetype less,css,sass,scss setlocal omnifunc=csscomplete#CompleteCSS
   autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
   autocmd FileType java setlocal omnifunc=javacomplete#Complete
-  autocmd FileType php setlocal omnifunc=phpcomplete#CompletePHP
   autocmd FileType ruby setlocal omnifunc=rubycomplete#Complete
   autocmd FileType sql setlocal omnifunc=sqlcomplete#Complete
   autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
   autocmd FileType python
       \ if has('python') | setlocal omnifunc=pythoncomplete#Complete | endif |
       \ if has('python3') | setlocal omnifunc=python3complete#Complete | endif
+
+  if !dein#tap('phpcomplete-extended')
+    autocmd FileType php setlocal omnifunc=phpcomplete#CompletePHP
+  endif
 
   "Sort CSS attributes alphabetically
   "Stolen from https://bitbucket.org/sjl/dotfiles/src/tip/vim/.vimrc

@@ -224,8 +224,9 @@ depends = 'unite.vim'
 # https://github.com/Shougo/echodoc.vim
 [[plugins]]
 repo = 'Shougo/echodoc.vim'
-on_event = 'CompleteDone'
-hook_source = 'call echodoc#enable()'
+hook_source = '''
+  let g:echodoc_enable_at_startup = 1
+'''
 
 # Visual experience
 ###########################################################
@@ -705,19 +706,6 @@ hook_source = '''
   let g:neocomplete#max_list = 10
   let g:neocomplete#lock_buffer_name_pattern = '\*ku\*'
   let g:neocomplete#data_directory = $VIM_CACHE.'/vim-neocomplete'
-  let g:neocomplete#sources#buffer#cache_limit_size = 500000
-  " Faster to specify it.
-  let g:neocomplete#use_vimproc = 1
-
-  "let g:neocomplete#enable_cursor_hold_i = 1
-  "let g:neocomplete#cursor_hold_i_time = 300
-  let g:neocomplete#enable_insert_char_pre = 1
-
-  " Define keywords
-  if !exists('g:neocomplete#keyword_patterns')
-    let g:neocomplete#keyword_patterns = {}
-  endif
-  let g:neocomplete#keyword_patterns['default'] = '\h\w*'
 '''
 
 # Filetype plugins
@@ -757,11 +745,23 @@ hook_source = '''
   let g:vim_json_syntax_conceal = 0
 '''
 
-# Improved PHP omnicompletion
+# Improved PHP omnicompletion and syntax
 # https://github.com/shawncplus/phpcomplete.vim
 [[plugins]]
 repo = 'shawncplus/phpcomplete.vim'
-on_ft = 'php'
+
+# Context aware PHP Omnicompletion
+# https://github.com/m2mdas/phpcomplete-extended
+[[plugins]]
+repo = 'm2mdas/phpcomplete-extended'
+hook_source = '''
+  let g:phpcomplete_index_composer_command = 'composer --no-ansi --no-interaction'
+  autocmd MyAutoCmd FileType php setlocal omnifunc=phpcomplete_extended#CompletePHP
+'''
+
+# https://github.com/Shougo/neoinclude.vim
+[[plugins]]
+repo = 'Shougo/neoinclude.vim'
 
 # Twig syntax highlighting (not lazy)
 # https://github.com/beyondwords/vim-twig
