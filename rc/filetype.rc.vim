@@ -14,9 +14,15 @@ let g:markdown_fenced_languages = [
     \  'vim',
     \]
 
-" Highlight SQL queries expressed in strings
-let g:php_sql_query = 1
-let g:php_folding = 1
+" Turn off as much PHP syntax highlighting as possible as it causes severe
+" slowdowns.
+let g:php_sql_query = 0
+let g:php_sql_heredoc = 0
+let g:php_html_in_strings = 0
+let g:php_html_in_heredoc = 0
+let g:php_html_load = 0
+let g:php_ignore_phpdoc = 1
+let g:php_folding = 0
 " Indent switch case and default
 let g:PHP_vintage_case_default_indent = 1
 
@@ -40,7 +46,7 @@ augroup MyAutoCmd
   autocmd BufRead,BufNewFile *.twig set filetype=twig
   autocmd BufRead,BufNewFile *.twig set syntax=html.twig
 
-  " Fix syntax highlighting errors with long strins.
+  " Fix syntax highlighting errors with long multiline strins.
   autocmd FileType toml syntax sync minlines=500
 
   " Fold vimscript based on indentation.
@@ -77,6 +83,10 @@ augroup MyAutoCmd
   if !dein#tap('phpcomplete-extended')
     autocmd FileType php setlocal omnifunc=phpcomplete#CompletePHP
   endif
+
+  " Improve PHP performance.
+  autocmd FileType php setlocal foldmethod=manual
+  autocmd FileType php syntax sync minlines=200
 
   "Sort CSS attributes alphabetically
   "Stolen from https://bitbucket.org/sjl/dotfiles/src/tip/vim/.vimrc

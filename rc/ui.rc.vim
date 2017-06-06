@@ -97,7 +97,7 @@ set linespace=0
 set ruler
 
 " limit syntax highlighting of long lines.
-set synmaxcol=200
+set synmaxcol=400
 
 if v:version >= 703
   set colorcolumn=79
