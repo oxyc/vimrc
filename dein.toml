@@ -290,6 +290,8 @@ hook_source = '''
     \ 'errorformat': s:sass_errorformat,
     \ 'postprocess': {
         \ entry -> entry.text =~# 'File to import not found or unreadable'
+        \   || entry.text =~# 'Undefined mixin'
+        \   || entry.text =~# 'Undefined variable'
         \ ? extend(entry, {'valid': -1})
         \ : entry}
     \ }
