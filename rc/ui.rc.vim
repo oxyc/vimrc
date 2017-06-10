@@ -8,7 +8,12 @@ filetype plugin indent on
 if exists("+relativenumber") | set relativenumber | else | set number | endif
 " Show <Tab> and trailing whitespace
 set list
-set listchars=tab:▸\ ,trail:·
+set listchars=tab:>\ ,trail:-,extends:>,precedes:<,nbsp:_
+if &termencoding ==# 'utf-8' || &encoding ==# 'utf-8'
+  " Use special characters if available (Inconsolata DZ specific).
+  " https://github.com/tpope/vim-sensible/commit/38fea1c9356d46cc285f67c9f8e7bc3ba39fc0be
+  set listchars+=tab:›\ ,trail:•
+endif
 " Always show the status line.
 set laststatus=2
 " Show the command being typed.
