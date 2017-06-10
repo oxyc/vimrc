@@ -630,7 +630,6 @@ repo = 'roxma/vim-paste-easy'
 [[plugins]]
 repo = 'tpope/vim-commentary'
 depends = 'vim-repeat'
-on_map = '<Plug>Commentary'
 
 # Toggle changes in a diff.
 # https://github.com/twe4ked/vim-diff-toggle
