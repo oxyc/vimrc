@@ -1,35 +1,6 @@
 " File types
 " ---------------------------------------------------------------------------
 
-" Markdown http://mattn.kaoriya.net/software/vim/20140523124903.htm
-let g:markdown_fenced_languages = [
-    \  'css',
-    \  'erb=eruby',
-    \  'javascript',
-    \  'js=javascript',
-    \  'json=javascript',
-    \  'ruby',
-    \  'sass',
-    \  'xml',
-    \  'vim',
-    \]
-
-" Turn off as much PHP syntax highlighting as possible as it causes severe
-" slowdowns.
-let g:php_sql_query = 0
-let g:php_sql_heredoc = 0
-let g:php_html_in_strings = 0
-let g:php_html_in_heredoc = 0
-let g:php_html_load = 0
-let g:php_ignore_phpdoc = 1
-let g:php_folding = 0
-" Indent switch case and default
-let g:PHP_vintage_case_default_indent = 1
-
-" Javascript
-let javascript_enable_domhtmlcss = 1
-let b:javascript_fold = 1
-
 augroup MyAutoCmd
   " Update filetype on save.
   autocmd BufWritePost *
@@ -45,6 +16,9 @@ augroup MyAutoCmd
   " Filetype should be twig while syntax is both html and twig.
   autocmd BufRead,BufNewFile *.twig set filetype=twig
   autocmd BufRead,BufNewFile *.twig set syntax=html.twig
+
+  " Filetype should be vue while syntax are all options.
+  autocmd BufRead,BufNewFile *.vue setlocal filetype=vue.html.javascript.css
 
   " Fix syntax highlighting errors with long multiline strins.
   autocmd FileType toml syntax sync minlines=500
@@ -62,6 +36,9 @@ augroup MyAutoCmd
 
   " Enable spell checker in emails
   autocmd FileType mail setlocal spell
+
+  " Disable backups when editin crontab
+  autocmd FileType crontab setlocal nobackup nowritebackup
 
   " Simplify quickfix window
   autocmd FileType qf setlocal colorcolumn=0 nolist nocursorline nowrap tw=0

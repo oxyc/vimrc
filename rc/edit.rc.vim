@@ -35,7 +35,7 @@ endif
 set backspace=indent,eol,start
 
 " Highlight matching bracket.
-set showmatch
+" set showmatch
 " Show until a character is typed.
 set cpoptions-=m
 " How many ms to blink matching bracket.
@@ -53,9 +53,17 @@ set infercase
 set virtualedit=block
 " Automatically insert comment leader on return and let gq format comments @todo
 set formatoptions+=rq
+" Delete comment character when joining commented lines
+if v:version > 703 || v:version == 703 && has("patch541")
+  set formatoptions+=j
+endif
 
-" Timeout on mapping after half a second, time out on key codes after a tenth of a second.
-set timeout timeoutlen=500 ttimeoutlen=100
+" Timeout on mapping after half a second, time out on key codes after a 1/100 second.
+set timeout timeoutlen=500
+if !has('nvim') && &ttimeoutlen == -1
+  set ttimeout
+  set ttimeoutlen=100
+endif
 
 " @todo
 " " Disable paste.

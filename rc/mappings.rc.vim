@@ -33,6 +33,7 @@ inoremap # x<C-H>#
 " User Interface {{{
 " ---------------------------------------------------------------------------
 
+
 " Window movement
 nnoremap <C-h> <C-w>h
 nnoremap <C-j> <C-w>j
@@ -43,7 +44,7 @@ vnoremap <C-j> <C-w>j
 vnoremap <C-k> <C-w>k
 vnoremap <C-l> <C-w>l
 
-" Tab movement
+"" Tab movement
 noremap <s-tab> :tabn<CR>
 noremap <leader>tn :tabnew<CR>
 " }}}

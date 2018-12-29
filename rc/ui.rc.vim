@@ -17,7 +17,7 @@ endif
 " Always show the status line.
 set laststatus=2
 " Show the command being typed.
-set showcmd
+" set showcmd
 " Don't show the mode (eg. --VISUAL--).as we have airline and echodoc uses it.
 set noshowmode
 " Set window title to the filename.
@@ -84,7 +84,7 @@ autocmd MyAutoCmd VimResized * exe "normal! \<c-w>="
 " Abbrevation of messages (avoids hit enter).
 set shortmess+=filmnrxoOtT
 
-" Don't redraw while macro executing.
+" Don't redraw while executing macros, registers and other not typed commands.
 set lazyredraw
 " Faster redrawing
 set ttyfast

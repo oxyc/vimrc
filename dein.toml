@@ -68,6 +68,9 @@ hook_source = '''
   if dein#tap('neomake')
     let g:airline_extensions = g:airline_extensions + ['neomake']
   endif
+  if dein#tap('ale')
+    let g:airline#extensions#ale#enabled = 1
+  endif
 '''
 
 # UI for editing commit messages
@@ -318,6 +321,11 @@ hook_source = '''
  " [ANSIBLE0018] Deprecated always_run
   let g:neomake_ansible_ansiblelint_args = ['-p', '--nocolor', '-x', 'ANSIBLE0011,ANSIBLE0013,ANSIBLE0018']
 '''
+
+# # Syntax checker (vim 8 and neovim)
+# # https://github.com/w0rp/ale
+# [[plugins]]
+# repo = 'w0rp/ale'
 
 # Syntax checker (vim 7, vim 8 uses neomake)
 # https://github.com/vim-syntastic/syntastic
@@ -619,8 +627,8 @@ hook_add = '''
 
 # Automatically set paste
 # https://github.com/roxma/vim-paste-easy
-[[plugins]]
-repo = 'roxma/vim-paste-easy'
+#[[plugins]]
+#repo = 'roxma/vim-paste-easy'
 
 # Comment code
 # https://github.com/tpope/vim-commentary
@@ -648,6 +656,8 @@ repo = 'oxyc/auto-pairs'
 rev = 'features-neovim'
 hook_source = '''
   let g:AutoPairsFlyMode = 0
+  let g:AutoPairsShortcutFastWrap = ''
+  let g:AutoPairsShortcutBackInsert = ''
   " let g:AutoPairsOnlyAtEOL = 1
   " let g:AutoPairsOnlyBeforeClose = 1
   let g:AutoPairsBalanceImmediately =1
@@ -769,6 +779,11 @@ repo = 'Shougo/neoinclude.vim'
 [[plugins]]
 repo = 'beyondwords/vim-twig'
 
+# React syntax highlighting (not lazy)
+# https://github.com/beyondwords/vim-twig
+[[plugins]]
+repo = 'mxw/vim-jsx'
+
 # Dockerfile syntax highlighting (not lazy)
 # https://github.com/ekalinin/dockerfile.vim
 [[plugins]]
@@ -778,3 +793,13 @@ repo = 'ekalinin/dockerfile.vim'
 # https://github.com/pearofducks/ansible-vim
 [[plugins]]
 repo = 'pearofducks/ansible-vim'
+
+# Vim syntax highlighting for Blade templates
+# https://github.com/jwalton512/vim-blade
+[[plugins]]
+repo = 'jwalton512/vim-blade'
+
+# Syntax Highlight for Vue.js components
+# https://github.com/posva/vim-vue
+[[plugins]]
+repo = 'posva/vim-vue'
