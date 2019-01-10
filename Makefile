@@ -1,3 +1,4 @@
+SHELL:=/bin/bash
 master=git://github.com/oxyc/vimrc.git
 DEST:=$(shell dirname $(realpath $(lastword $(MAKEFILE_LIST))))
 
